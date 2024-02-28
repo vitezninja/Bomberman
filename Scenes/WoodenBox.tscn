@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciuidmbwdyr57"]
+
+[ext_resource type="Texture2D" uid="uid://bgcxk88vbh1t2" path="res://Assets/Tilemap/Box.png" id="1_ttuhy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mncs"]
+size = Vector2(16, 16)
+
+[node name="WoodenBox" type="StaticBody2D" groups=["WoodenBox"]]
+z_index = 1
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_ttuhy")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8mncs")
