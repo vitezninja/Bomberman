@@ -1,8 +1,8 @@
 [gd_scene load_steps=35 format=3 uid="uid://dygucp2fqgwfn"]
 
-[ext_resource type="Texture2D" uid="uid://8x7ca0wf3a2x" path="res://Assets/Enemy/Shadow.png" id="1_1dkm5"]
+[ext_resource type="Texture2D" uid="uid://c7cw1dnsvyov1" path="res://Assets/Enemy/Shadow.png" id="1_1dkm5"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_2b8kt"]
-[ext_resource type="Texture2D" uid="uid://7xq3xdw58xr3" path="res://Assets/Enemy/Skeleton.png" id="1_iogyv"]
+[ext_resource type="Texture2D" uid="uid://dkp6cohfr6npn" path="res://Assets/Enemy/Skeleton.png" id="1_iogyv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2pi5i"]
 atlas = ExtResource("1_iogyv")
@@ -242,9 +242,8 @@ animations = [{
 radius = 2.0
 height = 12.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gedso"]
-radius = 7.0
-height = 18.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3v1a"]
+size = Vector2(14, 15)
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
@@ -253,21 +252,27 @@ safe_margin = 1.0
 script = ExtResource("1_2b8kt")
 
 [node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
 texture = ExtResource("1_1dkm5")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_hapek")
-animation = &"Death"
+animation = &"Idle_Forward"
 autoplay = "Idle_Forward"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 z_index = 1
-position = Vector2(0, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8rncf")
 
 [node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, -7)
 
 [node name="HitBoxShape" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CapsuleShape2D_gedso")
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_s3v1a")
+
+[connection signal="area_shape_entered" from="Hitbox" to="." method="_on_hitbox_area_shape_entered"]

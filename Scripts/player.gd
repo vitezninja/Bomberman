@@ -1,17 +1,27 @@
 extends CharacterBody2D
-@export var playerId: int = 0
+
+enum playerEnum {Player1, Player2, Player3}
+@export var playerId: playerEnum
 
 const NORMALSPEED = 300.0
 const POWERUPSPEED = 100.0
 const DEBUFFSPEED = -100.0
-
+const DELTAMULTIPLIER = 10.0
 var currentSpeed = NORMALSPEED
 var previousFrameVelocity = Vector2(0,0)
 
 const MAXBOMBTIMER = 1.0
 var bombTimer = MAXBOMBTIMER
+var maxBombsCount = 1
+var maxBombsRange = 2
+var bombs: Array
+var hasDetonator = false
 
-const DELTAMULTIPLIER = 10.0
+const MAXBOXTIMER = 1.0
+var boxTimer = MAXBOXTIMER
+var maxBoxCount = 3
+var boxes: Array
+var hasBoxes = false
 
 @onready var sprite = %Sprite
 @onready var bomb = preload("res://Scenes/Bomb.tscn")
@@ -21,6 +31,7 @@ var down = "down_player_"
 var left = "left_player_"
 var right = "right_player_"
 var bombPlace = "bomb_player_"
+var boxPlace = "box_player_"
 
 func _ready():
 	handleInputMap()
@@ -29,20 +40,18 @@ func _ready():
 func _physics_process(delta):
 	handleMovement(delta)
 	handleAnimation()
-	checkBombAction()
+	handleBombAction()
+	handleBoxAction()
 	bombTimer -= delta
+	boxTimer -= delta
 	move_and_slide()
 
 func handleInputMap():
-	if playerId > 3 or playerId <= 0:
-		print("Error playerId is not between 1 and 3 it's " + str(playerId))
-		set_physics_process(false)
-		queue_free()
-	up += str(playerId)
-	down += str(playerId)
-	left += str(playerId)
-	right += str(playerId)
-	bombPlace += str(playerId)
+	up += str(playerId+1)
+	down += str(playerId+1)
+	left += str(playerId+1)
+	right += str(playerId+1)
+	bombPlace += str(playerId+1)
 
 func handleMovement(delta):
 	var x_direction = Input.get_axis(left, right)
@@ -86,15 +95,23 @@ func handleAnimation():
 	else:
 		sprite.play("Idle_Sideways")
 
-func checkBombAction():
-	if Input.is_action_just_pressed(bombPlace) and bombTimer <= 0:
+func handleBombAction():
+	if Input.is_action_just_pressed(bombPlace) and bombTimer <= 0 and bombs.size() < maxBombsCount:
 		place()
-		
+	#TODO
+	#Make detonator work
+
 func place():
 	var thisBomb = bomb.instantiate()
-	thisBomb.global_position = global_position
+	var tileMap = get_tree().get_first_node_in_group("TileMap")
+	var bombPos = tileMap.local_to_map(to_local(tileMap.global_position))
+	thisBomb.global_position = tileMap.map_to_local(bombPos) * -1
+	thisBomb.playerId = playerId
+	thisBomb.maxRange = maxBombsRange
+	thisBomb.automaticDetonation = !hasDetonator
 	get_tree().get_first_node_in_group("Bombs").add_child(thisBomb)
 	bombTimer = MAXBOMBTIMER
+	bombs.append(thisBomb)
 
 func hit():
 	set_physics_process(false)
@@ -104,9 +121,47 @@ func hit():
 
 func changeColor():
 	match playerId:
-		1:
+		playerEnum.Player1:
 			sprite.modulate = Color(1,0,0)
-		2:
+		playerEnum.Player2:
 			sprite.modulate = Color(0,1,0)
-		3:
+		playerEnum.Player3:
 			sprite.modulate = Color(0,0,1)
+
+func increaseBombCount():
+	maxBombsCount += 1
+
+func increaseBombRange():
+	maxBombsRange += 1
+
+func pickedUpDetonator():
+	hasDetonator = true
+
+func speedBoost():
+	if currentSpeed == NORMALSPEED:
+		currentSpeed += POWERUPSPEED
+
+#TODO
+func invincibility():
+	pass
+
+#TODO
+func ghost():
+	pass
+
+#TODO
+func canPlaceBoxes():
+	if hasBoxes:
+		maxBoxCount += 3
+	hasBoxes = true
+
+#TODO
+#Add the input keys
+func handleBoxAction():
+	pass
+	#if Input.is_action_just_pressed(boxPlace) and boxes.size() < maxBoxCount and hasBoxes:
+	#	placeBox()
+
+#TODO
+func placeBox():
+	pass

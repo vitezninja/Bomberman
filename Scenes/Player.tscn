@@ -1,8 +1,8 @@
 [gd_scene load_steps=34 format=3 uid="uid://6ne8rr1sxpn8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2byre"]
-[ext_resource type="Texture2D" uid="uid://c84eyq4o4gbr" path="res://Assets/Player/Prototype_Worksheet.png" id="1_fi8d7"]
-[ext_resource type="Texture2D" uid="uid://bkwv3iwc83gh6" path="res://Assets/Player/Shadow.png" id="3_y84jk"]
+[ext_resource type="Texture2D" uid="uid://ccxygnqlp1ini" path="res://Assets/Player/Prototype_Worksheet.png" id="1_fi8d7"]
+[ext_resource type="Texture2D" uid="uid://curqr2tucm1n7" path="res://Assets/Player/Shadow.png" id="3_y84jk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8tt6"]
 atlas = ExtResource("1_fi8d7")
@@ -236,8 +236,8 @@ radius = 2.0
 height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_numyg"]
-radius = 7.0
-height = 18.0
+radius = 6.0
+height = 16.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
@@ -246,20 +246,22 @@ safe_margin = 1.0
 script = ExtResource("1_2byre")
 
 [node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
 texture = ExtResource("3_y84jk")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_unmm5")
 animation = &"Idle_Forward"
 autoplay = "Idle_Forward"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7ruus")
 
 [node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, -7)
 
 [node name="HitBoxShape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_numyg")

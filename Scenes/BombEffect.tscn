@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bs14hvys4xp6x"]
+
+[node name="BombEffect" type="Node2D"]

@@ -32,15 +32,14 @@ script = ExtResource("1_r5xv8")
 y_sort_enabled = true
 
 [node name="Player" parent="Players" instance=ExtResource("1_6f7ls")]
-playerId = 1
 
 [node name="Player2" parent="Players" instance=ExtResource("1_6f7ls")]
 position = Vector2(-49, -12)
-playerId = 2
+playerId = 1
 
 [node name="Player3" parent="Players" instance=ExtResource("1_6f7ls")]
 position = Vector2(41, -16)
-playerId = 3
+playerId = 2
 
 [node name="Boxes" type="Node2D" parent="."]
 y_sort_enabled = true
