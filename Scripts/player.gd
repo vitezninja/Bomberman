@@ -38,12 +38,15 @@ func _ready():
 	changeColor()
 
 func _physics_process(delta):
+	bombTimer -= delta
+	boxTimer -= delta
+	
 	handleMovement(delta)
 	handleAnimation()
 	handleBombAction()
 	handleBoxAction()
-	bombTimer -= delta
-	boxTimer -= delta
+	handleGhostForm()
+	
 	move_and_slide()
 
 func handleInputMap():
@@ -147,6 +150,10 @@ func invincibility():
 
 #TODO
 func ghost():
+	pass
+
+#TODO
+func handleGhostForm():
 	pass
 
 #TODO

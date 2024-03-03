@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c2wae7fq6ae32"]
+
+[node name="ChangeKeyBindsMenu" type="Node2D"]
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 1630.0
+offset_top = 69.0
+offset_right = 1853.0
+offset_bottom = 141.0
+text = "Quit"
+
+[node name="Back" type="Button" parent="."]
+offset_left = 1644.0
+offset_top = 963.0
+offset_right = 1867.0
+offset_bottom = 1035.0
+text = "Back"
+
+[node name="TextEdit" type="Panel" parent="."]
+offset_left = 616.0
+offset_top = 324.0
+offset_right = 1270.0
+offset_bottom = 746.0
+
+[node name="Label" type="Label" parent="TextEdit"]
+layout_mode = 0
+offset_right = 651.0
+offset_bottom = 421.0
+text = "asssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,3 +1,92 @@
-[gd_scene format=3 uid="uid://bs14hvys4xp6x"]
+[gd_scene load_steps=7 format=3 uid="uid://bs14hvys4xp6x"]
+
+[ext_resource type="Script" path="res://Scripts/bombEffect.gd" id="1_8h0bs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cly6r"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b82rn"]
+resource_local_to_scene = true
+size = Vector2(16, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfcp0"]
+resource_local_to_scene = true
+size = Vector2(0, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xebf8"]
+resource_local_to_scene = true
+size = Vector2(16, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bl4q"]
+resource_local_to_scene = true
+size = Vector2(0, 16)
 
 [node name="BombEffect" type="Node2D"]
+script = ExtResource("1_8h0bs")
+
+[node name="HitboxCenter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxCenter"]
+shape = SubResource("RectangleShape2D_cly6r")
+
+[node name="HitboxTop" type="Area2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="CollisionTop" type="CollisionShape2D" parent="HitboxTop"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_b82rn")
+
+[node name="HitboxRight" type="Area2D" parent="."]
+position = Vector2(8, 0)
+
+[node name="CollisionRight" type="CollisionShape2D" parent="HitboxRight"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_bfcp0")
+
+[node name="HitboxBottom" type="Area2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="HitboxBottom"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_xebf8")
+
+[node name="HitboxLeft" type="Area2D" parent="."]
+position = Vector2(-8, 0)
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="HitboxLeft"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_0bl4q")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="RaycastTop" type="RayCast2D" parent="RayCasts"]
+unique_name_in_owner = true
+target_position = Vector2(0, -10)
+collision_mask = 2
+
+[node name="RaycastRight" type="RayCast2D" parent="RayCasts"]
+unique_name_in_owner = true
+target_position = Vector2(10, 0)
+collision_mask = 2
+
+[node name="RaycastBottom" type="RayCast2D" parent="RayCasts"]
+unique_name_in_owner = true
+target_position = Vector2(0, 10)
+collision_mask = 2
+
+[node name="RaycastLeft" type="RayCast2D" parent="RayCasts"]
+unique_name_in_owner = true
+target_position = Vector2(-10, 0)
+collision_mask = 2
+
+[connection signal="area_shape_entered" from="HitboxCenter" to="." method="_on_hitbox_center_area_shape_entered"]
+[connection signal="area_shape_entered" from="HitboxTop" to="." method="_on_hitbox_top_area_shape_entered"]
+[connection signal="area_shape_entered" from="HitboxRight" to="." method="_on_hitbox_right_area_shape_entered"]
+[connection signal="area_shape_entered" from="HitboxBottom" to="." method="_on_hitbox_bottom_area_shape_entered"]
+[connection signal="area_shape_entered" from="HitboxLeft" to="." method="_on_hitbox_left_area_shape_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -22,6 +22,8 @@ func _ready():
 func _physics_process(delta):
 	handleMovement(delta)
 	handleAnimation()
+	handlePhasing()
+	
 	move_and_slide()
 
 #TODO
@@ -59,6 +61,10 @@ func move(input: Vector2, delta):
 
 #TODO
 func phase():
+	pass
+
+#TODO
+func handlePhasing():
 	pass
 
 func handleAnimation():

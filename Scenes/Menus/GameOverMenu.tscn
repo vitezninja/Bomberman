@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cat2d0od0t1qo"]
+
+[node name="GameOverMenu" type="Node2D"]
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 1630.0
+offset_top = 69.0
+offset_right = 1853.0
+offset_bottom = 141.0
+text = "Quit"
+
+[node name="Back" type="Button" parent="."]
+offset_left = 839.0
+offset_top = 537.0
+offset_right = 1062.0
+offset_bottom = 609.0
+text = "Back"
+
+[node name="Label" type="Label" parent="Back"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -274.0
+offset_right = 582.0
+offset_bottom = -108.0
+theme_override_font_sizes/font_size = 86
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1

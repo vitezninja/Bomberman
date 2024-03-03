@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://p3medsfloo4o"]
+
+[node name="Menu" type="Node2D" groups=["Menu"]]

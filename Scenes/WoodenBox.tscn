@@ -8,6 +8,7 @@ size = Vector2(16, 16)
 
 [node name="WoodenBox" type="StaticBody2D" groups=["WoodenBox"]]
 z_index = 1
+collision_layer = 3
 script = ExtResource("1_f1e20")
 
 [node name="Sprite" type="Sprite2D" parent="."]

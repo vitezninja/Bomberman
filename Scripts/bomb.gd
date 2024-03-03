@@ -3,9 +3,12 @@ extends StaticBody2D
 @onready var sprite = %Sprite
 @onready var collision = %Collision
 @onready var area = %Hitbox
+@onready var timer = %Timer
+@onready var effect = preload("res://Scenes/BombEffect.tscn")
 var playerId
 var maxRange
 var automaticDetonation
+var ticks = 0
 
 func _ready():
 	collision.disabled = true
@@ -28,12 +31,10 @@ func timeOut():
 	sprite.modulate = Color(1,1,1,1)
 
 func startExploding():
-	for i in range(3):
-		await get_tree().create_timer(1).timeout
-		timeOut()
-	explode()
+	timer.start(1)
 
 func explode():
+	await get_tree().create_timer(0.2).timeout
 	var areas = area.get_overlapping_areas()
 	for thisArea in areas:
 		var parent = thisArea.get_parent()
@@ -49,10 +50,19 @@ func explode():
 	createEffect()
 	queue_free()
 
-#TODO
 func chainExplod():
-	pass
+	timer.stop()
+	explode()
 
-#TODO
 func createEffect():
-	pass
+	var thisEffect = effect.instantiate()
+	thisEffect.global_position = global_position
+	thisEffect.maxRange = maxRange
+	get_tree().get_first_node_in_group("BombEffects").add_child(thisEffect)
+
+func _on_timer_timeout():
+	ticks += 1
+	timeOut()
+	if ticks == 3:
+		timer.stop()
+		explode()

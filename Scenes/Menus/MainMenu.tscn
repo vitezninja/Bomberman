@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://2r5s6le8mwto"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 1639.0
+offset_top = 48.0
+offset_right = 1862.0
+offset_bottom = 120.0
+text = "Quit"
+
+[node name="Play" type="Button" parent="."]
+offset_left = 827.0
+offset_top = 529.0
+offset_right = 1083.0
+offset_bottom = 674.0
+text = "Play"
+
+[node name="Info" type="Button" parent="."]
+offset_left = 1648.0
+offset_top = 978.0
+offset_right = 1871.0
+offset_bottom = 1050.0
+text = "Info
+"
+
+[node name="Credits" type="Button" parent="."]
+offset_left = 59.0
+offset_top = 978.0
+offset_right = 282.0
+offset_bottom = 1050.0
+text = "Credits
+"
+
+[node name="KeyBinds" type="Button" parent="."]
+offset_left = 53.0
+offset_top = 48.0
+offset_right = 276.0
+offset_bottom = 120.0
+text = "ChangeKeyBinds"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 473.0
+offset_top = 349.0
+offset_right = 1419.0
+offset_bottom = 515.0
+theme_override_font_sizes/font_size = 86
+text = "Bomberman"
+horizontal_alignment = 1
+vertical_alignment = 1
