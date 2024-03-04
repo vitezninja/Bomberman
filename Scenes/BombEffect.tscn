@@ -60,7 +60,6 @@ shape = SubResource("RectangleShape2D_0bl4q")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 3.0
 
 [node name="RayCasts" type="Node2D" parent="."]
 
