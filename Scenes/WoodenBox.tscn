@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://ciuidmbwdyr57"]
 
 [ext_resource type="Script" path="res://Scripts/woodenBox.gd" id="1_f1e20"]
-[ext_resource type="Texture2D" uid="uid://c2f4k778s7v73" path="res://Assets/Tilemap/Box.png" id="1_ttuhy"]
+[ext_resource type="Texture2D" uid="uid://bh3ijdhp0u00t" path="res://Assets/Tilemap/Box.png" id="1_ttuhy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mncs"]
 size = Vector2(16, 16)
 
 [node name="WoodenBox" type="StaticBody2D" groups=["WoodenBox"]]
 z_index = 1
-collision_layer = 3
+collision_layer = 7
 script = ExtResource("1_f1e20")
 
 [node name="Sprite" type="Sprite2D" parent="."]

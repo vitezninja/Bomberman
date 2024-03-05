@@ -65,7 +65,7 @@ position = Vector2(56, 24)
 y_sort_enabled = true
 
 [node name="Enemy" parent="Enemys" instance=ExtResource("4_5pe20")]
-position = Vector2(-104, 19)
+position = Vector2(-103, 28)
 
 [node name="Bombs" type="Node2D" parent="." groups=["Bombs"]]
 y_sort_enabled = true

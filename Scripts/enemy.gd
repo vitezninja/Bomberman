@@ -3,21 +3,42 @@ extends CharacterBody2D
 enum enemyEnum {Basic, Ghost, Smart, Dumb}
 @export var enemyId: enemyEnum
 
-const NORMALSPEED = 300.0
-const GHOSTSPEED = 200.0
-const SMARTSPEED = 400.0
+const NORMALSPEED = 200.0
+const GHOSTSPEED = 100.0
+const SMARTSPEED = 300.0
 const DELTAMULTIPLIER = 10.0
 var currentSpeed
 var previousFrameVelocity = Vector2(0,0)
+var rng = RandomNumberGenerator.new()
 
 @onready var sprite = %Sprite
 @onready var collision = %Collision
+@onready var ray_cast_left_right = %RayCastLeftRight
+@onready var ray_cast_up_down = %RayCastUpDown
+@onready var timer = %Timer
 
 var isPhasing = false
 
 func _ready():
 	changeColor()
 	setSpeed()
+	rng.randomize()
+	chooseRandomDirection()
+
+func chooseRandomDirection():
+	if timer.is_stopped() and not isPhasing:
+		timer.start(rng.randi_range(1,4))
+	var random = rng.randi_range(1,99)
+	if random >= 1 and random < 25 and previousFrameVelocity.x != 1:
+		previousFrameVelocity = Vector2(1, 0)
+	elif random >= 25 and random < 50 and previousFrameVelocity.x != -1:
+		previousFrameVelocity = Vector2(-1, 0)
+	elif random >= 50 and random < 75 and previousFrameVelocity.y != 1:
+		previousFrameVelocity = Vector2(0, 1)
+	elif random >= 75 and random < 99 and previousFrameVelocity.y != -1:
+		previousFrameVelocity = Vector2(0, -1)
+	else:
+		chooseRandomDirection()
 
 func _physics_process(delta):
 	handleMovement(delta)
@@ -26,13 +47,28 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-#TODO
 func handleMovement(delta):
-	pass
+	ray_cast_left_right.target_position.x = previousFrameVelocity.x * 7
+	ray_cast_up_down.target_position.y = previousFrameVelocity.y * 3
+	match enemyId:
+		enemyEnum.Basic:
+			basicMovment(delta)
+		enemyEnum.Ghost:
+			ghostMovment(delta)
+		enemyEnum.Smart:
+			smartMovment(delta)
+		enemyEnum.Dumb:
+			dumbMovment(delta)
 
-#TODO
 func basicMovment(delta):
-	pass
+	if previousFrameVelocity.x != 0 and not ray_cast_left_right.is_colliding():
+		move(Vector2(previousFrameVelocity.x,0), delta)
+	elif previousFrameVelocity.x != 0 and ray_cast_left_right.is_colliding():
+		chooseRandomDirection()
+	if previousFrameVelocity.y != 0 and not ray_cast_up_down.is_colliding():
+		move(Vector2(0, previousFrameVelocity.y), delta)
+	elif previousFrameVelocity.y != 0 and ray_cast_up_down.is_colliding():
+		chooseRandomDirection()
 
 #TODO
 func ghostMovment(delta):
@@ -116,3 +152,8 @@ func setSpeed():
 func _on_hitbox_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
 	if area.get_parent().is_in_group("Player"):
 		area.get_parent().hit()
+
+
+
+func _on_timer_timeout():
+	chooseRandomDirection()
