@@ -18,7 +18,8 @@ var tilemap
 @onready var sprite = %Sprite
 @onready var collision = %Collision
 @onready var ray_cast_left_right = %RayCastLeftRight
-@onready var ray_cast_up_down = %RayCastUpDown
+@onready var ray_cast_up_down_right = %RayCastUpDownRight
+@onready var ray_cast_up_down_left = %RayCastUpDownLeft
 @onready var timer = %Timer
 
 var isPhasing = false
@@ -27,7 +28,7 @@ func _ready():
 	changeColor()
 	setSpeed()
 	rng.randomize()
-	chooseRandomDirection()
+	chooseRandomDirection(0.0)
 	createAstar()
 
 func _physics_process(delta):
@@ -37,7 +38,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func chooseRandomDirection():
+func chooseRandomDirection(_delta):
 	if timer.is_stopped() and not isPhasing:
 		timer.start(rng.randi_range(2,4))
 	var random = rng.randi_range(1,99)
@@ -50,7 +51,7 @@ func chooseRandomDirection():
 	elif random >= 75 and random < 99 and previousFrameVelocity.y != -1:
 		previousFrameVelocity = Vector2(0, -1)
 	else:
-		chooseRandomDirection()
+		chooseRandomDirection(_delta)
 
 func createAstar():
 	tilemap = get_tree().get_first_node_in_group("TileMap")
@@ -70,7 +71,8 @@ func createAstar():
 
 func handleMovement(delta):
 	ray_cast_left_right.target_position.x = previousFrameVelocity.x * 7
-	ray_cast_up_down.target_position.y = previousFrameVelocity.y * 3
+	ray_cast_up_down_left.target_position.y = previousFrameVelocity.y * 3
+	ray_cast_up_down_right.target_position.y = previousFrameVelocity.y * 3
 	match enemyId:
 		enemyEnum.Basic:
 			basicMovment(delta)
@@ -82,40 +84,38 @@ func handleMovement(delta):
 			dumbMovment(delta)
 
 func basicMovment(delta):
-	if previousFrameVelocity.x != 0 and not ray_cast_left_right.is_colliding():
-		move(Vector2(previousFrameVelocity.x,0), delta)
-	elif previousFrameVelocity.x != 0 and ray_cast_left_right.is_colliding():
-		chooseRandomDirection()
-	if previousFrameVelocity.y != 0 and not ray_cast_up_down.is_colliding():
-		move(Vector2(0, previousFrameVelocity.y), delta)
-	elif previousFrameVelocity.y != 0 and ray_cast_up_down.is_colliding():
-		chooseRandomDirection()
+	doMovement(chooseRandomDirection, delta)
 
 #TODO
 func ghostMovment(delta):
-	pass
+	doMovement(phase, delta)
+	#Make phase and handle movement
 
 #TODO
 func smartMovment(delta):
+	doMovement(findClosestPath, delta)
+
+#TODO
+func dumbMovment(delta):
+	doMovement(findClosestPath, delta)
+	#change to findLongestPath
+
+func doMovement(function: Callable, delta):
 	var random = rng.randi_range(1,99)
 	if previousFrameVelocity.x != 0 and not ray_cast_left_right.is_colliding():
 		move(Vector2(previousFrameVelocity.x,0), delta)
 	elif previousFrameVelocity.x != 0 and ray_cast_left_right.is_colliding():
 		if random < 25:
-			findClosestPath(delta)
+			function.bind(delta).call()
 		else:
-			chooseRandomDirection()
-	if previousFrameVelocity.y != 0 and not ray_cast_up_down.is_colliding():
+			chooseRandomDirection(delta)
+	if previousFrameVelocity.y != 0 and not ray_cast_up_down_left.is_colliding() and not ray_cast_up_down_right.is_colliding():
 		move(Vector2(0, previousFrameVelocity.y), delta)
-	elif previousFrameVelocity.y != 0 and ray_cast_up_down.is_colliding():
+	elif previousFrameVelocity.y != 0 and (ray_cast_up_down_left.is_colliding() or ray_cast_up_down_right.is_colliding()):
 		if random < 25:
-			findClosestPath(delta)
+			function.bind(delta).call()
 		else:
-			chooseRandomDirection()
-
-#TODO
-func dumbMovment(delta):
-	pass
+			chooseRandomDirection(delta)
 
 func move(input: Vector2, delta):
 	if input.x != 0:
@@ -133,7 +133,7 @@ func move(input: Vector2, delta):
 func findClosestPath(delta):
 	var player = findClosestPlayer()
 	if player == null:
-		chooseRandomDirection()
+		chooseRandomDirection(delta)
 		return
 	
 	Astar.update()
@@ -144,7 +144,7 @@ func findClosestPath(delta):
 		tilemap.local_to_map(player.global_position)
 	)
 	if current_path.is_empty():
-		chooseRandomDirection()
+		chooseRandomDirection(delta)
 		return
 	
 	var target_pos = tilemap.map_to_local(current_path.front())
@@ -160,7 +160,7 @@ func findClosestPath(delta):
 		move(Vector2(0,-1), delta)
 
 #TODO
-func phase():
+func phase(_delta):
 	pass
 
 #TODO
@@ -218,7 +218,7 @@ func _on_hitbox_area_shape_entered(_area_rid, area, _area_shape_index, _local_sh
 		area.get_parent().hit()
 
 func _on_timer_timeout():
-	chooseRandomDirection()
+	chooseRandomDirection(0.0)
 
 func findClosestPlayer():
 	var closest

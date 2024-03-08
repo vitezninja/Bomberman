@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cebvurjp0xa3o"]
 
-[ext_resource type="Texture2D" uid="uid://cghaxd6bl1u5q" path="res://Assets/Tilemap/My-Tile_set.png" id="1_8doak"]
+[ext_resource type="Texture2D" uid="uid://doc3x8y25dmq" path="res://Assets/Tilemap/My-Tile_set.png" id="1_8doak"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oo7sd"]
 texture = ExtResource("1_8doak")
@@ -748,7 +748,7 @@ texture = ExtResource("1_8doak")
 4:9/0/custom_data_0 = "Wall"
 
 [sub_resource type="TileSet" id="TileSet_5k4j3"]
-physics_layer_0/collision_layer = 7
+physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_oo7sd")

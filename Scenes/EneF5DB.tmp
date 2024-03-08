@@ -247,8 +247,6 @@ size = Vector2(14, 15)
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
-collision_layer = 4
-collision_mask = 27
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_2b8kt")
@@ -272,8 +270,6 @@ shape = SubResource("CapsuleShape2D_8rncf")
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -7)
-collision_layer = 4
-collision_mask = 10
 
 [node name="HitBoxShape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 0.5)
@@ -282,19 +278,12 @@ shape = SubResource("RectangleShape2D_s3v1a")
 [node name="RayCastLeftRight" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(7, 0)
-collision_mask = 19
+collision_mask = 4
 
-[node name="RayCastUpDownRight" type="RayCast2D" parent="."]
+[node name="RayCastUpDown" type="RayCast2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(5, 0)
 target_position = Vector2(0, 3)
-collision_mask = 19
-
-[node name="RayCastUpDownLeft" type="RayCast2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-5, 0)
-target_position = Vector2(0, 3)
-collision_mask = 19
+collision_mask = 4
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

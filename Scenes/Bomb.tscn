@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dldpptyurgs5w"]
 
 [ext_resource type="Script" path="res://Scripts/bomb.gd" id="1_56uxq"]
-[ext_resource type="Texture2D" uid="uid://cfatf272lqpp3" path="res://Assets/Bomb/Bomb.png" id="1_jjdf7"]
+[ext_resource type="Texture2D" uid="uid://b4qvuwnivtn4v" path="res://Assets/Bomb/Bomb.png" id="1_jjdf7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1rmo"]
 radius = 7.0
@@ -11,7 +11,7 @@ radius = 7.0
 
 [node name="Bomb" type="StaticBody2D" groups=["Bomb"]]
 z_index = 1
-collision_layer = 5
+collision_layer = 2
 script = ExtResource("1_56uxq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -25,6 +25,8 @@ shape = SubResource("CircleShape2D_v1rmo")
 
 [node name="Hitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_b72b5")
