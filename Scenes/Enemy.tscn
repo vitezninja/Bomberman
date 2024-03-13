@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dygucp2fqgwfn"]
+[gd_scene load_steps=36 format=3 uid="uid://dygucp2fqgwfn"]
 
 [ext_resource type="Texture2D" uid="uid://bhclao8siris3" path="res://Assets/Enemy/Shadow.png" id="1_1dkm5"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_2b8kt"]
@@ -238,6 +238,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xa4qt"]
+radius = 2.0
+height = 12.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8rncf"]
 radius = 2.0
 height = 12.0
@@ -248,7 +252,7 @@ size = Vector2(14, 15)
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
 collision_layer = 4
-collision_mask = 27
+collision_mask = 83
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_2b8kt")
@@ -263,6 +267,15 @@ position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_hapek")
 animation = &"Idle_Forward"
 autoplay = "Idle_Forward"
+
+[node name="CollisionArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xa4qt")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
@@ -282,19 +295,19 @@ shape = SubResource("RectangleShape2D_s3v1a")
 [node name="RayCastLeftRight" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(7, 0)
-collision_mask = 19
+collision_mask = 83
 
 [node name="RayCastUpDownRight" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(5, 0)
 target_position = Vector2(0, 3)
-collision_mask = 19
+collision_mask = 83
 
 [node name="RayCastUpDownLeft" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-5, 0)
 target_position = Vector2(0, 3)
-collision_mask = 19
+collision_mask = 83
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

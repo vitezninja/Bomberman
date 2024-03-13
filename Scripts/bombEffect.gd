@@ -1,4 +1,5 @@
 extends Node2D
+class_name BombEffect
 
 @onready var collisionTop = %CollisionTop
 @onready var collisionRight = %CollisionRight

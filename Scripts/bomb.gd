@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name Bomb
 
 @onready var sprite = %Sprite
 @onready var collision = %Collision

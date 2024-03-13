@@ -117,6 +117,7 @@ bomb_player_3={
 2d_physics/layer_4="Players"
 2d_physics/layer_5="Boxes"
 2d_physics/layer_6="PowerUps"
+2d_physics/layer_7="MapBorder"
 
 [rendering]
 
