@@ -31,7 +31,7 @@ var tilemap: TileMap
 @onready var timer: Timer = %Timer
 
 var isPhasing: bool = false
-const MINPHASETIME: float = 1.0
+const MINPHASETIME: float = 0.5
 var phaseTimer: float
 
 func _ready() -> void :
@@ -199,6 +199,7 @@ func findLongestPath(delta: float) -> void:
 
 func phase(_delta: float) -> void:
 	if not isPhasing:
+		z_index = 3
 		phaseTimer = MINPHASETIME
 		isPhasing = true
 		timer.stop()
@@ -213,6 +214,7 @@ func phase(_delta: float) -> void:
 
 func handlePhasing() -> void:
 	if isPhasing and not collision_area.has_overlapping_bodies() and phaseTimer <= 0:
+		z_index = 1
 		isPhasing = false
 		timer.start()
 		set_collision_mask_value(1, true)
