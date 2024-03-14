@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 enum playerEnum {Player1, Player2, Player3}
 @export var playerId: playerEnum

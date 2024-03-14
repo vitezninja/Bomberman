@@ -2,7 +2,7 @@ extends Node2D
 
 var pauseSwitch = false
 
-func _process(delta):
+func _process(_delta):
 	handlePause()
 	handleGameEnd()
 

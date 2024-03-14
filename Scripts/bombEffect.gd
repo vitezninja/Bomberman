@@ -1,4 +1,5 @@
 extends Node2D
+class_name BombEffect
 
 @onready var collisionTop = %CollisionTop
 @onready var collisionRight = %CollisionRight
@@ -27,22 +28,22 @@ func _ready():
 func expand():
 	if not raycast_top.is_colliding() and collisionTop.shape.size.y < (maxRange * 16) and not stopTop:
 		expandTop()
-	elif raycast_top.is_colliding():
+	elif raycast_top.is_colliding() and not collisionTop.shape.size.y == (maxRange * 16):
 		expodeIfBox(raycast_top.get_collider(), "stopTop")
 		
 	if not raycast_right.is_colliding() and collisionRight.shape.size.x < (maxRange * 16) and not stopRight:
 		expandRight()
-	elif raycast_right.is_colliding():
+	elif raycast_right.is_colliding() and not collisionRight.shape.size.x == (maxRange * 16):
 		expodeIfBox(raycast_right.get_collider(), "stopRight")
 		
 	if not raycast_bottom.is_colliding() and collisionBottom.shape.size.y < (maxRange * 16) and not stopBottom:
 		expandbottom()
-	elif raycast_bottom.is_colliding():
+	elif raycast_bottom.is_colliding() and not collisionBottom.shape.size.y == (maxRange * 16):
 		expodeIfBox(raycast_bottom.get_collider(), "stopBottom")
 		
 	if not raycast_left.is_colliding() and collisionLeft.shape.size.x < (maxRange * 16) and not stopLeft:
 		expandLeft()
-	elif raycast_left.is_colliding():
+	elif raycast_left.is_colliding() and not collisionLeft.shape.size.x == (maxRange * 16):
 		expodeIfBox(raycast_left.get_collider(), "stopLeft")
 
 func checkEnd():

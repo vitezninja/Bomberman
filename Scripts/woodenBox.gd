@@ -1,4 +1,6 @@
 extends StaticBody2D
+class_name WoodenBox
+
 var playerId
 
 #TODO

@@ -1,8 +1,9 @@
 extends StaticBody2D
+class_name Bomb
 
 @onready var sprite = %Sprite
 @onready var collision = %Collision
-@onready var area = %Hitbox
+@onready var hitbox = %Hitbox
 @onready var timer = %Timer
 @onready var effect = preload("res://Scenes/BombEffect.tscn")
 var playerId
@@ -35,7 +36,7 @@ func startExploding():
 
 func explode():
 	await get_tree().create_timer(0.2).timeout
-	var areas = area.get_overlapping_areas()
+	var areas = hitbox.get_overlapping_areas()
 	for thisArea in areas:
 		var parent = thisArea.get_parent()
 		if parent.is_in_group("Player"):

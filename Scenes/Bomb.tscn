@@ -1,16 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://dldpptyurgs5w"]
 
 [ext_resource type="Script" path="res://Scripts/bomb.gd" id="1_56uxq"]
-[ext_resource type="Texture2D" uid="uid://b8ejl8xbr6uxo" path="res://Assets/Bomb/Bomb.png" id="1_jjdf7"]
+[ext_resource type="Texture2D" uid="uid://d16mqsuidha7f" path="res://Assets/Bomb/Bomb.png" id="1_jjdf7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v1rmo"]
-radius = 7.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlevx"]
+size = Vector2(14, 14)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_b72b5"]
-radius = 7.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02n0r"]
+size = Vector2(14, 14)
 
 [node name="Bomb" type="StaticBody2D" groups=["Bomb"]]
 z_index = 1
+collision_layer = 2
 script = ExtResource("1_56uxq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -20,13 +21,15 @@ texture = ExtResource("1_jjdf7")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-shape = SubResource("CircleShape2D_v1rmo")
+shape = SubResource("RectangleShape2D_xlevx")
 
 [node name="Hitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_b72b5")
+shape = SubResource("RectangleShape2D_02n0r")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

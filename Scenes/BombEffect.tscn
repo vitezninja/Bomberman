@@ -26,12 +26,16 @@ size = Vector2(0, 16)
 script = ExtResource("1_8h0bs")
 
 [node name="HitboxCenter" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxCenter"]
 shape = SubResource("RectangleShape2D_cly6r")
 
 [node name="HitboxTop" type="Area2D" parent="."]
 position = Vector2(0, -8)
+collision_layer = 2
+collision_mask = 14
 
 [node name="CollisionTop" type="CollisionShape2D" parent="HitboxTop"]
 unique_name_in_owner = true
@@ -39,6 +43,8 @@ shape = SubResource("RectangleShape2D_b82rn")
 
 [node name="HitboxRight" type="Area2D" parent="."]
 position = Vector2(8, 0)
+collision_layer = 2
+collision_mask = 14
 
 [node name="CollisionRight" type="CollisionShape2D" parent="HitboxRight"]
 unique_name_in_owner = true
@@ -46,6 +52,8 @@ shape = SubResource("RectangleShape2D_bfcp0")
 
 [node name="HitboxBottom" type="Area2D" parent="."]
 position = Vector2(0, 8)
+collision_layer = 2
+collision_mask = 14
 
 [node name="CollisionBottom" type="CollisionShape2D" parent="HitboxBottom"]
 unique_name_in_owner = true
@@ -53,6 +61,8 @@ shape = SubResource("RectangleShape2D_xebf8")
 
 [node name="HitboxLeft" type="Area2D" parent="."]
 position = Vector2(-8, 0)
+collision_layer = 2
+collision_mask = 14
 
 [node name="CollisionLeft" type="CollisionShape2D" parent="HitboxLeft"]
 unique_name_in_owner = true
@@ -66,22 +76,22 @@ unique_name_in_owner = true
 [node name="RaycastTop" type="RayCast2D" parent="RayCasts"]
 unique_name_in_owner = true
 target_position = Vector2(0, -10)
-collision_mask = 2
+collision_mask = 17
 
 [node name="RaycastRight" type="RayCast2D" parent="RayCasts"]
 unique_name_in_owner = true
 target_position = Vector2(10, 0)
-collision_mask = 2
+collision_mask = 17
 
 [node name="RaycastBottom" type="RayCast2D" parent="RayCasts"]
 unique_name_in_owner = true
 target_position = Vector2(0, 10)
-collision_mask = 2
+collision_mask = 17
 
 [node name="RaycastLeft" type="RayCast2D" parent="RayCasts"]
 unique_name_in_owner = true
 target_position = Vector2(-10, 0)
-collision_mask = 2
+collision_mask = 17
 
 [connection signal="area_shape_entered" from="HitboxCenter" to="." method="_on_hitbox_center_area_shape_entered"]
 [connection signal="area_shape_entered" from="HitboxTop" to="." method="_on_hitbox_top_area_shape_entered"]
