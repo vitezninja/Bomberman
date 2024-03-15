@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bs14hvys4xp6x"]
+[gd_scene load_steps=8 format=3 uid="uid://bs14hvys4xp6x"]
 
 [ext_resource type="Script" path="res://Scripts/bombEffect.gd" id="1_8h0bs"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w3aie"]
+load_path = "res://.godot/imported/5x5.png-62c5dadf9199d6a29870efd03a6a17a0.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cly6r"]
 resource_local_to_scene = true
@@ -24,6 +27,9 @@ size = Vector2(0, 16)
 
 [node name="BombEffect" type="Node2D"]
 script = ExtResource("1_8h0bs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_w3aie")
 
 [node name="HitboxCenter" type="Area2D" parent="."]
 collision_layer = 2

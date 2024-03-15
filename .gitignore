@@ -2,6 +2,3 @@
 .godot/
 *.import
 *.tmp
-
-# Addons
-addons/
