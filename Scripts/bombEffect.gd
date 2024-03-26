@@ -36,24 +36,29 @@ func _ready() -> void:
 
 func expand() -> void:
 	if not raycast_top.is_colliding() and collisionTop.shape.size.y < (maxRange * 16) and not stopTop:
-		expandTop()
+		addMiddle(0, edge_top)
+		expandSide(edge_top, collisionTop, raycast_top, Vector2(0,-1))
 	elif raycast_top.is_colliding() and not collisionTop.shape.size.y == (maxRange * 16):
 		expodeIfBox(raycast_top.get_collider(), "stopTop")
 		
 	if not raycast_right.is_colliding() and collisionRight.shape.size.x < (maxRange * 16) and not stopRight:
-		expandRight()
+		addMiddle(1, edge_right)
+		expandSide(edge_right, collisionRight, raycast_right, Vector2(1,0))
 	elif raycast_right.is_colliding() and not collisionRight.shape.size.x == (maxRange * 16):
 		expodeIfBox(raycast_right.get_collider(), "stopRight")
 		
 	if not raycast_bottom.is_colliding() and collisionBottom.shape.size.y < (maxRange * 16) and not stopBottom:
-		expandbottom()
+		addMiddle(2, edge_bottom)
+		expandSide(edge_bottom, collisionBottom, raycast_bottom, Vector2(0,1))
 	elif raycast_bottom.is_colliding() and not collisionBottom.shape.size.y == (maxRange * 16):
 		expodeIfBox(raycast_bottom.get_collider(), "stopBottom")
 		
 	if not raycast_left.is_colliding() and collisionLeft.shape.size.x < (maxRange * 16) and not stopLeft:
-		expandLeft()
+		addMiddle(3, edge_left)
+		expandSide(edge_left, collisionLeft, raycast_left, Vector2(-1,0))
 	elif raycast_left.is_colliding() and not collisionLeft.shape.size.x == (maxRange * 16):
 		expodeIfBox(raycast_left.get_collider(), "stopLeft")
+	
 	chooseCenter()
 
 func chooseCenter() -> void:
@@ -81,91 +86,39 @@ func _on_timer_timeout() -> void:
 	checkEnd()
 	expand()
 
-func expandTop() -> void:
-	addMiddle(0)
-	edge_top.visible = true
-	edge_top.position.y += -16
-	collisionTop.shape.size.y += 16
-	collisionTop.position.y += -8
-	raycast_top.position.y += -16 
+func expandSide(edge: Sprite2D, collision: CollisionShape2D, raycast: RayCast2D, dirVect: Vector2) -> void:
+	edge.position += dirVect * 16
+	collision.shape.size += abs(dirVect * 16)
+	collision.position += dirVect * 8
+	raycast.position += dirVect * 16
 
-func expandRight() -> void:
-	addMiddle(1)
-	edge_right.visible = true
-	edge_right.position.x += 16
-	collisionRight.shape.size.x += 16
-	collisionRight.position.x += 8
-	raycast_right.position.x += 16 
-
-func expandbottom() -> void:
-	addMiddle(2)
-	edge_bottom.visible = true
-	edge_bottom.position.y += 16
-	collisionBottom.shape.size.y += 16
-	collisionBottom.position.y += 8
-	raycast_bottom.position.y += 16 
-
-func expandLeft() -> void:
-	addMiddle(3)
-	edge_left.visible = true
-	edge_left.position.x += -16
-	collisionLeft.shape.size.x += 16
-	collisionLeft.position.x += -8
-	raycast_left.position.x += -16 
-
-func addMiddle(index: int) -> void:
+func addMiddle(index: int, edge: Sprite2D) -> void:
 	centerExtensions[index] += 1
 	if ticks > 1:
 		var middle: Sprite2D = Sprite2D.new()
 		middle.texture = middlePNG
-		match index:
-			0:
-				middle.position = edge_top.position
-				middle.rotation = edge_top.rotation
-			1:
-				middle.position = edge_right.position
-				middle.rotation = edge_right.rotation
-			2:
-				middle.position = edge_bottom.position
-				middle.rotation = edge_bottom.rotation
-			3:
-				middle.position = edge_left.position
-				middle.rotation = edge_left.rotation
+		middle.position = edge.position
+		middle.rotation = edge.rotation
+		
 		sprites.add_child(middle)
+	edge.visible = true
 
 func _on_hitbox_center_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
-	if area.get_parent().is_in_group("Player"):
-		area.get_parent().hit()
-	if area.get_parent().is_in_group("Enemy"):
-		area.get_parent().hit()
-	if area.get_parent().is_in_group("Bomb"):
-		area.get_parent().chainExplod()
+	hit(area)
 
 func _on_hitbox_top_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
-	if area.get_parent().is_in_group("Player"):
-		area.get_parent().hit()
-	if area.get_parent().is_in_group("Enemy"):
-		area.get_parent().hit()
-	if area.get_parent().is_in_group("Bomb"):
-		area.get_parent().chainExplod()
+	hit(area)
 
 func _on_hitbox_right_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
-	if area.get_parent().is_in_group("Player"):
-		area.get_parent().hit()
-	if area.get_parent().is_in_group("Enemy"):
-		area.get_parent().hit()
-	if area.get_parent().is_in_group("Bomb"):
-		area.get_parent().chainExplod()
+	hit(area)
 
 func _on_hitbox_bottom_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
-	if area.get_parent().is_in_group("Player"):
-		area.get_parent().hit()
-	if area.get_parent().is_in_group("Enemy"):
-		area.get_parent().hit()
-	if area.get_parent().is_in_group("Bomb"):
-		area.get_parent().chainExplod()
+	hit(area)
 
 func _on_hitbox_left_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
+	hit(area)
+
+func hit(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Player"):
 		area.get_parent().hit()
 	if area.get_parent().is_in_group("Enemy"):
