@@ -1,31 +1,40 @@
 extends Node2D
 class_name BombEffect
 
-@onready var collisionTop = %CollisionTop
-@onready var collisionRight = %CollisionRight
-@onready var collisionBottom = %CollisionBottom
-@onready var collisionLeft = %CollisionLeft
-#@onready var animationTop = 
-#@onready var animationRight = 
-#@onready var animationBottom = 
-#@onready var animationLeft = 
-@onready var timer = %Timer
-@onready var raycast_top = %RaycastTop
-@onready var raycast_right = %RaycastRight
-@onready var raycast_bottom = %RaycastBottom
-@onready var raycast_left = %RaycastLeft
+@onready var collisionTop: CollisionShape2D = %CollisionTop
+@onready var collisionRight: CollisionShape2D = %CollisionRight
+@onready var collisionBottom: CollisionShape2D = %CollisionBottom
+@onready var collisionLeft: CollisionShape2D = %CollisionLeft
 
-var maxRange
-var ticks = 0
-var stopTop = false
-var stopRight = false
-var stopBottom = false
-var stopLeft = false
+@onready var sprites: Node2D = %Sprites
+@onready var edge_top: Sprite2D = %EdgeTop
+@onready var edge_right: Sprite2D = %EdgeRight
+@onready var edge_bottom: Sprite2D = %EdgeBottom
+@onready var edge_left: Sprite2D = %EdgeLeft
+@onready var center: Sprite2D = %Center
 
-func _ready():
+var centerExtensions: Array[int] = [0,0,0,0]
+
+const oneByOnePNG: Resource = preload("res://Assets/Effects/1x1.png")
+const middlePNG: Resource = preload("res://Assets/Effects/middle.png")
+
+@onready var timer: Timer = %Timer
+@onready var raycast_top: RayCast2D = %RaycastTop
+@onready var raycast_right: RayCast2D = %RaycastRight
+@onready var raycast_bottom: RayCast2D = %RaycastBottom
+@onready var raycast_left: RayCast2D = %RaycastLeft
+
+var maxRange: int
+var ticks: int = 0
+var stopTop: bool = false
+var stopRight: bool = false
+var stopBottom: bool = false
+var stopLeft: bool = false
+
+func _ready() -> void:
 	timer.start()
 
-func expand():
+func expand() -> void:
 	if not raycast_top.is_colliding() and collisionTop.shape.size.y < (maxRange * 16) and not stopTop:
 		expandTop()
 	elif raycast_top.is_colliding() and not collisionTop.shape.size.y == (maxRange * 16):
@@ -45,39 +54,86 @@ func expand():
 		expandLeft()
 	elif raycast_left.is_colliding() and not collisionLeft.shape.size.x == (maxRange * 16):
 		expodeIfBox(raycast_left.get_collider(), "stopLeft")
+	chooseCenter()
 
-func checkEnd():
+func chooseCenter() -> void:
+	var centerEx: String = "center" 
+	if centerExtensions[0] != 0:
+		centerEx += "_top"
+	if centerExtensions[1] != 0:
+		centerEx += "_right"
+	if centerExtensions[2] != 0:
+		centerEx += "_bottom"
+	if centerExtensions[3] != 0:
+		centerEx += "_left"
+	var centerPNG: Resource = load("res://Assets/Effects/" + centerEx + ".png")
+	if centerPNG == null:
+		centerPNG = load("res://Assets/Effects/center.png")
+	center.texture = centerPNG
+
+func checkEnd() -> void:
 	if ticks == maxRange:
 		timer.stop()
 		queue_free()
 	ticks += 1
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	checkEnd()
 	expand()
 
-func expandTop():
+func expandTop() -> void:
+	addMiddle(0)
+	edge_top.visible = true
+	edge_top.position.y += -16
 	collisionTop.shape.size.y += 16
 	collisionTop.position.y += -8
 	raycast_top.position.y += -16 
 
-func expandRight():
+func expandRight() -> void:
+	addMiddle(1)
+	edge_right.visible = true
+	edge_right.position.x += 16
 	collisionRight.shape.size.x += 16
 	collisionRight.position.x += 8
 	raycast_right.position.x += 16 
 
-func expandbottom():
+func expandbottom() -> void:
+	addMiddle(2)
+	edge_bottom.visible = true
+	edge_bottom.position.y += 16
 	collisionBottom.shape.size.y += 16
 	collisionBottom.position.y += 8
 	raycast_bottom.position.y += 16 
 
-func expandLeft():
+func expandLeft() -> void:
+	addMiddle(3)
+	edge_left.visible = true
+	edge_left.position.x += -16
 	collisionLeft.shape.size.x += 16
 	collisionLeft.position.x += -8
 	raycast_left.position.x += -16 
 
+func addMiddle(index: int) -> void:
+	centerExtensions[index] += 1
+	if ticks > 1:
+		var middle: Sprite2D = Sprite2D.new()
+		middle.texture = middlePNG
+		match index:
+			0:
+				middle.position = edge_top.position
+				middle.rotation = edge_top.rotation
+			1:
+				middle.position = edge_right.position
+				middle.rotation = edge_right.rotation
+			2:
+				middle.position = edge_bottom.position
+				middle.rotation = edge_bottom.rotation
+			3:
+				middle.position = edge_left.position
+				middle.rotation = edge_left.rotation
+		sprites.add_child(middle)
 
-func _on_hitbox_center_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
+func _on_hitbox_center_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.get_parent().is_in_group("Player"):
 		area.get_parent().hit()
 	if area.get_parent().is_in_group("Enemy"):
@@ -85,8 +141,7 @@ func _on_hitbox_center_area_shape_entered(_area_rid, area, _area_shape_index, _l
 	if area.get_parent().is_in_group("Bomb"):
 		area.get_parent().chainExplod()
 
-
-func _on_hitbox_top_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
+func _on_hitbox_top_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.get_parent().is_in_group("Player"):
 		area.get_parent().hit()
 	if area.get_parent().is_in_group("Enemy"):
@@ -94,8 +149,7 @@ func _on_hitbox_top_area_shape_entered(_area_rid, area, _area_shape_index, _loca
 	if area.get_parent().is_in_group("Bomb"):
 		area.get_parent().chainExplod()
 
-
-func _on_hitbox_right_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
+func _on_hitbox_right_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.get_parent().is_in_group("Player"):
 		area.get_parent().hit()
 	if area.get_parent().is_in_group("Enemy"):
@@ -103,8 +157,7 @@ func _on_hitbox_right_area_shape_entered(_area_rid, area, _area_shape_index, _lo
 	if area.get_parent().is_in_group("Bomb"):
 		area.get_parent().chainExplod()
 
-
-func _on_hitbox_bottom_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
+func _on_hitbox_bottom_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.get_parent().is_in_group("Player"):
 		area.get_parent().hit()
 	if area.get_parent().is_in_group("Enemy"):
@@ -112,8 +165,7 @@ func _on_hitbox_bottom_area_shape_entered(_area_rid, area, _area_shape_index, _l
 	if area.get_parent().is_in_group("Bomb"):
 		area.get_parent().chainExplod()
 
-
-func _on_hitbox_left_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
+func _on_hitbox_left_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.get_parent().is_in_group("Player"):
 		area.get_parent().hit()
 	if area.get_parent().is_in_group("Enemy"):
@@ -121,7 +173,7 @@ func _on_hitbox_left_area_shape_entered(_area_rid, area, _area_shape_index, _loc
 	if area.get_parent().is_in_group("Bomb"):
 		area.get_parent().chainExplod()
 
-func expodeIfBox(body, toChange):
+func expodeIfBox(body: Node2D, toChange: String) -> void:
 	if body.is_in_group("WoodenBox"):
 		body.destroy()
 		match toChange:
