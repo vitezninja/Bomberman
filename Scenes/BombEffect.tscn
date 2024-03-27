@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bs14hvys4xp6x"]
 
 [ext_resource type="Script" path="res://Scripts/bombEffect.gd" id="1_8h0bs"]
-[ext_resource type="Texture2D" uid="uid://co5vosr64ilkt" path="res://Assets/Effects/edge.png" id="2_musir"]
-[ext_resource type="Texture2D" uid="uid://cysjsuv5kbpv6" path="res://Assets/Effects/1x1.png" id="3_drmly"]
+[ext_resource type="Texture2D" uid="uid://da5a41vx0ueh0" path="res://Assets/Effects/edge.png" id="2_musir"]
+[ext_resource type="Texture2D" uid="uid://djaxjacm2cnts" path="res://Assets/Effects/center.png" id="3_3nssu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cly6r"]
 resource_local_to_scene = true
@@ -125,7 +125,7 @@ texture = ExtResource("2_musir")
 
 [node name="Center" type="Sprite2D" parent="Sprites"]
 unique_name_in_owner = true
-texture = ExtResource("3_drmly")
+texture = ExtResource("3_3nssu")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_shape_entered" from="Hitboxes/HitboxCenter" to="." method="_on_hitbox_center_area_shape_entered"]

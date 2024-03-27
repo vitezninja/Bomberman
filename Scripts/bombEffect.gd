@@ -15,7 +15,6 @@ class_name BombEffect
 
 var centerExtensions: Array[int] = [0,0,0,0]
 
-const oneByOnePNG: Resource = preload("res://Assets/Effects/1x1.png")
 const middlePNG: Resource = preload("res://Assets/Effects/middle.png")
 
 @onready var timer: Timer = %Timer
