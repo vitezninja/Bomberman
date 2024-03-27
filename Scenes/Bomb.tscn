@@ -16,11 +16,11 @@ script = ExtResource("1_56uxq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1, -1)
 texture = ExtResource("1_jjdf7")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_xlevx")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -29,6 +29,7 @@ collision_layer = 2
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_02n0r")
 
 [node name="Timer" type="Timer" parent="."]
