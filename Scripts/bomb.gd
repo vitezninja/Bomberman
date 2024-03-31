@@ -52,7 +52,6 @@ func explode() -> void:
 	queue_free()
 
 func chainExplod() -> void:
-	print("Help")
 	timer.stop()
 	explode()
 
