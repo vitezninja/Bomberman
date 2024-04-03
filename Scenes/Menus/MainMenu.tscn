@@ -1,50 +1,179 @@
-[gd_scene format=3 uid="uid://2r5s6le8mwto"]
+[gd_scene load_steps=11 format=3 uid="uid://dglk165fs34w3"]
 
-[node name="MainMenu" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/Menus/mainMenuTest.gd" id="1_ux8r8"]
+[ext_resource type="Texture2D" uid="uid://buyvrmkgmcryd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_d288f"]
+[ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_rs1kl"]
+[ext_resource type="FontFile" uid="uid://cf655hkwqrqyc" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="4_cyeq6"]
+[ext_resource type="Texture2D" uid="uid://bbm5x27e5c3w7" path="res://Assets/GUI/FinalGUIAssets/Separator.png" id="5_hg0cy"]
+[ext_resource type="Theme" uid="uid://ceo5ni24hu6cy" path="res://Themes/PlayButton.tres" id="7_ny3rj"]
 
-[node name="Quit" type="Button" parent="."]
-offset_left = 1639.0
-offset_top = 48.0
-offset_right = 1862.0
-offset_bottom = 120.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l18gw"]
+texture = ExtResource("5_hg0cy")
+region_rect = Rect2(915, 238, 80, 740)
+
+[sub_resource type="Theme" id="Theme_d57r2"]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_l18gw")
+
+[sub_resource type="Theme" id="Theme_11xd8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xhjrl"]
+texture = ExtResource("5_hg0cy")
+texture_margin_left = 44.0
+texture_margin_right = 44.0
+expand_margin_left = 200.0
+expand_margin_right = 200.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="MainMenuTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ux8r8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d288f")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+
+[node name="KeybindsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("3_rs1kl")
+theme_override_fonts/font = ExtResource("4_cyeq6")
+theme_override_font_sizes/font_size = 32
+text = "Keybinds"
+
+[node name="Separator2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1220, 50)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("3_rs1kl")
+theme_override_fonts/font = ExtResource("4_cyeq6")
+theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[node name="Play" type="Button" parent="."]
-offset_left = 827.0
-offset_top = 529.0
-offset_right = 1083.0
-offset_bottom = 674.0
-text = "Play"
+[node name="Separator3" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
 
-[node name="Info" type="Button" parent="."]
-offset_left = 1648.0
-offset_top = 978.0
-offset_right = 1871.0
-offset_bottom = 1050.0
-text = "Info
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Sep1" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 15
+theme_override_constants/outline_size = 24
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("4_cyeq6")
+theme_override_font_sizes/font_size = 128
+text = "BOMBERMAN
 "
-
-[node name="Credits" type="Button" parent="."]
-offset_left = 59.0
-offset_top = 978.0
-offset_right = 282.0
-offset_bottom = 1050.0
-text = "Credits
-"
-
-[node name="KeyBinds" type="Button" parent="."]
-offset_left = 53.0
-offset_top = 48.0
-offset_right = 276.0
-offset_bottom = 120.0
-text = "ChangeKeyBinds"
-
-[node name="Label" type="Label" parent="."]
-offset_left = 473.0
-offset_top = 349.0
-offset_right = 1419.0
-offset_bottom = 515.0
-theme_override_font_sizes/font_size = 86
-text = "Bomberman"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_d57r2")
+alignment = 1
+
+[node name="HSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_11xd8")
+theme_override_styles/separator = SubResource("StyleBoxTexture_xhjrl")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(450, 180)
+layout_mode = 2
+theme = ExtResource("7_ny3rj")
+theme_override_fonts/font = ExtResource("4_cyeq6")
+theme_override_font_sizes/font_size = 64
+text = "Play"
+
+[node name="Separator4" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("3_rs1kl")
+theme_override_fonts/font = ExtResource("4_cyeq6")
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+
+[node name="Separator2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(1220, 50)
+layout_mode = 2
+
+[node name="InfoButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("3_rs1kl")
+theme_override_fonts/font = ExtResource("4_cyeq6")
+theme_override_font_sizes/font_size = 32
+text = "Info"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/KeybindsButton" to="." method="_on_keybinds_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer4/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer5/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer5/InfoButton" to="." method="_on_info_button_pressed"]

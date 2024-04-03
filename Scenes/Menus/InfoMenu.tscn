@@ -1,3 +1,146 @@
-[gd_scene format=3 uid="uid://cfi2annpu8hoc"]
+[gd_scene load_steps=9 format=3 uid="uid://vmruxlc5vv03"]
 
-[node name="InfoMenu" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/Menus/infoTest.gd" id="1_h3p2e"]
+[ext_resource type="Texture2D" uid="uid://buyvrmkgmcryd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_m0l2r"]
+[ext_resource type="FontFile" uid="uid://cf655hkwqrqyc" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="3_6vydx"]
+[ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="4_uwguf"]
+[ext_resource type="Texture2D" uid="uid://bbm5x27e5c3w7" path="res://Assets/GUI/FinalGUIAssets/Separator.png" id="5_obs4o"]
+[ext_resource type="Theme" uid="uid://dyxo8v2kpx5fn" path="res://Themes/InfoPanel.tres" id="6_q7j6e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dilqe"]
+texture = ExtResource("5_obs4o")
+region_rect = Rect2(915, 238, 80, 740)
+
+[sub_resource type="Theme" id="Theme_i5x7q"]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_dilqe")
+
+[node name="InfoTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h3p2e")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_m0l2r")
+
+[node name="OuterMargins" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="Content" type="VBoxContainer" parent="OuterMargins"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="TitleandQuitBox" type="HBoxContainer" parent="OuterMargins/Content"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="Sep1" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+custom_minimum_size = Vector2(757.5, 50)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="OuterMargins/Content/TitleandQuitBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 15
+theme_override_constants/outline_size = 24
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_6vydx")
+theme_override_font_sizes/font_size = 128
+text = "Info
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sep2" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+custom_minimum_size = Vector2(491, 50)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="OuterMargins/Content/TitleandQuitBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("4_uwguf")
+theme_override_fonts/font = ExtResource("3_6vydx")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="TitleandPanelSep" type="Control" parent="OuterMargins/Content"]
+layout_mode = 2
+
+[node name="InfoPanelBox" type="HBoxContainer" parent="OuterMargins/Content"]
+layout_mode = 2
+theme = SubResource("Theme_i5x7q")
+alignment = 1
+
+[node name="InfoPanelContainer" type="PanelContainer" parent="OuterMargins/Content/InfoPanelBox"]
+layout_mode = 2
+
+[node name="InfoPanel" type="Panel" parent="OuterMargins/Content/InfoPanelBox/InfoPanelContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme = ExtResource("6_q7j6e")
+
+[node name="InfoMargin" type="MarginContainer" parent="OuterMargins/Content/InfoPanelBox/InfoPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="InfoText" type="Label" parent="OuterMargins/Content/InfoPanelBox/InfoPanelContainer/InfoMargin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6vydx")
+theme_override_font_sizes/font_size = 32
+text = "This game is a multiplayer-only Bomberman adaptation,
+where player's must compete against each other using
+bombs and power-ups in order to become the last one
+standing. This task is made more difficult by different
+types of enemies roaming the battlefield, forcing the
+player to navigate the map with caution. 
+
+The player is killed if they touch an enemy or get caught
+up in a bomb's explosion, including their own, requiring
+players to be conscious of their own bomb placement. 
+
+You can group up with friends offline or online and
+explore the three challenging maps available, each
+introducing a new and unique environement."
+
+[node name="PanelandBackSep" type="Control" parent="OuterMargins/Content"]
+layout_mode = 2
+
+[node name="BackBox" type="HBoxContainer" parent="OuterMargins/Content"]
+layout_mode = 2
+
+[node name="Sep1" type="Control" parent="OuterMargins/Content/BackBox"]
+custom_minimum_size = Vector2(1488, 50)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="OuterMargins/Content/BackBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("4_uwguf")
+theme_override_fonts/font = ExtResource("3_6vydx")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OuterMargins/Content/BackBox/BackButton" to="." method="_on_back_button_pressed"]
