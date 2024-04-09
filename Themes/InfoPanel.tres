@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dyxo8v2kpx5fn"]
+
+[ext_resource type="Texture2D" uid="uid://ct4ytp5e34tmn" path="res://Assets/GUI/PNG/Default/Panel/panel-009b.png" id="1_wpju8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lh11c"]
+texture = ExtResource("1_wpju8")
+texture_margin_left = 35.0
+texture_margin_top = 35.0
+texture_margin_right = 35.0
+texture_margin_bottom = 35.0
+region_rect = Rect2(0, 0, 48, 48)
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxTexture_lh11c")
