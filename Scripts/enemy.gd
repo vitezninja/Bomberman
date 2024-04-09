@@ -38,7 +38,7 @@ func _ready() -> void :
 	changeColor()
 	setSpeed()
 	rng.randomize()
-	chooseRandomDirection(0.0)
+	chooseRandomDirection()
 	createAstar()
 
 func _physics_process(delta: float) -> void:
@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func chooseRandomDirection(delta: float) -> void:
+func chooseRandomDirection(delta: float = 0.0) -> void:
 	if timer.is_stopped() and not isPhasing:
 		timer.start(rng.randi_range(2,4))
 	var random: int = rng.randi_range(1,4)
@@ -64,7 +64,7 @@ func chooseRandomDirection(delta: float) -> void:
 	elif random == 4 and previousFrameVelocity.y != -1:
 		previousFrameVelocity = Vector2(0, -1)
 	else:
-		chooseRandomDirection(delta)
+		chooseRandomDirection()
 
 func createAstar() -> void:
 	tilemap = get_tree().get_first_node_in_group("TileMap")
@@ -88,42 +88,36 @@ func handleMovement(delta: float) -> void:
 	ray_cast_up_down_right.target_position.y = previousFrameVelocity.y * 3
 	match enemyId:
 		enemyEnum.Basic:
-			basicMovment(delta)
+			doMovement(chooseRandomDirection, delta)
 		enemyEnum.Ghost:
-			ghostMovment(delta)
+			doMovement(phase, delta)
 		enemyEnum.Smart:
-			smartMovment(delta)
+			doMovement(findClosestPath, delta, true, false)
 		enemyEnum.Dumb:
-			dumbMovment(delta)
+			doMovement(findClosestPath, delta, true, true)
 
-func basicMovment(delta: float) -> void:
-	doMovement(chooseRandomDirection, delta)
-
-func ghostMovment(delta: float) -> void:
-	doMovement(phase, delta)
-
-func smartMovment(delta: float) -> void:
-	doMovement(findClosestPath, delta)
-
-func dumbMovment(delta: float) -> void:
-	doMovement(findLongestPath, delta)
-
-func doMovement(function: Callable, delta: float) -> void:
+func doMovement(function: Callable, delta: float, path: bool = false, reverse: bool = false) -> void:
 	var random: int = rng.randi_range(1,4)
 	if previousFrameVelocity.x != 0 and not ray_cast_left_right.is_colliding():
 		move(Vector2(previousFrameVelocity.x,0), delta)
 	elif previousFrameVelocity.x != 0 and ray_cast_left_right.is_colliding():
 		if random < 2:
-			function.bind(delta).call()
+			if path:
+				function.bind(delta, reverse).call()
+			else:
+				function.bind(delta).call()
 		else:
-			chooseRandomDirection(delta)
+			chooseRandomDirection()
 	if previousFrameVelocity.y != 0 and not ray_cast_up_down_left.is_colliding() and not ray_cast_up_down_right.is_colliding():
 		move(Vector2(0, previousFrameVelocity.y), delta)
 	elif previousFrameVelocity.y != 0 and (ray_cast_up_down_left.is_colliding() or ray_cast_up_down_right.is_colliding()):
 		if random < 2:
-			function.bind(delta).call()
+			if path:
+				function.bind(delta, reverse).call()
+			else:
+				function.bind(delta).call()
 		else:
-			chooseRandomDirection(delta)
+			chooseRandomDirection()
 
 func move(input: Vector2, delta: float) -> void:
 	if input.x != 0:
@@ -138,10 +132,10 @@ func move(input: Vector2, delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.y = move_toward(velocity.y, 0, currentSpeed)
 
-func findClosestPath(delta: float) -> void:
+func findClosestPath(delta: float, reverse: bool) -> void:
 	var player: Player = findClosestPlayer()
 	if player == null:
-		chooseRandomDirection(delta)
+		chooseRandomDirection()
 		return
 	
 	Astar.update()
@@ -152,41 +146,13 @@ func findClosestPath(delta: float) -> void:
 		tilemap.local_to_map(player.global_position)
 	)
 	if current_path.is_empty():
-		chooseRandomDirection(delta)
+		chooseRandomDirection()
 		return
 	
 	var target_pos: Vector2 = tilemap.map_to_local(current_path.front())
 	var targetVector: Vector2 = target_pos - global_position
-	
-	if targetVector.x > 0:
-		move(Vector2(1,0), delta)
-	elif targetVector.x < 0:
-		move(Vector2(-1,0), delta)
-	if targetVector.y > 0:
-		move(Vector2(0,1), delta)
-	elif targetVector.y < 0:
-		move(Vector2(0,-1), delta)
-
-func findLongestPath(delta: float) -> void:
-	var player: Player = findClosestPlayer()
-	if player == null:
-		chooseRandomDirection(delta)
-		return
-	
-	Astar.update()
-	makeSolids()
-	
-	var current_path: Array[Vector2i] = Astar.get_id_path(
-		tilemap.local_to_map(global_position),
-		tilemap.local_to_map(player.global_position)
-	)
-	if current_path.is_empty():
-		chooseRandomDirection(delta)
-		return
-	
-	var target_pos: Vector2 = tilemap.map_to_local(current_path.front())
-	var targetVector: Vector2 = target_pos - global_position
-	targetVector *= -1
+	if reverse:
+		targetVector *= -1
 	
 	if targetVector.x > 0:
 		move(Vector2(1,0), delta)
@@ -272,12 +238,12 @@ func setSpeed() -> void:
 		enemyEnum.Dumb:
 			currentSpeed = NORMALSPEED
 
-func _on_hitbox_area_shape_entered(_area_rid, area: Area2D, _area_shape_index, _local_shape_index) -> void:
+func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.get_parent().is_in_group("Player"):
 		area.get_parent().hit()
 
 func _on_timer_timeout() -> void:
-	chooseRandomDirection(0.0)
+	chooseRandomDirection()
 
 func findClosestPlayer() -> Player:
 	var closest: Player
@@ -292,8 +258,8 @@ func findClosestPlayer() -> Player:
 
 func makeSolids() -> void:
 	makeWallsSolid()
-	makeBoxesSolid()
-	makeBombsSolid()
+	makeObjectsSolid("WoodenBox")
+	makeObjectsSolid("Bomb")
 
 func makeWallsSolid() -> void:
 	var tilemap_size: Vector2 = tilemap.get_used_rect().end - tilemap.get_used_rect().position
@@ -304,14 +270,8 @@ func makeWallsSolid() -> void:
 			if tile_data and tile_data.get_custom_data('type') == "Wall":
 				Astar.set_point_solid(coords, true)
 
-func makeBoxesSolid() -> void:
-	var boxes: Array[Node] = get_tree().get_nodes_in_group("WoodenBox")
-	for box in boxes:
-		var coords: Vector2i = tilemap.local_to_map(tilemap.to_local(box.global_position))
-		Astar.set_point_solid(coords, true)
-
-func makeBombsSolid() -> void:
-	var bombs: Array[Node] = get_tree().get_nodes_in_group("Bomb")
-	for bomb in bombs:
-		var coords: Vector2i = tilemap.local_to_map(tilemap.to_local(bomb.global_position))
+func makeObjectsSolid(objectGroup: String) -> void:
+	var objects: Array[Node] = get_tree().get_nodes_in_group(objectGroup)
+	for object in objects:
+		var coords: Vector2i = tilemap.local_to_map(tilemap.to_local(object.global_position))
 		Astar.set_point_solid(coords, true)
