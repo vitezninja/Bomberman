@@ -14,7 +14,7 @@ region_rect = Rect2(915, 238, 80, 740)
 [sub_resource type="Theme" id="Theme_i5x7q"]
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_dilqe")
 
-[node name="InfoTest" type="Control"]
+[node name="InfoMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

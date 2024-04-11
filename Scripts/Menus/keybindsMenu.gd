@@ -1,8 +1,6 @@
 class_name KeybindsMenu
 extends Control
 
-@onready var back_button: Button = %BackButton
-@onready var quit_button: Button = %QuitButton
 const MAIN_MENU_TEST = preload("res://Scenes/Menus/MainMenu.tscn")
 
 func _on_quit_button_pressed() -> void:

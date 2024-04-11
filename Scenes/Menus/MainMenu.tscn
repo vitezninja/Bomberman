@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dglk165fs34w3"]
 
-[ext_resource type="Script" path="res://Scripts/Menus/mainMenuTest.gd" id="1_ux8r8"]
+[ext_resource type="Script" path="res://Scripts/Menus/mainMenu.gd" id="1_p6gfg"]
 [ext_resource type="Texture2D" uid="uid://buyvrmkgmcryd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_d288f"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_rs1kl"]
 [ext_resource type="FontFile" uid="uid://cf655hkwqrqyc" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="4_cyeq6"]
@@ -25,14 +25,14 @@ expand_margin_right = 200.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
-[node name="MainMenuTest" type="Control"]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ux8r8")
+script = ExtResource("1_p6gfg")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

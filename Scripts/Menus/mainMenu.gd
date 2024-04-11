@@ -1,25 +1,32 @@
-extends Node2D
+class_name MainMenu
+extends Control
 
-@onready var infoMenu = preload("res://Scenes/Menus/InfoMenu.tscn")
-@onready var creditsMenu = preload("res://Scenes/Menus/CreditsMenu.tscn")
-@onready var keyBindsMenu = preload("res://Scenes/Menus/ChangeKeyBindsMenu.tscn")
-@onready var MvsSMenu = preload("res://Scenes/Menus/MultiplayerVsSingleplayerMenu.tscn")
+@onready var keybinds_menu: PackedScene = load("res://Scenes/Menus/KeybindsMenu.tscn")
+@onready var test_world: PackedScene = load("res://Scenes/Maps/TestWorld.tscn")  
+@onready var credits_menu: PackedScene = load("res://Scenes/Menus/CreditsMenu.tscn")
+@onready var info_menu: PackedScene = load("res://Scenes/Menus/InfoMenu.tscn")
 
-func _on_quit_pressed():
+func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
-func _on_play_pressed():
-	get_tree().get_first_node_in_group("Menu").add_child(MvsSMenu.instantiate())
+func _on_play_button_pressed() -> void:
+	var world = test_world.instantiate()
+	get_tree().get_first_node_in_group("WorldSelector").add_child(world)
 	queue_free()
 
-func _on_info_pressed():
-	get_tree().get_first_node_in_group("Menu").add_child(infoMenu.instantiate())
+func _on_info_button_pressed() -> void:
+	var info = info_menu.instantiate()
+	get_tree().get_first_node_in_group("Menu").add_child(info)
 	queue_free()
 
-func _on_credits_pressed():
-	get_tree().get_first_node_in_group("Menu").add_child(creditsMenu.instantiate())
+
+func _on_credits_button_pressed():
+	var credits = credits_menu.instantiate()
+	get_tree().get_first_node_in_group("Menu").add_child(credits)
 	queue_free()
 
-func _on_key_binds_pressed():
-	get_tree().get_first_node_in_group("Menu").add_child(keyBindsMenu.instantiate())
+
+func _on_keybinds_button_pressed():
+	var keybinds = keybinds_menu.instantiate()
+	get_tree().get_first_node_in_group("Menu").add_child(keybinds)
 	queue_free()
