@@ -184,7 +184,7 @@ func handleGhostForm() -> void:
 	pass
 
 func canPlaceBoxes() -> void:
-	if hasBoxes and maxBombsCount < 9:
+	if hasBoxes and maxBoxCount < 9:
 		maxBoxCount += 3
 	hasBoxes = true
 
