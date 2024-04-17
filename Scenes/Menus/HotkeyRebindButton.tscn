@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://17xktiapa28d"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/hotkeyRebindButton.gd" id="1_occ0i"]
+[ext_resource type="FontFile" uid="uid://6q85pnyecpf7" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_ihwcb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlyfb"]
+
+[node name="HotkeyRebindButton" type="Control" groups=["hotkey_button"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_occ0i")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -404.0
+offset_top = -26.5
+offset_right = 404.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Action" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(195, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ihwcb")
+theme_override_font_sizes/font_size = 32
+text = "ACTION"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 200
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nlyfb")
+
+[node name="ActionKey" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ihwcb")
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+text = "ACTION_KEY"
+
+[connection signal="toggled" from="HBoxContainer/ActionKey" to="." method="_on_action_key_toggled"]

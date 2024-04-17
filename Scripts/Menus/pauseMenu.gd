@@ -2,22 +2,32 @@ class_name PauseMenu
 extends Control
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var resume_button: Button = %Resume
+@onready var back_button: Button = %Back
+@onready var quit_button: Button = %Quit
 const MAIN_MENU_TEST = preload("res://Scenes/Menus/MainMenu.tscn")
 
 func _ready():
+	resume_button.disabled = true
+	back_button.disabled = true
+	quit_button.disabled = true
 	animation_player.play("RESET")
 
 func resume():
 	get_tree().paused = false
+	resume_button.disabled = true
+	back_button.disabled = true
+	quit_button.disabled = true
 	animation_player.play_backwards("blur")
-
 
 func pause():
 	if get_tree().get_first_node_in_group("WorldSelector").get_child_count() == 0:
 		return
 	get_tree().paused = true
+	resume_button.disabled = false
+	back_button.disabled = false
+	quit_button.disabled = false
 	animation_player.play("blur")
-	
 
 func testEsc():
 	if Input.is_action_just_pressed("pause") and get_tree().paused == false:
