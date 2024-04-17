@@ -1,20 +1,21 @@
 extends GutTest
 
 var player: Player
-var delta = 0.1
+var delta: float = 0.1
+const playerPath: PackedScene = preload("res://Scenes/Player.tscn")
 
-func before_all():
-	player = Player.new()
+func before_all() -> void:
+	player = playerPath.instantiate()
+	get_tree().root.get_child(0).add_child(player)
 
-func after_all():
+func after_all() -> void:
 	player.free()
 
-func test_id():
+func test_id() -> void:
 	assert_eq(player.playerId, 0, "This should be 0 because we the player still has default Id")
 
-func test_handleInputMap():
+func test_handleInputMap() -> void:
 	assert_has_method(player, "handleInputMap", "Player must have this method")
-	player.handleInputMap()
 	
 	assert_eq(player.up, "up_player_1", "Id is 0 so input map indexes should be 1")
 	assert_eq(player.right, "right_player_1", "Id is 0 so input map indexes should be 1")
@@ -23,14 +24,14 @@ func test_handleInputMap():
 	assert_eq(player.bombPlace, "bomb_player_1", "Id is 0 so input map indexes should be 1")
 	assert_eq(player.boxPlace, "box_player_1", "Id is 0 so input map indexes should be 1")
 
-func test_handleMovement():
+func test_handleMovement() -> void:
 	assert_has_method(player, "handleMovement", "Player must have this method")
 	player.handleMovement(delta)
 	
 	assert_eq(player.velocity.x, 0.0, "No input key press so player shouldn't move")
 	assert_eq(player.velocity.y, 0.0, "No input key press so player shouldn't move")
 
-func test_move():
+func test_move() -> void:
 	assert_has_method(player, "move", "Player must have this method")
 	
 	player.move(Vector2(1,0), delta)
@@ -50,32 +51,35 @@ func test_move():
 	assert_eq(player.velocity.y, -1 * player.currentSpeed * (player.DELTAMULTIPLIER * delta), "Should move in the -y direction")
 	
 	player.velocity = Vector2(0,0)
+	player.previousFrameVelocity = Vector2(0,0)
 	gut.p("Velocity reset for next test")
 
-func test_handleAnimation():
+func test_handleAnimation() -> void:
 	assert_has_method(player, "handleAnimation", "Player must have this method")
-	gut.p("Further assertions cannot be done as @onready doesn't work with GUT and instancing")
+	player.handleAnimation()
+	assert_eq(player.sprite.animation, "Idle_Forward", "This should be Idle_Forward because the player didn't move yet and this is default value")
 
-func test_handleBombAction():
+func test_handleBombAction() -> void:
 	assert_has_method(player, "handleBombAction", "Player must have this method")
 
-func test_place():
+func test_place() -> void:
 	assert_has_method(player, "place", "Player must have this method")
-	gut.p("Further assertions cannot be done as @onready doesn't work with GUT and instancing")
 
-func test_detonate():
+func test_detonate() -> void:
 	assert_has_method(player, "detonate", "Player must have this method")
 	player.detonate()
+	assert_eq(player.bombTimer, player.MAXBOMBTIMER, "This should cange because we have a delay between bomb placement")
 
-func test_hit():
+func test_hit() -> void:
 	assert_has_method(player, "hit", "Player must have this method")
-	gut.p("Further assertions cannot be done as @onready doesn't work with GUT and instancing")
+	player.hit()
+	assert_eq(player.sprite.animation, "Death", "This should be Death because the player got hit")
 
-func test_changeColor():
+func test_changeColor() -> void:
 	assert_has_method(player, "changeColor", "Player must have this method")
-	gut.p("Further assertions cannot be done as @onready doesn't work with GUT and instancing")
+	assert_eq(player.sprite.modulate,  Color(1,0,0), "This is the default color for id 0")
 
-func test_increaseBombCount():
+func test_increaseBombCount() -> void:
 	assert_has_method(player, "increaseBombCount", "Player must have this method")
 	player.increaseBombCount()
 	assert_eq(player.maxBombsCount, 2, "It should increas from 1 to 2")
@@ -84,7 +88,7 @@ func test_increaseBombCount():
 	player.increaseBombCount()
 	assert_eq(player.maxBombsCount, 4, "It should cap out at 4")
 
-func test_increaseBombRange():
+func test_increaseBombRange() -> void:
 	assert_has_method(player, "increaseBombRange", "Player must have this method")
 	player.increaseBombRange()
 	assert_eq(player.maxBombsRange, 3, "It should increas from 2 to 3")
@@ -92,12 +96,12 @@ func test_increaseBombRange():
 	player.increaseBombRange()
 	assert_eq(player.maxBombsRange, 4, "It should cap out at 4")
 
-func test_pickedUpDetonator():
+func test_pickedUpDetonator() -> void:
 	assert_has_method(player, "pickedUpDetonator", "Player must have this method")
 	player.pickedUpDetonator()
 	assert_true(player.hasDetonator, "This should be true")
 
-func test_speedBoost():
+func test_speedBoost() -> void:
 	assert_has_method(player, "speedBoost", "Player must have this method")
 	player.speedBoost()
 	assert_eq(player.currentSpeed, player.POWERUPSPEED, "This should be power up speed")
@@ -105,7 +109,7 @@ func test_speedBoost():
 	player.speedBoost()
 	assert_eq(player.currentSpeed, player.NORMALSPEED, "This should be normal speed")
 
-func test_speedDebuff():
+func test_speedDebuff() -> void:
 	assert_has_method(player, "speedDebuff", "Player must have this method")
 	player.speedDebuff()
 	assert_eq(player.currentSpeed, player.DEBUFFSPEED, "This should be debuff speed")
@@ -113,19 +117,19 @@ func test_speedDebuff():
 	player.speedDebuff()
 	assert_eq(player.currentSpeed, player.NORMALSPEED, "This should be normal speed")
 
-func test_invincibility():
+func test_invincibility() -> void:
 	assert_has_method(player, "invincibility", "Player must have this method")
 	pending("This featur is not implemented yet")
 
-func test_ghost():
+func test_ghost() -> void:
 	assert_has_method(player, "ghost", "Player must have this method")
 	pending("This featur is not implemented yet")
 
-func test_handleGhostForm():
+func test_handleGhostForm() -> void:
 	assert_has_method(player, "handleGhostForm", "Player must have this method")
 	pending("This featur is not implemented yet")
 
-func test_canPlaceBoxes():
+func test_canPlaceBoxes() -> void:
 	assert_has_method(player, "canPlaceBoxes", "Player must have this method")
 	player.canPlaceBoxes()
 	assert_true(player.hasBoxes, "This should be true")
@@ -137,9 +141,9 @@ func test_canPlaceBoxes():
 	player.canPlaceBoxes()
 	assert_eq(player.maxBoxCount, 9, "This should cap out at 9")
 
-func test_handleBoxAction():
+func test_handleBoxAction() -> void:
 	assert_has_method(player, "handleBoxAction", "Player must have this method")
 
-func test_placeBox():
+func test_placeBox() -> void:
 	assert_has_method(player, "placeBox", "Player must have this method")
 	pending("This featur is not implemented yet")
