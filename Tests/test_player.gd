@@ -77,7 +77,7 @@ func test_hit() -> void:
 
 func test_changeColor() -> void:
 	assert_has_method(player, "changeColor", "Player must have this method")
-	assert_eq(player.sprite.modulate,  Color(1,0,0), "This is the default color for id 0")
+	assert_eq(player.sprite.modulate, Color(1,0,0), "This is the default color for id 0")
 
 func test_increaseBombCount() -> void:
 	assert_has_method(player, "increaseBombCount", "Player must have this method")
