@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg06qykffcbts"]
+
+[ext_resource type="PackedScene" uid="uid://cebvurjp0xa3o" path="res://Scenes/TileMap.tscn" id="1_i7kaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_souoc"]
+size = Vector2(480, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5237"]
+size = Vector2(16, 288)
+
+[node name="Map" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_i7kaw")]
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(240, 144)
+zoom = Vector2(4, 4)
+metadata/_edit_lock_ = true
+
+[node name="Players" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Boxes" type="Node2D" parent="." groups=["Boxes"]]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Enemys" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Bombs" type="Node2D" parent="." groups=["Bombs"]]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="PowerUps" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="BombEffects" type="Node2D" parent="." groups=["BombEffects"]]
+z_index = 1
+metadata/_edit_lock_ = true
+
+[node name="MapBorders" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MapBorders"]
+position = Vector2(240, 8)
+collision_layer = 64
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapBorders/StaticBody2D"]
+shape = SubResource("RectangleShape2D_souoc")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="MapBorders"]
+position = Vector2(240, 280)
+collision_layer = 64
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapBorders/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_souoc")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="MapBorders"]
+position = Vector2(8, 144)
+collision_layer = 64
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapBorders/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_m5237")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="MapBorders"]
+position = Vector2(472, 144)
+collision_layer = 64
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapBorders/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_m5237")
