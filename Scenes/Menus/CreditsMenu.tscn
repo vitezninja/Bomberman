@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://lbtou3vcxb5l"]
 
-[ext_resource type="Texture2D" uid="uid://buyvrmkgmcryd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_7njnl"]
+[ext_resource type="Texture2D" uid="uid://bd6wh1urtjjel" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_7njnl"]
 [ext_resource type="Script" path="res://Scripts/Menus/creditsMenu.gd" id="1_qjq8g"]
-[ext_resource type="FontFile" uid="uid://cf655hkwqrqyc" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_yjl2j"]
+[ext_resource type="FontFile" uid="uid://dr6acefdkfver" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_yjl2j"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_hgkfi"]
 
 [node name="CreditsMenu" type="Control"]

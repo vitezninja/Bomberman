@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgr3dpak40co0"]
 
 [ext_resource type="PackedScene" uid="uid://dglk165fs34w3" path="res://Scenes/Menus/MainMenu.tscn" id="3_iv523"]
-[ext_resource type="PackedScene" uid="uid://b0mntn4uakr12" path="res://Scenes/PauseMenu.tscn" id="4_nnvva"]
+[ext_resource type="PackedScene" uid="uid://b0mntn4uakr12" path="res://Scenes/Menus/PauseMenu.tscn" id="4_nnvva"]
 [ext_resource type="PackedScene" uid="uid://p3medsfloo4o" path="res://Scenes/Menus/Menu.tscn" id="6_8eh14"]
 [ext_resource type="PackedScene" uid="uid://cbw5egfpkyfa5" path="res://Scenes/WorldSelector.tscn" id="7_ex72j"]
 
@@ -9,17 +9,6 @@
 
 [node name="Root" type="Node2D"]
 y_sort_enabled = true
-
-[node name="FPS" type="Label" parent="."]
-top_level = true
-z_index = 10
-offset_left = 16.0
-offset_top = 11.0
-offset_right = 56.0
-offset_bottom = 34.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = "FPS
-"
 
 [node name="Menu" parent="." instance=ExtResource("6_8eh14")]
 
