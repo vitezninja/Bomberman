@@ -15,5 +15,5 @@ unitTests:
 windows:
   stage: build
   script:
-    - godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+    - godot -v --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
     - test -e ../build/windows/$EXPORT_NAME.exe
