@@ -24,7 +24,7 @@ size = Vector2(16, 0)
 resource_local_to_scene = true
 size = Vector2(0, 16)
 
-[node name="BombEffect" type="Node2D"]
+[node name="BombEffect" type="Node2D" groups=["BombEffect"]]
 script = ExtResource("1_8h0bs")
 
 [node name="Timer" type="Timer" parent="."]
