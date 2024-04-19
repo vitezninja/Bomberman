@@ -14,6 +14,7 @@ config/name="Bomberman"
 run/main_scene="res://Scenes/Menus/MainMenuTest.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://Assets/Icon/icon.ico"
 
 [display]
 
