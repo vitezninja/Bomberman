@@ -1,7 +1,6 @@
 image: barichello/godot-ci:3.1.1
 
 stages:
-  - build
   - tests
 
 before_script:
@@ -11,9 +10,3 @@ unitTests:
   stage: tests
   script:
     - godot -s addons/gut/gut_cmdln.gd -d --path $PWD -ginclude_subdirs -gdir=res://Tests -gexit -gprefix=test_
-
-windows:
-  stage: build
-  script:
-    - godot -v --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
-    - test -e ../build/windows/$EXPORT_NAME.exe
