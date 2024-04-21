@@ -16,7 +16,7 @@ import-assets:
 unitTests:
   stage: tests
   script:
-    - godot -d -s --path / addons/gut/gut_cmdln.gd
+    - godot -d -s --path "$PWD" addons/gut/gut_cmdln.gd
 
 windows:
   stage: build
