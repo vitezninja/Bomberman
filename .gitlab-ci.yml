@@ -17,6 +17,7 @@ unitTests:
   stage: tests
   script:
     - godot --headless -d -s res://addons/gut/gut_cmdln.gd
+    - help
 
 windows:
   stage: build
