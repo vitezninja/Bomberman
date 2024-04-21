@@ -52,12 +52,8 @@ func _on_start_button_pressed():
 		"9":
 			world_selector.gameCount = 9
 		_:
+			rounds_input.text = "1"
 			return
 	
 	world_selector.startGame()
 	queue_free()
-
-func _process(_delta: float) -> void:
-	var focused_node = get_viewport().gui_get_focus_owner()
-	if (int(rounds_input.text) < 1 or int(rounds_input.text) > 5) and focused_node != rounds_input:
-		rounds_input.text = "1"

@@ -71,10 +71,10 @@ func hasGameLocked() -> bool:
 
 func hasGameEnded() -> bool:
 	var bombs: Array[Node] = get_tree().get_nodes_in_group("Bomb")
-	if bombs.size() == 0:
+	if bombs.size() > 0:
 		return false
 	var explosions: Array[Node] = get_tree().get_nodes_in_group("BombEffect")
-	if explosions.size() == 0:
+	if explosions.size() > 0:
 		return false
 	return true
 
@@ -89,4 +89,5 @@ func endGame() -> Player.playerEnum:
 	currentMapNode.queue_free()
 	currentMapNode = null
 	gameStatus = gameStatusEnum.Idle
+	gameCount -= 1
 	return winner
