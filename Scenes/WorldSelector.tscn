@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Scripts/worldSelector.gd" id="1_4ck8d"]
 
-[node name="WorldSelector" type="Node2D"]
+[node name="WorldSelector" type="Node2D" groups=["WorldSelector"]]
 script = ExtResource("1_4ck8d")

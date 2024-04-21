@@ -1,45 +1,98 @@
-[gd_scene format=3 uid="uid://daojmjhsymd8i"]
+[gd_scene load_steps=5 format=3 uid="uid://lbtou3vcxb5l"]
 
-[node name="CreditsMenu" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_7njnl"]
+[ext_resource type="Script" path="res://Scripts/Menus/creditsMenu.gd" id="1_qjq8g"]
+[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_yjl2j"]
+[ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_hgkfi"]
 
-[node name="Quit" type="Button" parent="."]
-offset_left = 1630.0
-offset_top = 69.0
-offset_right = 1853.0
-offset_bottom = 141.0
-text = "Quit"
+[node name="CreditsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qjq8g")
 
-[node name="Back" type="Button" parent="."]
-offset_left = 1644.0
-offset_top = 963.0
-offset_right = 1867.0
-offset_bottom = 1035.0
-text = "Back"
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7njnl")
 
-[node name="TextEdit" type="Panel" parent="."]
-offset_left = 616.0
-offset_top = 324.0
-offset_right = 1270.0
-offset_bottom = 746.0
+[node name="OuterMargins" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
 
-[node name="Label" type="Label" parent="TextEdit"]
-layout_mode = 0
-offset_right = 651.0
-offset_bottom = 421.0
-text = "asssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+[node name="Content" type="VBoxContainer" parent="OuterMargins"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="TitleandQuitBox" type="HBoxContainer" parent="OuterMargins/Content"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="Sep1" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+custom_minimum_size = Vector2(710.5, 50)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="OuterMargins/Content/TitleandQuitBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 15
+theme_override_constants/outline_size = 24
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 122
+text = "Credits
+"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sep2" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+custom_minimum_size = Vector2(404, 50)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="OuterMargins/Content/TitleandQuitBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("3_hgkfi")
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="Sep1" type="Control" parent="OuterMargins/Content"]
+custom_minimum_size = Vector2(0, 623)
+layout_mode = 2
+
+[node name="BackBox" type="HBoxContainer" parent="OuterMargins/Content"]
+layout_mode = 2
+
+[node name="Sep1" type="Control" parent="OuterMargins/Content/BackBox"]
+custom_minimum_size = Vector2(1488, 50)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="OuterMargins/Content/BackBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("3_hgkfi")
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OuterMargins/Content/BackBox/BackButton" to="." method="_on_back_button_pressed"]
