@@ -11,16 +11,16 @@ before_script:
 import-assets:
   stage: import-assets
   script:
-    - godot --headless --verbose --editor --quit
+    - godot --headless --v --editor --quit
 
 unitTests:
   stage: tests
   script:
-    - godot --headless -d -s res://addons/gut/gut_cmdln.gd -gconfig
+    - godot --headless --v -d -s res://addons/gut/gut_cmdln.gd -gconfig
     - help
 
 windows:
   stage: build
   script:
     - cd build/windows
-    - godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+    - godot --headless --v --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
