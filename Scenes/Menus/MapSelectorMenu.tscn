@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://drufy4e6pgeqg"]
+[gd_scene load_steps=16 format=3 uid="uid://drufy4e6pgeqg"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/mapSelectorMenu.gd" id="1_l646n"]
 [ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_fk2nd"]
 [ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="3_0m255"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="4_vbak6"]
 [ext_resource type="Theme" uid="uid://dxfaogmdf3ii4" path="res://Themes/Map1Display.tres" id="5_sxkgx"]
+[ext_resource type="ButtonGroup" uid="uid://kk72iwe8a2le" path="res://Themes/map_previews.tres" id="6_dt10y"]
+[ext_resource type="Theme" uid="uid://baal8j0wyuv1v" path="res://Themes/Map2Display.tres" id="6_ncjg4"]
+[ext_resource type="Theme" uid="uid://sotw2qmiqf8y" path="res://Themes/Map3Display.tres" id="7_5lqnw"]
+[ext_resource type="Texture2D" uid="uid://qjkd7sd580wy" path="res://Assets/Effects/center.png" id="8_2tdib"]
+[ext_resource type="ButtonGroup" uid="uid://bxgvmf75gycgs" path="res://Themes/map_checkboxes.tres" id="9_qj16v"]
+[ext_resource type="Theme" uid="uid://d1v1ck3ltvlj0" path="res://Themes/MapCheckbox.tres" id="9_vxdos"]
+[ext_resource type="Theme" uid="uid://ceo5ni24hu6cy" path="res://Themes/PlayButton.tres" id="12_3dg3l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_50c8h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tn8v0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgh4t"]
 
 [node name="MapSelectorMenu" type="Control"]
 layout_mode = 3
@@ -32,7 +45,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 80
+theme_override_constants/margin_top = 107
 theme_override_constants/margin_right = 80
 theme_override_constants/margin_bottom = 80
 
@@ -40,15 +53,20 @@ theme_override_constants/margin_bottom = 80
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="TitleandQuitBox" type="HBoxContainer" parent="OuterMargins/Content"]
+[node name="MarginContainer4" type="MarginContainer" parent="OuterMargins/Content"]
+layout_mode = 2
+theme_override_constants/margin_top = -2
+
+[node name="TitleandQuitBox" type="HBoxContainer" parent="OuterMargins/Content/MarginContainer4"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+size_flags_vertical = 4
 
-[node name="Sep1" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+[node name="Sep1" type="Control" parent="OuterMargins/Content/MarginContainer4/TitleandQuitBox"]
 custom_minimum_size = Vector2(535, 100)
 layout_mode = 2
 
-[node name="Title" type="Label" parent="OuterMargins/Content/TitleandQuitBox"]
+[node name="Title" type="Label" parent="OuterMargins/Content/MarginContainer4/TitleandQuitBox"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -63,11 +81,11 @@ text = "Map Selector"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sep2" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+[node name="Sep2" type="Control" parent="OuterMargins/Content/MarginContainer4/TitleandQuitBox"]
 custom_minimum_size = Vector2(289, 100)
 layout_mode = 2
 
-[node name="QuitButton" type="Button" parent="OuterMargins/Content/TitleandQuitBox"]
+[node name="QuitButton" type="Button" parent="OuterMargins/Content/MarginContainer4/TitleandQuitBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
@@ -76,17 +94,14 @@ theme_override_fonts/font = ExtResource("3_0m255")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[node name="Sep3" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+[node name="Sep3" type="Control" parent="OuterMargins/Content/MarginContainer4/TitleandQuitBox"]
 custom_minimum_size = Vector2(64, 100)
 layout_mode = 2
 
-[node name="Sep4" type="Control" parent="OuterMargins/Content"]
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-
 [node name="MarginContainer" type="MarginContainer" parent="OuterMargins/Content"]
-custom_minimum_size = Vector2(0, 402)
+custom_minimum_size = Vector2(0, 398)
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_right = 0
 
@@ -94,7 +109,7 @@ theme_override_constants/margin_right = 0
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Map1" type="Button" parent="OuterMargins/Content/MarginContainer/HBoxContainer"]
+[node name="Map1Preview" type="Button" parent="OuterMargins/Content/MarginContainer/HBoxContainer" groups=["MapPreviews"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(550, 309)
 layout_mode = 2
@@ -103,63 +118,160 @@ size_flags_vertical = 4
 theme = ExtResource("5_sxkgx")
 theme_override_fonts/font = ExtResource("3_0m255")
 theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_group = ExtResource("6_dt10y")
 text = "
 "
 
-[node name="Map2" type="Button" parent="OuterMargins/Content/MarginContainer/HBoxContainer"]
+[node name="Map2Preview" type="Button" parent="OuterMargins/Content/MarginContainer/HBoxContainer" groups=["MapPreviews"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(550, 309)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-theme = ExtResource("4_vbak6")
+theme = ExtResource("6_ncjg4")
 theme_override_fonts/font = ExtResource("3_0m255")
 theme_override_font_sizes/font_size = 32
-text = "Map 2"
+toggle_mode = true
+button_group = ExtResource("6_dt10y")
 
-[node name="Map3" type="Button" parent="OuterMargins/Content/MarginContainer/HBoxContainer"]
+[node name="Map3Preview" type="Button" parent="OuterMargins/Content/MarginContainer/HBoxContainer" groups=["MapPreviews"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(550, 309)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
-theme = ExtResource("4_vbak6")
+theme = ExtResource("7_5lqnw")
 theme_override_fonts/font = ExtResource("3_0m255")
 theme_override_font_sizes/font_size = 32
-text = "Map 3"
+toggle_mode = true
+button_group = ExtResource("6_dt10y")
 
-[node name="MarginContainer2" type="MarginContainer" parent="OuterMargins/Content"]
+[node name="MarginContainer" type="MarginContainer" parent="OuterMargins/Content/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 230
+theme_override_constants/margin_right = 210
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="OuterMargins/Content/MarginContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/MarginContainer2"]
+[node name="Map1Checkbox" type="CheckBox" parent="OuterMargins/Content/MarginContainer/MarginContainer/HBoxContainer2" groups=["MapChoices"]]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+theme = ExtResource("9_vxdos")
+theme_override_fonts/font = ExtResource("3_0m255")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/checked = ExtResource("8_2tdib")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_50c8h")
+button_group = ExtResource("9_qj16v")
+text = "Map 1"
 
-[node name="Start" type="Button" parent="OuterMargins/Content/MarginContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(200, 101)
+[node name="Map2Checkbox" type="CheckBox" parent="OuterMargins/Content/MarginContainer/MarginContainer/HBoxContainer2" groups=["MapChoices"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("9_vxdos")
+theme_override_fonts/font = ExtResource("3_0m255")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/checked = ExtResource("8_2tdib")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tn8v0")
+button_group = ExtResource("9_qj16v")
+text = "Map 2"
+
+[node name="Map3Checkbox" type="CheckBox" parent="OuterMargins/Content/MarginContainer/MarginContainer/HBoxContainer2" groups=["MapChoices"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme = ExtResource("9_vxdos")
+theme_override_fonts/font = ExtResource("3_0m255")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/checked = ExtResource("8_2tdib")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sgh4t")
+button_group = ExtResource("9_qj16v")
+text = "Map 3"
+
+[node name="MarginContainer3" type="MarginContainer" parent="OuterMargins/Content"]
+layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("4_vbak6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OuterMargins/Content/MarginContainer3"]
+layout_mode = 2
+
+[node name="RoundsText" type="Label" parent="OuterMargins/Content/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0m255")
+theme_override_font_sizes/font_size = 48
+text = "Rounds:"
+horizontal_alignment = 1
+
+[node name="RoundsInput" type="LineEdit" parent="OuterMargins/Content/MarginContainer3/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(0, 29)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_0m255")
+theme_override_font_sizes/font_size = 24
+text = "1"
+alignment = 1
+max_length = 1
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Sep" type="Control" parent="OuterMargins/Content"]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="OuterMargins/Content"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/MarginContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="OuterMargins/Content/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 125)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = ExtResource("12_3dg3l")
 theme_override_fonts/font = ExtResource("3_0m255")
 theme_override_font_sizes/font_size = 32
 text = "Start"
 
-[node name="BackBox" type="HBoxContainer" parent="OuterMargins/Content"]
-custom_minimum_size = Vector2(0, 13)
+[node name="Sep1" type="Control" parent="OuterMargins/Content/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
 layout_mode = 2
 
-[node name="Sep1" type="Control" parent="OuterMargins/Content/BackBox"]
-custom_minimum_size = Vector2(1488, 50)
-layout_mode = 2
-
-[node name="BackButton" type="Button" parent="OuterMargins/Content/BackBox"]
+[node name="BackButton" type="Button" parent="OuterMargins/Content/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
 theme = ExtResource("4_vbak6")
 theme_override_fonts/font = ExtResource("3_0m255")
 theme_override_font_sizes/font_size = 32
 text = "Back"
 
-[connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="OuterMargins/Content/BackBox/BackButton" to="." method="_on_back_button_pressed"]
+[node name="Sep2" type="Control" parent="OuterMargins/Content/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="OuterMargins/Content/MarginContainer4/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OuterMargins/Content/MarginContainer2/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="OuterMargins/Content/MarginContainer2/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

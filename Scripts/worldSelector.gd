@@ -5,18 +5,18 @@ enum gameTypeEnum {Offline, Online}
 enum playerCountEnum {Two = 2, Three = 3}
 enum mapIdEnum {One = 1, Two = 2, Three = 3, Test = 0}
 enum gameStatusEnum {Idle, Running, Locked}
-enum gameCountEnum {One = 1, Two = 2, Three = 3, Four = 4, Five = 5}
 
 @export var currentMap: mapIdEnum
 @export var playerCount: playerCountEnum
 @export var gameType: gameTypeEnum
-@export var gameCount: gameCountEnum
+var gameCount: int = 0
 var gameStatus: gameStatusEnum
 
+const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 const test: PackedScene = preload("res://Scenes/Maps/TestWorld.tscn")
-#const map1: PackedScene = preload("res://Scenes/Maps/")
-#const map2: PackedScene = preload("res://Scenes/Maps/")
-#&const map3: PackedScene = preload("res://Scenes/Maps/")
+const map1: PackedScene = preload("res://Scenes/Maps/Map1.tscn")
+const map2: PackedScene = preload("res://Scenes/Maps/Map2.tscn")
+const map3: PackedScene = preload("res://Scenes/Maps/Map3.tscn")
 
 var currentMapNode: Node
 
@@ -28,11 +28,13 @@ func _physics_process(delta: float) -> void:
 		gameStatusEnum.Locked:
 			if hasGameEnded():
 				endGame()
+				var main_menu = MAIN_MENU.instantiate()
+				get_tree().get_first_node_in_group("Menu").add_child(main_menu)
 
 func loadMode() -> void:
 	match gameType:
 		gameTypeEnum.Offline:
-			pass
+			return
 		gameTypeEnum.Online:
 			pass
 
@@ -46,14 +48,11 @@ func loadPlayers() -> void:
 func loadMap() -> void:
 	match currentMap:
 		mapIdEnum.One:
-			#map = map1.instantiate()
-			pass
+			currentMapNode = map1.instantiate()
 		mapIdEnum.Two:
-			#map = map2.instantiate()
-			pass
+			currentMapNode = map2.instantiate()
 		mapIdEnum.Three:
-			#map = map3.instantiate()
-			pass
+			currentMapNode = map3.instantiate()
 		mapIdEnum.Test:
 			currentMapNode = test.instantiate()
 	add_child(currentMapNode)
@@ -68,14 +67,14 @@ func startGame() -> void:
 
 func hasGameLocked() -> bool:
 	var players: Array[Node] = get_tree().get_nodes_in_group("Player")
-	return players.size() > 1
+	return players.size() < 2
 
 func hasGameEnded() -> bool:
 	var bombs: Array[Node] = get_tree().get_nodes_in_group("Bomb")
-	if bombs.size() > 0:
+	if bombs.size() == 0:
 		return false
 	var explosions: Array[Node] = get_tree().get_nodes_in_group("BombEffect")
-	if explosions.size() > 0:
+	if explosions.size() == 0:
 		return false
 	return true
 
