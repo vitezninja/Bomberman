@@ -16,7 +16,7 @@ import-assets:
 unitTests:
   stage: tests
   script:
-    - godot -d --headless -d -s --path "$PWD" res://addons/gut/gut_cmdln.gd -ginclude_subdirs -gdir=res:// -gprefix=test_ -gexit
+    - godot -d --headless -d -s --path "$PWD" res://addons/gut/gut_cmdln.gd -ginclude_subdirs -gdir=res://Tests -gprefix=test_ -gexit
 
 windows:
   stage: build
