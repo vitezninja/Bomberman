@@ -24,8 +24,8 @@ func set_action_name() -> void:
 			action.text = "Move down"
 		"bomb_player_1":
 			action.text = "Place bomb"
-		"powerup_player_1":
-			action.text = "Use power-up"
+		"box_player_1":
+			action.text = "Place box"
 		"left_player_2":
 			action.text = "Move left"
 		"right_player_2":
@@ -36,8 +36,8 @@ func set_action_name() -> void:
 			action.text = "Move down"
 		"bomb_player_2":
 			action.text = "Place bomb"
-		"powerup_player_2":
-			action.text = "Use power-up"
+		"box_player_2":
+			action.text = "Place box"
 		"left_player_3":
 			action.text = "Move left"
 		"right_player_3":
@@ -48,54 +48,16 @@ func set_action_name() -> void:
 			action.text = "Move down"
 		"bomb_player_3":
 			action.text = "Place bomb"
-		"powerup_player_3":
-			action.text = "Use power-up"
-		
-		"left_player_1_online":
-			action.text = "Move left"
-		"right_player_1_online":
-			action.text = "Move right"
-		"up_player_1_online":
-			action.text = "Move up"
-		"down_player_1_online":
-			action.text = "Move down"
-		"bomb_player_1_online":
-			action.text = "Place bomb"
-		"powerup_player_1_online":
-			action.text = "Use power-up"
-		"left_player_2_online":
-			action.text = "Move left"
-		"right_player_2_online":
-			action.text = "Move right"
-		"up_player_2_online":
-			action.text = "Move up"
-		"down_player_2_online":
-			action.text = "Move down"
-		"bomb_player_2_online":
-			action.text = "Place bomb"
-		"powerup_player_2_online":
-			action.text = "Use power-up"
-		"left_player_3_online":
-			action.text = "Move left"
-		"right_player_3_online":
-			action.text = "Move right"
-		"up_player_3_online":
-			action.text = "Move up"
-		"down_player_3_online":
-			action.text = "Move down"
-		"bomb_player_3_online":
-			action.text = "Place bomb"
-		"powerup_player_3_online":
-			action.text = "Use power-up"
+		"box_player_3":
+			action.text = "Place box"
 
 func set_text_for_key() -> void:
 	var action_events: Array[InputEvent] = InputMap.action_get_events(action_name)
 	var action_event: InputEvent = action_events[0]
 	var action_keycode: String = OS.get_keycode_string(action_event.physical_keycode)
 	
-	action_key.text = "%s" % action_keycode
+	action_key.text = action_keycode
 
-#TODO ezek a ciklusok mit csinálnak?
 func _on_action_key_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		action_key.text = "Press any key..."

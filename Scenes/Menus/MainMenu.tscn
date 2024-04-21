@@ -1,18 +1,18 @@
 [gd_scene load_steps=11 format=3 uid="uid://dglk165fs34w3"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/mainMenu.gd" id="1_p6gfg"]
-[ext_resource type="Texture2D" uid="uid://buyvrmkgmcryd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_d288f"]
+[ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_d288f"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_rs1kl"]
-[ext_resource type="FontFile" uid="uid://cf655hkwqrqyc" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="4_cyeq6"]
-[ext_resource type="Texture2D" uid="uid://bbm5x27e5c3w7" path="res://Assets/GUI/FinalGUIAssets/Separator.png" id="5_hg0cy"]
+[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="4_cyeq6"]
+[ext_resource type="Texture2D" uid="uid://ddm3kgwhqb3cr" path="res://Assets/GUI/FinalGUIAssets/Separator.png" id="5_hg0cy"]
 [ext_resource type="Theme" uid="uid://ceo5ni24hu6cy" path="res://Themes/PlayButton.tres" id="7_ny3rj"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l18gw"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5iup3"]
 texture = ExtResource("5_hg0cy")
 region_rect = Rect2(915, 238, 80, 740)
 
 [sub_resource type="Theme" id="Theme_d57r2"]
-PanelContainer/styles/panel = SubResource("StyleBoxTexture_l18gw")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_5iup3")
 
 [sub_resource type="Theme" id="Theme_11xd8"]
 
@@ -102,6 +102,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 15
 theme_override_constants/shadow_offset_y = 15

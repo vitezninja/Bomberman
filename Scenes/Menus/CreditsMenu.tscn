@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://lbtou3vcxb5l"]
 
-[ext_resource type="Texture2D" uid="uid://bd6wh1urtjjel" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_7njnl"]
+[ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_7njnl"]
 [ext_resource type="Script" path="res://Scripts/Menus/creditsMenu.gd" id="1_qjq8g"]
-[ext_resource type="FontFile" uid="uid://dr6acefdkfver" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_yjl2j"]
+[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_yjl2j"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_hgkfi"]
 
 [node name="CreditsMenu" type="Control"]
@@ -75,7 +75,7 @@ theme_override_font_sizes/font_size = 32
 text = "Quit"
 
 [node name="Sep1" type="Control" parent="OuterMargins/Content"]
-custom_minimum_size = Vector2(0, 622)
+custom_minimum_size = Vector2(0, 623)
 layout_mode = 2
 
 [node name="BackBox" type="HBoxContainer" parent="OuterMargins/Content"]

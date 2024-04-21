@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dxfaogmdf3ii4"]
+
+[ext_resource type="Texture2D" uid="uid://bxqm1wi1mpwyq" path="res://Assets/GUI/FinalGUIAssets/Map1Background.png" id="1_obiax"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_icxil"]
+texture = ExtResource("1_obiax")
+texture_margin_left = 15.0139
+texture_margin_top = 6.0
+texture_margin_right = 14.9787
+texture_margin_bottom = 12.5966
+region_rect = Rect2(14.8995, 8.09974, 420.2, 276.1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4epvf"]
+texture = ExtResource("1_obiax")
+texture_margin_left = 15.0139
+texture_margin_top = 6.0
+texture_margin_right = 14.9787
+texture_margin_bottom = 12.5966
+region_rect = Rect2(14.8995, 8.09974, 420.2, 276.1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l7pkg"]
+texture = ExtResource("1_obiax")
+texture_margin_left = 15.0139
+texture_margin_top = 6.0
+texture_margin_right = 14.9787
+texture_margin_bottom = 12.5966
+region_rect = Rect2(14.8995, 8.09974, 420.2, 276.1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vr5tn"]
+texture = ExtResource("1_obiax")
+texture_margin_left = 15.0139
+texture_margin_top = 6.0
+texture_margin_right = 14.9787
+texture_margin_bottom = 12.5966
+region_rect = Rect2(14.8995, 8.09974, 420.2, 276.1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lh11c"]
+texture = ExtResource("1_obiax")
+texture_margin_left = 1.15866
+texture_margin_right = 0.718176
+region_rect = Rect2(0, 0, 450, 250)
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxTexture_icxil")
+Button/styles/hover = SubResource("StyleBoxTexture_4epvf")
+Button/styles/normal = SubResource("StyleBoxTexture_l7pkg")
+Button/styles/pressed = SubResource("StyleBoxTexture_vr5tn")
+Panel/styles/panel = SubResource("StyleBoxTexture_lh11c")

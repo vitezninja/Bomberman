@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjq51euj3w842"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/keybindsMenu.gd" id="1_ah15h"]
-[ext_resource type="Texture2D" uid="uid://j8jecn4hr54u" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_5ewyp"]
-[ext_resource type="FontFile" uid="uid://6q85pnyecpf7" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="3_edheu"]
+[ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_5ewyp"]
+[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="3_edheu"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="4_t0iuv"]
 [ext_resource type="PackedScene" uid="uid://17xktiapa28d" path="res://Scenes/Menus/HotkeyRebindButton.tscn" id="5_up8va"]
 
@@ -34,9 +34,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 80
+theme_override_constants/margin_top = 78
 theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_bottom = 79
 
 [node name="Content" type="VBoxContainer" parent="OuterMargins"]
 layout_mode = 2
@@ -45,9 +45,10 @@ theme_override_constants/separation = 60
 [node name="TitleandQuitBox" type="HBoxContainer" parent="OuterMargins/Content"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Sep1" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
-custom_minimum_size = Vector2(593.5, 50)
+custom_minimum_size = Vector2(593.5, 100)
 layout_mode = 2
 
 [node name="Title" type="Label" parent="OuterMargins/Content/TitleandQuitBox"]
@@ -65,7 +66,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sep2" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
-custom_minimum_size = Vector2(414, 50)
+custom_minimum_size = Vector2(426, 100)
 layout_mode = 2
 
 [node name="QuitButton" type="Button" parent="OuterMargins/Content/TitleandQuitBox"]
@@ -78,25 +79,23 @@ theme_override_font_sizes/font_size = 32
 text = "Quit"
 
 [node name="MarginContainer" type="MarginContainer" parent="OuterMargins/Content"]
-custom_minimum_size = Vector2(0, 622)
+custom_minimum_size = Vector2(0, 623)
 layout_mode = 2
 theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 0
 
-[node name="Modes" type="TabContainer" parent="OuterMargins/Content/MarginContainer"]
-layout_mode = 2
-tab_alignment = 1
-
-[node name="Offline" type="TabBar" parent="OuterMargins/Content/MarginContainer/Modes"]
+[node name="Modes" type="Panel" parent="OuterMargins/Content/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="OuterMargins/Content/MarginContainer/Modes/Offline"]
+[node name="MarginContainer" type="MarginContainer" parent="OuterMargins/Content/MarginContainer/Modes"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 15.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 24
@@ -104,16 +103,16 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="ScrollContainer" type="ScrollContainer" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer"]
 custom_minimum_size = Vector2(1300, 0)
 layout_mode = 2
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Player1Section" type="Label" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Player1Section" type="Label" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -122,40 +121,40 @@ theme_override_fonts/font = ExtResource("3_edheu")
 theme_override_font_sizes/font_size = 64
 text = "PLAYER 1:"
 
-[node name="SectionSep1" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="SectionSep1" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
 
-[node name="UpPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="UpPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "up_player_1"
 
-[node name="DownPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="DownPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "down_player_1"
 
-[node name="LeftPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="LeftPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 
-[node name="RightPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="RightPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "right_player_1"
 
-[node name="BombPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="BombPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "bomb_player_1"
 
-[node name="PowerupPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="PowerupPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
-action_name = "powerup_player_1"
+action_name = "box_player_1"
 
-[node name="SectionSep12" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="SectionSep12" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 36
 theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
 
-[node name="Player2Section" type="Label" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Player2Section" type="Label" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -164,41 +163,41 @@ theme_override_fonts/font = ExtResource("3_edheu")
 theme_override_font_sizes/font_size = 64
 text = "PLAYER 2:"
 
-[node name="SectionSep2" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="SectionSep2" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
 
-[node name="UpPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="UpPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "up_player_2"
 
-[node name="DownPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="DownPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "down_player_2"
 
-[node name="LeftPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="LeftPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "left_player_2"
 
-[node name="RightPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="RightPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "right_player_2"
 
-[node name="BombPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="BombPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "bomb_player_2"
 
-[node name="PowerUpPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="PowerUpPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
-action_name = "powerup_player_2"
+action_name = "box_player_2"
 
-[node name="SectionSep23" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="SectionSep23" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 36
 theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
 
-[node name="Player3Section" type="Label" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Player3Section" type="Label" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -207,190 +206,36 @@ theme_override_fonts/font = ExtResource("3_edheu")
 theme_override_font_sizes/font_size = 64
 text = "PLAYER 3:"
 
-[node name="SectionSep3" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="SectionSep3" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
 
-[node name="UpPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="UpPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "up_player_3"
 
-[node name="DownPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="DownPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "down_player_3"
 
-[node name="LeftPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="LeftPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "left_player_3"
 
-[node name="RightPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="RightPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "right_player_3"
 
-[node name="BombPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="BombPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "bomb_player_3"
 
-[node name="PowerupPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
+[node name="PowerupPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
-action_name = "powerup_player_3"
+action_name = "box_player_3"
 
-[node name="BottomSep" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Offline/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
-
-[node name="Online" type="TabBar" parent="OuterMargins/Content/MarginContainer/Modes"]
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="OuterMargins/Content/MarginContainer/Modes/Online"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
-
-[node name="ScrollContainer" type="ScrollContainer" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer"]
-custom_minimum_size = Vector2(1300, 0)
-layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
-
-[node name="Player1Section" type="Label" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_edheu")
-theme_override_font_sizes/font_size = 64
-text = "PLAYER 1:"
-
-[node name="SectionSep1" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
-
-[node name="UpPlayer1Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "up_player_1_online"
-
-[node name="DownPlayer1Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "down_player_1_online"
-
-[node name="LeftPlayer1Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "left_player_1_online"
-
-[node name="RightPlayer1Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "right_player_1_online"
-
-[node name="BombPlayer1Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "bomb_player_1_online"
-
-[node name="PowerupPlayer1Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "powerup_player_1_online"
-
-[node name="SectionSep12" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 36
-theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
-
-[node name="Player2Section" type="Label" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_edheu")
-theme_override_font_sizes/font_size = 64
-text = "PLAYER 2:"
-
-[node name="SectionSep2" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
-
-[node name="UpPlayer2Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "up_player_2_online"
-
-[node name="DownPlayer2Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "down_player_2_online"
-
-[node name="LeftPlayer2Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "left_player_2_online"
-
-[node name="RightPlayer2Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "right_player_2_online"
-
-[node name="BombPlayer2Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "bomb_player_2_online"
-
-[node name="PowerUpPlayer2Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "powerup_player_2_online"
-
-[node name="SectionSep23" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 36
-theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
-
-[node name="Player3Section" type="Label" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_edheu")
-theme_override_font_sizes/font_size = 64
-text = "PLAYER 3:"
-
-[node name="SectionSep3" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
-
-[node name="UpPlayer3Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "up_player_3_online"
-
-[node name="DownPlayer3Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "down_player_3_online"
-
-[node name="LeftPlayer3Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "left_player_3_online"
-
-[node name="RightPlayer3Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "right_player_3_online"
-
-[node name="BombPlayer3Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "bomb_player_3_online"
-
-[node name="PowerupPlayer3Online" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
-layout_mode = 2
-action_name = "powerup_player_3_online"
-
-[node name="BottomSep" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/Online/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="BottomSep" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")

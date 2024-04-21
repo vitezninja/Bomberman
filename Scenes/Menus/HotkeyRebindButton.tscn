@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://17xktiapa28d"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/hotkeyRebindButton.gd" id="1_occ0i"]
-[ext_resource type="FontFile" uid="uid://6q85pnyecpf7" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_ihwcb"]
+[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_ihwcb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlyfb"]
 
@@ -47,7 +47,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_nlyfb")
 
 [node name="ActionKey" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ihwcb")
 theme_override_font_sizes/font_size = 32

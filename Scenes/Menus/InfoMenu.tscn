@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://vmruxlc5vv03"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/infoMenu.gd" id="1_oii0f"]
-[ext_resource type="Texture2D" uid="uid://buyvrmkgmcryd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_m0l2r"]
-[ext_resource type="FontFile" uid="uid://cf655hkwqrqyc" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="3_6vydx"]
+[ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_m0l2r"]
+[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="3_6vydx"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="4_uwguf"]
-[ext_resource type="Texture2D" uid="uid://bbm5x27e5c3w7" path="res://Assets/GUI/FinalGUIAssets/Separator.png" id="5_obs4o"]
+[ext_resource type="Texture2D" uid="uid://ddm3kgwhqb3cr" path="res://Assets/GUI/FinalGUIAssets/Separator.png" id="5_obs4o"]
 [ext_resource type="Theme" uid="uid://dyxo8v2kpx5fn" path="res://Themes/InfoPanel.tres" id="6_q7j6e"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dilqe"]
@@ -37,7 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 80
+theme_override_constants/margin_top = 79
 theme_override_constants/margin_right = 80
 theme_override_constants/margin_bottom = 80
 
@@ -75,15 +75,18 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_uwguf")
 theme_override_fonts/font = ExtResource("3_6vydx")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
 [node name="TitleandPanelSep" type="Control" parent="OuterMargins/Content"]
+custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 
 [node name="InfoPanelBox" type="HBoxContainer" parent="OuterMargins/Content"]
+custom_minimum_size = Vector2(0, 484)
 layout_mode = 2
 theme = SubResource("Theme_i5x7q")
 alignment = 1

@@ -5,10 +5,12 @@ enum gameTypeEnum {Offline, Online}
 enum playerCountEnum {Two = 2, Three = 3}
 enum mapIdEnum {One = 1, Two = 2, Three = 3, Test = 0}
 enum gameStatusEnum {Idle, Running, Locked}
+enum gameCountEnum {One = 1, Two = 2, Three = 3, Four = 4, Five = 5}
 
 @export var currentMap: mapIdEnum
 @export var playerCount: playerCountEnum
 @export var gameType: gameTypeEnum
+@export var gameCount: gameCountEnum
 var gameStatus: gameStatusEnum
 
 const test: PackedScene = preload("res://Scenes/Maps/TestWorld.tscn")
