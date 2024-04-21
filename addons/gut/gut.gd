@@ -40,6 +40,8 @@ signal end_test
 # gutconfig.
 # ###########################
 
+var GutUtils = load('res://addons/gut/utils.gd')
+
 var _inner_class_name = ''
 ## When set, GUT will only run Inner-Test-Classes that contain this string.
 var inner_class_name = _inner_class_name :
