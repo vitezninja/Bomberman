@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cebvurjp0xa3o"]
 
-[ext_resource type="Texture2D" uid="uid://doc3x8y25dmq" path="res://Assets/Tilemap/My-Tile_set.png" id="1_8doak"]
+[ext_resource type="Texture2D" uid="uid://dqb4jyp2ap7g1" path="res://Assets/Tilemap/My-Tile_set.png" id="1_8doak"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oo7sd"]
 texture = ExtResource("1_8doak")
@@ -849,6 +849,48 @@ texture = ExtResource("1_8doak")
 31:7/0/physics_layer_0/angular_velocity = 0.0
 31:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 2.375, -8, 2.5)
 31:7/0/custom_data_0 = "wall"
+36:9/0 = 0
+36:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+36:9/0/physics_layer_0/angular_velocity = 0.0
+36:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+36:9/0/custom_data_0 = "wall"
+35:9/0 = 0
+35:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+35:9/0/physics_layer_0/angular_velocity = 0.0
+35:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+35:9/0/custom_data_0 = "wall"
+36:8/0 = 0
+36:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+36:8/0/physics_layer_0/angular_velocity = 0.0
+36:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+36:8/0/custom_data_0 = "wall"
+35:8/0 = 0
+35:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+35:8/0/physics_layer_0/angular_velocity = 0.0
+35:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+35:8/0/custom_data_0 = "wall"
+37:8/0 = 0
+37:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+37:8/0/physics_layer_0/angular_velocity = 0.0
+37:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+37:8/0/custom_data_0 = "wall"
+34:8/0 = 0
+34:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+34:8/0/physics_layer_0/angular_velocity = 0.0
+34:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+34:8/0/custom_data_0 = "wall"
+37:7/0 = 0
+37:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+37:7/0/physics_layer_0/angular_velocity = 0.0
+36:7/0 = 0
+36:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+36:7/0/physics_layer_0/angular_velocity = 0.0
+35:7/0 = 0
+35:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+35:7/0/physics_layer_0/angular_velocity = 0.0
+34:7/0 = 0
+34:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+34:7/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_5k4j3"]
 physics_layer_0/collision_layer = 1
