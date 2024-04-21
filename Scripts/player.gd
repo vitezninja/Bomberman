@@ -104,7 +104,7 @@ func handleAnimation() -> void:
 		sprite.play("Idle_Sideways")
 
 func handleBombAction() -> void:
-	var isOnBomb = false
+	var isOnBomb: bool = false
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("Bomb"):
 			isOnBomb = true
@@ -117,6 +117,8 @@ func handleBombAction() -> void:
 func place() -> void:
 	var thisBomb: Bomb = bomb.instantiate()
 	var tileMap: TileMap = get_tree().get_first_node_in_group("TileMap")
+	if tileMap == null:
+		return
 	var bombPos: Vector2 = tileMap.local_to_map(to_local(tileMap.global_position))
 	thisBomb.global_position = tileMap.map_to_local(bombPos) * -1
 	thisBomb.playerId = playerId
@@ -184,7 +186,7 @@ func handleGhostForm() -> void:
 	pass
 
 func canPlaceBoxes() -> void:
-	if hasBoxes and maxBombsCount < 9:
+	if hasBoxes and maxBoxCount < 9:
 		maxBoxCount += 3
 	hasBoxes = true
 
