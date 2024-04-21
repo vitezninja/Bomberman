@@ -1,11 +1,17 @@
 image: barichello/godot-ci:4.2.1
 
 stages:
+  - import-assets
   - build
   - tests
 
 before_script:
   - mkdir -v -p build/windows
+
+import-assets:
+  stage: import-assets
+  script:
+    - godot --headless --verbose --editor --quit
 
 unitTests:
   stage: tests
@@ -15,5 +21,5 @@ unitTests:
 windows:
   stage: build
   script:
-    - godot -v --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
-    - test -e ../build/windows/$EXPORT_NAME.exe
+    - cd build/windows
+    - godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
