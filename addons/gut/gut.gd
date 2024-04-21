@@ -41,6 +41,7 @@ signal end_test
 # ###########################
 
 var GutUtils = load('res://addons/gut/utils.gd')
+var GutHookScript = load('res://addons/gut/hook_script.gd')
 
 var _inner_class_name = ''
 ## When set, GUT will only run Inner-Test-Classes that contain this string.
