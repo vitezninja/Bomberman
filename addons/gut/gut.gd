@@ -40,9 +40,6 @@ signal end_test
 # gutconfig.
 # ###########################
 
-var GutUtils = load('res://addons/gut/utils.gd')
-var GutHookScript = load('res://addons/gut/hook_script.gd')
-
 var _inner_class_name = ''
 ## When set, GUT will only run Inner-Test-Classes that contain this string.
 var inner_class_name = _inner_class_name :
@@ -414,7 +411,7 @@ func _validate_hook_script(path):
 
 	if(FileAccess.file_exists(path)):
 		var inst = load(path).new()
-		if(inst and inst is typeof(GutHookScript)):
+		if(inst and inst is GutHookScript):
 			result.instance = inst
 			result.valid = true
 		else:

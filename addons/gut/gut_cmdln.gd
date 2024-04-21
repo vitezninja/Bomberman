@@ -16,8 +16,6 @@ var Optparse = load('res://addons/gut/optparse.gd')
 var Gut = load('res://addons/gut/gut.gd')
 var GutRunner = load('res://addons/gut/gui/GutRunner.tscn')
 
-var GutUtils = load('res://addons/gut/utils.gd')
-
 var json = JSON.new()
 
 # ------------------------------------------------------------------------------
