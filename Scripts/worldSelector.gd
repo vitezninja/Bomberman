@@ -11,12 +11,15 @@ enum gameStatusEnum {Idle, Running, Locked}
 @export var gameType: gameTypeEnum
 var gameCount: int = 0
 var gameStatus: gameStatusEnum
+var currentWinner: Player.playerEnum
 
 const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 const test: PackedScene = preload("res://Scenes/Maps/TestWorld.tscn")
 const map1: PackedScene = preload("res://Scenes/Maps/Map1.tscn")
 const map2: PackedScene = preload("res://Scenes/Maps/Map2.tscn")
 const map3: PackedScene = preload("res://Scenes/Maps/Map3.tscn")
+const GAME_OVER_MENU_2_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu2Players.tscn")
+const GAME_OVER_MENU_3_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu3Players.tscn")
 
 var currentMapNode: Node
 
@@ -27,9 +30,14 @@ func _physics_process(delta: float) -> void:
 				lockGame()
 		gameStatusEnum.Locked:
 			if hasGameEnded():
-				endGame()
-				var main_menu = MAIN_MENU.instantiate()
-				get_tree().get_first_node_in_group("Menu").add_child(main_menu)
+				currentWinner = endGame()
+				
+				if playerCount == 2:
+					var game_over_2 = GAME_OVER_MENU_2_PLAYERS.instantiate()
+					get_tree().get_first_node_in_group("Menu").add_child(game_over_2)
+				elif playerCount == 3:
+					var game_over_3 = GAME_OVER_MENU_3_PLAYERS.instantiate()
+					get_tree().get_first_node_in_group("Menu").add_child(game_over_3)
 
 func loadMode() -> void:
 	match gameType:
@@ -90,4 +98,5 @@ func endGame() -> Player.playerEnum:
 	currentMapNode = null
 	gameStatus = gameStatusEnum.Idle
 	gameCount -= 1
+	
 	return winner

@@ -1,0 +1,378 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3pxnxpvswofo"]
+
+[ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_4myaq"]
+[ext_resource type="Script" path="res://Scripts/Menus/gameOverMenu3Players.gd" id="1_m2rcc"]
+[ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="2_stmr8"]
+[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="3_fiqf6"]
+[ext_resource type="Theme" uid="uid://ceo5ni24hu6cy" path="res://Themes/PlayButton.tres" id="4_ic0cd"]
+[ext_resource type="Texture2D" uid="uid://r3f7yapriyjh" path="res://Assets/GUI/PNG/PlayerIcons/RedPlayerHead.png" id="5_ica2c"]
+[ext_resource type="Texture2D" uid="uid://b0qy14mxl2624" path="res://Assets/GUI/PNG/PlayerIcons/GreenPlayerHead.png" id="6_u31g4"]
+[ext_resource type="Texture2D" uid="uid://dy2pe4smvsw8w" path="res://Assets/GUI/PNG/PlayerIcons/BluePlayerHead.png" id="7_bg25h"]
+
+[node name="GameOverMenu3Players" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m2rcc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4myaq")
+
+[node name="OuterMargins" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 82
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="Content" type="VBoxContainer" parent="OuterMargins"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="TitleandQuitBox" type="HBoxContainer" parent="OuterMargins/Content"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="Sep3" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+custom_minimum_size = Vector2(70, 100)
+layout_mode = 2
+
+[node name="BackToMenuButton" type="Button" parent="OuterMargins/Content/TitleandQuitBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("2_stmr8")
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+
+[node name="Sep1" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+custom_minimum_size = Vector2(345, 100)
+layout_mode = 2
+
+[node name="GameOver" type="Label" parent="OuterMargins/Content/TitleandQuitBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 15
+theme_override_constants/outline_size = 24
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 122
+text = "Game Over
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sep2" type="Control" parent="OuterMargins/Content/TitleandQuitBox"]
+custom_minimum_size = Vector2(318, 100)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="OuterMargins/Content/TitleandQuitBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("2_stmr8")
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="StatsMargin" type="MarginContainer" parent="OuterMargins/Content"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+theme_override_constants/margin_left = 140
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 517
+
+[node name="StatsContainer" type="HBoxContainer" parent="OuterMargins/Content/StatsMargin"]
+layout_mode = 2
+
+[node name="TextContainer" type="VBoxContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="WinCountsTextMargin" type="MarginContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/margin_top = 180
+
+[node name="WinCountsLabel" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/TextContainer/WinCountsTextMargin"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 64
+text = "Wins:"
+
+[node name="BombCountsTextMargin" type="MarginContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 110
+theme_override_constants/margin_right = 0
+
+[node name="BombCountsLabel2" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/TextContainer/BombCountsTextMargin"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 32
+text = "Bombs detonated:"
+
+[node name="PowerUpCountsTextMargin" type="MarginContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="PowerUpCountsLabel3" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/TextContainer/PowerUpCountsTextMargin"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 32
+text = "Power-ups collected:"
+
+[node name="DataContainer" type="VBoxContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="PlayerIconsMargin" type="MarginContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer"]
+layout_mode = 2
+
+[node name="PlayerIcons" type="HBoxContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PlayerIconsMargin"]
+layout_mode = 2
+
+[node name="Player1Icon" type="TextureRect" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PlayerIconsMargin/PlayerIcons"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("5_ica2c")
+
+[node name="Player2Icon" type="TextureRect" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PlayerIconsMargin/PlayerIcons"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("6_u31g4")
+
+[node name="Player3Icon" type="TextureRect" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PlayerIconsMargin/PlayerIcons"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("7_bg25h")
+
+[node name="WinCountsMargin" type="MarginContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 65
+
+[node name="WinCounts" type="HBoxContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/WinCountsMargin"]
+layout_mode = 2
+
+[node name="Player1Wins" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/WinCountsMargin/WinCounts"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0.615686, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 128
+text = "0"
+
+[node name="Player2Wins" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/WinCountsMargin/WinCounts"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0.709804, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 128
+text = "0"
+
+[node name="Player3Wins" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/WinCountsMargin/WinCounts"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0.176471, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 128
+text = "0"
+
+[node name="BombCountsMargin" type="MarginContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 35
+
+[node name="BombCounts" type="HBoxContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin"]
+layout_mode = 2
+
+[node name="Player1Bombs" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin/BombCounts"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0.615686, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Player2Bombs" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin/BombCounts"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0.709804, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Player3Bombs" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin/BombCounts"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0.176471, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="PowerUpCountsMargin" type="MarginContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="PowerUpCounts" type="HBoxContainer" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin"]
+layout_mode = 2
+
+[node name="Player1PowerUps" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin/PowerUpCounts"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0.615686, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Player2PowerUps" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin/PowerUpCounts"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0.709804, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Player3PowerUps" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin/PowerUpCounts"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0.176471, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="RoundsLeftTextContainer" type="HBoxContainer" parent="OuterMargins/Content"]
+layout_mode = 2
+
+[node name="RoundsLeftTextMargin" type="MarginContainer" parent="OuterMargins/Content/RoundsLeftTextContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 815
+
+[node name="RoundsLeftText" type="Label" parent="OuterMargins/Content/RoundsLeftTextContainer/RoundsLeftTextMargin"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 32
+text = "Rounds left:  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoundCountMargin" type="MarginContainer" parent="OuterMargins/Content/RoundsLeftTextContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 760
+
+[node name="RoundCount" type="Label" parent="OuterMargins/Content/RoundsLeftTextContainer/RoundCountMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.827451, 0.4, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="NextRoundMargin" type="MarginContainer" parent="OuterMargins/Content"]
+layout_mode = 2
+theme_override_constants/margin_left = 470
+theme_override_constants/margin_right = 430
+
+[node name="NextRoundBox" type="HBoxContainer" parent="OuterMargins/Content/NextRoundMargin"]
+custom_minimum_size = Vector2(0, 125)
+layout_mode = 2
+
+[node name="NextRoundButton" type="Button" parent="OuterMargins/Content/NextRoundMargin/NextRoundBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 125)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("4_ic0cd")
+theme_override_fonts/font = ExtResource("3_fiqf6")
+theme_override_font_sizes/font_size = 48
+text = "Next Round"
+
+[connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OuterMargins/Content/NextRoundMargin/NextRoundBox/NextRoundButton" to="." method="_on_next_round_button_pressed"]
