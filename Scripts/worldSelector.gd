@@ -11,7 +11,6 @@ enum gameStatusEnum {Idle, Running, Locked}
 @export var gameType: gameTypeEnum
 var gameCount: int = 0
 var gameStatus: gameStatusEnum
-var currentWinner: Player.playerEnum
 
 const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 const test: PackedScene = preload("res://Scenes/Maps/TestWorld.tscn")
@@ -30,7 +29,7 @@ func _physics_process(delta: float) -> void:
 				lockGame()
 		gameStatusEnum.Locked:
 			if hasGameEnded():
-				currentWinner = endGame()
+				endGame()
 				
 				if playerCount == 2:
 					var game_over_2 = GAME_OVER_MENU_2_PLAYERS.instantiate()
@@ -44,14 +43,24 @@ func loadMode() -> void:
 		gameTypeEnum.Offline:
 			return
 		gameTypeEnum.Online:
+			#TODO multiplayer
 			pass
 
 func loadPlayers() -> void:
+	randomize()
+	
+	var players: Array[Node] = get_tree().get_nodes_in_group("Player")
+	players.shuffle()
+	
 	match playerCount:
 		playerCountEnum.Two:
-			pass
+			players[0].setId(Player.playerEnum.Player1)
+			players[1].setId(Player.playerEnum.Player2)
+			players[2].queue_free()
 		playerCountEnum.Three:
-			pass
+			players[0].setId(Player.playerEnum.Player1)
+			players[1].setId(Player.playerEnum.Player2)
+			players[2].setId(Player.playerEnum.Player3)
 
 func loadMap() -> void:
 	match currentMap:
@@ -72,6 +81,7 @@ func startGame() -> void:
 		loadPlayers()
 	
 	gameStatus = gameStatusEnum.Running
+	GameStats.newGame()
 
 func hasGameLocked() -> bool:
 	var players: Array[Node] = get_tree().get_nodes_in_group("Player")
@@ -89,14 +99,11 @@ func hasGameEnded() -> bool:
 func lockGame() -> void:
 	gameStatus = gameStatusEnum.Locked
 
-func endGame() -> Player.playerEnum:
-	var winner: Player.playerEnum
+func endGame():
 	var player: Player = get_tree().get_first_node_in_group("Player")
 	if player != null:
-		winner = player.playerId
+		GameStats.addWin(player.playerId)
 	currentMapNode.queue_free()
 	currentMapNode = null
 	gameStatus = gameStatusEnum.Idle
 	gameCount -= 1
-	
-	return winner

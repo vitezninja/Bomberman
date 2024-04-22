@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://b3pxnxpvswofo"]
 
-[ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_4myaq"]
+[ext_resource type="Texture2D" uid="uid://bd6wh1urtjjel" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_4myaq"]
 [ext_resource type="Script" path="res://Scripts/Menus/gameOverMenu3Players.gd" id="1_m2rcc"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="2_stmr8"]
-[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="3_fiqf6"]
+[ext_resource type="FontFile" uid="uid://dr6acefdkfver" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="3_fiqf6"]
 [ext_resource type="Theme" uid="uid://ceo5ni24hu6cy" path="res://Themes/PlayButton.tres" id="4_ic0cd"]
-[ext_resource type="Texture2D" uid="uid://r3f7yapriyjh" path="res://Assets/GUI/PNG/PlayerIcons/RedPlayerHead.png" id="5_ica2c"]
-[ext_resource type="Texture2D" uid="uid://b0qy14mxl2624" path="res://Assets/GUI/PNG/PlayerIcons/GreenPlayerHead.png" id="6_u31g4"]
-[ext_resource type="Texture2D" uid="uid://dy2pe4smvsw8w" path="res://Assets/GUI/PNG/PlayerIcons/BluePlayerHead.png" id="7_bg25h"]
+[ext_resource type="Texture2D" uid="uid://dyp4xkmhdh4c" path="res://Assets/GUI/PNG/PlayerIcons/RedPlayerHead.png" id="5_ica2c"]
+[ext_resource type="Texture2D" uid="uid://b5bpeo4t4m2n0" path="res://Assets/GUI/PNG/PlayerIcons/GreenPlayerHead.png" id="6_u31g4"]
+[ext_resource type="Texture2D" uid="uid://bloa1c8q01uu" path="res://Assets/GUI/PNG/PlayerIcons/BluePlayerHead.png" id="7_bg25h"]
 
 [node name="GameOverMenu3Players" type="Control"]
 layout_mode = 3
@@ -240,6 +240,7 @@ theme_override_constants/margin_bottom = 35
 layout_mode = 2
 
 [node name="Player1Bombs" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin/BombCounts"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0.615686, 0, 0, 1)
@@ -252,6 +253,7 @@ theme_override_font_sizes/font_size = 64
 text = "0"
 
 [node name="Player2Bombs" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin/BombCounts"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0, 0.709804, 0, 1)
@@ -264,6 +266,7 @@ theme_override_font_sizes/font_size = 64
 text = "0"
 
 [node name="Player3Bombs" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin/BombCounts"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0, 0.176471, 1, 1)
@@ -284,6 +287,7 @@ theme_override_constants/margin_right = 0
 layout_mode = 2
 
 [node name="Player1PowerUps" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin/PowerUpCounts"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0.615686, 0, 0, 1)
@@ -296,6 +300,7 @@ theme_override_font_sizes/font_size = 64
 text = "0"
 
 [node name="Player2PowerUps" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin/PowerUpCounts"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0, 0.709804, 0, 1)
@@ -308,6 +313,7 @@ theme_override_font_sizes/font_size = 64
 text = "0"
 
 [node name="Player3PowerUps" type="Label" parent="OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin/PowerUpCounts"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0, 0.176471, 1, 1)
