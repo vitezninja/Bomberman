@@ -83,8 +83,8 @@ func rebind_action_key(event: InputEvent) -> void:
 	var actions = InputMap.get_actions()
 	var our_actions = actions.slice(76, 98)
 	
-	for action in our_actions:
-		if InputMap.action_has_event(action, event):
+	for actionA in our_actions:
+		if InputMap.action_has_event(actionA, event):
 			return
 	
 	InputMap.action_erase_events(action_name)
