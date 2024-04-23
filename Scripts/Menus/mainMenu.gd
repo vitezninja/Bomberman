@@ -6,6 +6,10 @@ class_name MainMenu
 @onready var credits_menu: PackedScene = load("res://Scenes/Menus/CreditsMenu.tscn")
 @onready var info_menu: PackedScene = load("res://Scenes/Menus/InfoMenu.tscn")
 
+func _ready() -> void:
+	KeyConfig.saveData()
+	KeyConfig.loadData()
+
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
