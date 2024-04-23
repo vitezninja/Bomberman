@@ -11,11 +11,12 @@ before_script:
 import-assets:
   stage: import-assets
   script:
-    - godot --headless --editor --quit-after 1000
+    - godot --headless --v --editor --quit
 
 unitTests:
   stage: tests
   script:
+    - godot --headless --editor --quit-after 1000
     - godot --headless -d -s res://addons/gut/gut_cmdln.gd -gconfig
 
 windows:
