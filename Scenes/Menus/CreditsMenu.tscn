@@ -126,8 +126,8 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_kon4a")
 
 [node name="MainArtMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/MainArtMargin"]
 layout_mode = 2
@@ -148,8 +148,8 @@ text = "Tóth Benedek Vitéz"
 
 [node name="EnemyMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/EnemyMargin"]
 layout_mode = 2
@@ -171,8 +171,8 @@ uri = "https://twitter.com/Snoblinart"
 
 [node name="FontMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/FontMargin"]
 layout_mode = 2
@@ -194,8 +194,8 @@ uri = "https://twitter.com/reffpixels"
 
 [node name="GUIMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/GUIMargin"]
 layout_mode = 2
@@ -217,8 +217,8 @@ uri = "https://twitter.com/KenneyNL"
 
 [node name="PowerUpMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/PowerUpMargin"]
 layout_mode = 2
@@ -240,8 +240,8 @@ uri = "https://twitter.com/pixerelia"
 
 [node name="TileMapMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/TileMapMargin"]
 layout_mode = 2
@@ -284,8 +284,8 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_kon4a")
 
 [node name="Programmer1Margin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer1Margin"]
 layout_mode = 2
@@ -306,8 +306,8 @@ text = "Andirkó Antal"
 
 [node name="Programmer2Margin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer2Margin"]
 layout_mode = 2
@@ -328,8 +328,8 @@ text = "Fodor Attila Krisztián"
 
 [node name="Programmer3Margin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer3Margin"]
 layout_mode = 2
