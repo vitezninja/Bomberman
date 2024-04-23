@@ -44,7 +44,8 @@ func _on_back_to_menu_pressed() -> void:
 	resume()
 	var main: Control = MAIN_MENU.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(main)
-	get_tree().get_first_node_in_group("WorldSelector").get_child(0).queue_free()
+	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
+	world_selector.endGame()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

@@ -131,5 +131,6 @@ theme_override_font_sizes/font_size = 32
 text = "Back"
 
 [connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OuterMargins/Content/MarginContainer/HBoxContainer/Online" to="." method="_on_online_pressed"]
 [connection signal="pressed" from="OuterMargins/Content/MarginContainer/HBoxContainer/Offline" to="." method="_on_offline_pressed"]
 [connection signal="pressed" from="OuterMargins/Content/BackBox/BackButton" to="." method="_on_back_button_pressed"]

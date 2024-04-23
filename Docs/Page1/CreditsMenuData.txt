@@ -1,0 +1,22 @@
+LINKEKKEL MEGCSINÁLNI GODOTBAN!!
+ABC sorrendben rendezni!!
+
+Art:
+
+Main art: Tóth Benedek Vitéz
+
+Enemy, Player: @Snoblin - https://twitter.com/Snoblinart
+
+Font: @ReffPixels - https://twitter.com/reffpixels
+
+GUI: @KenneyNL - https://twitter.com/KenneyNL
+
+Power-ups: @Pixerelia - https://twitter.com/pixerelia
+
+Tile-map inspiration, box: @Anokolisa - https://twitter.com/Anokolisa
+
+Programming: Andirkó Antal, Fodor Attila Krisztián, Tóth Benedek Vitéz
+
+Sound: Not implemented yet
+
+Playtest: Not implemented yet

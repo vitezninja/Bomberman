@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 enum playerEnum {Player1, Player2, Player3}
-@export var playerId: playerEnum
+var playerId: playerEnum
 
 const NORMALSPEED: float = 300.0
 const POWERUPSPEED: float = 400.0
@@ -54,12 +54,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func handleInputMap() -> void:
-	up += str(playerId+1)
-	down += str(playerId+1)
-	left += str(playerId+1)
-	right += str(playerId+1)
-	bombPlace += str(playerId+1)
-	boxPlace += str(playerId+1)
+	up = "up_player_" + str(playerId+1)
+	down = "down_player_" + str(playerId+1)
+	left = "left_player_" + str(playerId+1)
+	right = "right_player_" + str(playerId+1)
+	bombPlace = "bomb_player_" + str(playerId+1)
+	boxPlace = "box_player_" + str(playerId+1)
 
 func handleMovement(delta: float) -> void:
 	var x_direction: float = Input.get_axis(left, right)
@@ -202,3 +202,7 @@ func handleBoxAction() -> void:
 #TODO
 func placeBox() -> void:
 	pass
+
+func setId(id: playerEnum) -> void:
+	playerId = id
+	_ready()

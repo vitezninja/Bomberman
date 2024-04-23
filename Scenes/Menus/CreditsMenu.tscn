@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://lbtou3vcxb5l"]
+[gd_scene load_steps=6 format=3 uid="uid://lbtou3vcxb5l"]
 
 [ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_7njnl"]
 [ext_resource type="Script" path="res://Scripts/Menus/creditsMenu.gd" id="1_qjq8g"]
 [ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_yjl2j"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_hgkfi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kon4a"]
 
 [node name="CreditsMenu" type="Control"]
 layout_mode = 3
@@ -74,8 +76,334 @@ theme_override_fonts/font = ExtResource("2_yjl2j")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[node name="Sep1" type="Control" parent="OuterMargins/Content"]
+[node name="CreditsMargin" type="MarginContainer" parent="OuterMargins/Content"]
 custom_minimum_size = Vector2(0, 623)
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="CreditsBackground" type="Panel" parent="OuterMargins/Content/CreditsMargin"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 15.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="CreditsContainer" type="ScrollContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer"]
+custom_minimum_size = Vector2(1300, 0)
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Art" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 64
+text = "ART"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainArtMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/MainArtMargin"]
+layout_mode = 2
+
+[node name="Main art" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/MainArtMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Main art: "
+
+[node name="Dummy" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/MainArtMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Tóth Benedek Vitéz"
+
+[node name="EnemyMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/EnemyMargin"]
+layout_mode = 2
+
+[node name="Enemy, player" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/EnemyMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Enemy, player:"
+
+[node name="Snoblin" type="LinkButton" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/EnemyMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "@Snoblin"
+underline = 2
+uri = "https://twitter.com/Snoblinart"
+
+[node name="FontMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/FontMargin"]
+layout_mode = 2
+
+[node name="Font" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/FontMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Font:"
+
+[node name="ReffPixels" type="LinkButton" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/FontMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "@ReffPixels"
+underline = 2
+uri = "https://twitter.com/reffpixels"
+
+[node name="GUIMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/GUIMargin"]
+layout_mode = 2
+
+[node name="GUI" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/GUIMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "GUI:"
+
+[node name="KenneyNL" type="LinkButton" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/GUIMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "@KenneyNL"
+underline = 2
+uri = "https://twitter.com/KenneyNL"
+
+[node name="PowerUpMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/PowerUpMargin"]
+layout_mode = 2
+
+[node name="Power-ups" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/PowerUpMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Power-ups:"
+
+[node name="Pixerelia" type="LinkButton" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/PowerUpMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "@Pixerelia"
+underline = 2
+uri = "https://twitter.com/pixerelia"
+
+[node name="TileMapMargin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/TileMapMargin"]
+layout_mode = 2
+
+[node name="Tile-map inspiration, box" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/TileMapMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Tile-map inspiration, box:"
+
+[node name="Anokolisa" type="LinkButton" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/TileMapMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "@Anokolisa"
+underline = 2
+uri = "https://twitter.com/Anokolisa"
+
+[node name="SectionSep12" type="HSeparator" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 36
+theme_override_styles/separator = SubResource("StyleBoxEmpty_kon4a")
+
+[node name="Programming" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 64
+text = "PROGRAMMING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Programmer1Margin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer1Margin"]
+layout_mode = 2
+
+[node name="Programmer1" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer1Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Programmer 1:"
+
+[node name="Dumb" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer1Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Andirkó Antal"
+
+[node name="Programmer2Margin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer2Margin"]
+layout_mode = 2
+
+[node name="Programmer2" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer2Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Programmer 2:"
+
+[node name="Dumber" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer2Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Fodor Attila Krisztián"
+
+[node name="Programmer3Margin" type="MarginContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer3Margin"]
+layout_mode = 2
+
+[node name="Programmer3" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer3Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Programmer 3:"
+
+[node name="Dummy" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer/Programmer3Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 48
+text = "Tóth Benedek Vitéz"
+
+[node name="SectionSep23" type="HSeparator" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 36
+theme_override_styles/separator = SubResource("StyleBoxEmpty_kon4a")
+
+[node name="Sound" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 64
+text = "SOUND"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="To be implemented" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 64
+text = "To be implemented..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SectionSep4" type="HSeparator" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_kon4a")
+
+[node name="PlayTest" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 64
+text = "PLAY TEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="To be implemented2" type="Label" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_yjl2j")
+theme_override_font_sizes/font_size = 64
+text = "To be implemented..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomSep" type="HSeparator" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_kon4a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OuterMargins/Content/CreditsMargin/CreditsBackground/MarginContainer/CreditsContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="BackBox" type="HBoxContainer" parent="OuterMargins/Content"]

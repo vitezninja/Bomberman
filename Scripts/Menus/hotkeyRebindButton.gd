@@ -80,8 +80,19 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	action_key.button_pressed = false
 
 func rebind_action_key(event: InputEvent) -> void:
+	var actions: Array[StringName] = InputMap.get_actions()
+	var our_actions: Array[StringName] = []
+	for actionA in actions:
+		if not actionA.begins_with("ui_"):
+			our_actions.append(actionA)
+	
+	for actionA in our_actions:
+		if InputMap.action_has_event(actionA, event):
+			return
+	
 	InputMap.action_erase_events(action_name)
 	InputMap.action_add_event(action_name, event)
 	set_process_unhandled_key_input(false)
 	set_text_for_key()
 	set_action_name()
+	KeyConfig.saveData()
