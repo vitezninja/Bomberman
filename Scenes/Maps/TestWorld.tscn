@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckn3rvnp5sad7"]
+[gd_scene load_steps=7 format=3 uid="uid://ckn3rvnp5sad7"]
 
 [ext_resource type="PackedScene" uid="uid://cebvurjp0xa3o" path="res://Scenes/TileMap.tscn" id="1_154yd"]
-[ext_resource type="Script" path="res://Scripts/Maps/map.gd" id="1_okj4o"]
 [ext_resource type="PackedScene" uid="uid://6ne8rr1sxpn8" path="res://Scenes/Player.tscn" id="2_27cov"]
 [ext_resource type="PackedScene" uid="uid://ciuidmbwdyr57" path="res://Scenes/WoodenBox.tscn" id="3_nqq6u"]
 [ext_resource type="PackedScene" uid="uid://dygucp2fqgwfn" path="res://Scenes/Enemy.tscn" id="4_5pe20"]
@@ -14,7 +13,6 @@ size = Vector2(16, 288)
 
 [node name="TestWorld" type="Node2D" groups=["World"]]
 y_sort_enabled = true
-script = ExtResource("1_okj4o")
 metadata/_edit_lock_ = true
 
 [node name="TileMap" parent="." instance=ExtResource("1_154yd")]

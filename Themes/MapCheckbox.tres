@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d1v1ck3ltvlj0"]
+
+[ext_resource type="Texture2D" uid="uid://qjkd7sd580wy" path="res://Assets/Effects/center.png" id="1_5sdp6"]
+
+[resource]
+CheckBox/icons/radio_checked = ExtResource("1_5sdp6")
