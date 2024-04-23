@@ -15,11 +15,12 @@ position = Vector2(24, 29)
 
 [node name="Player2" parent="Map/Players" index="1" instance=ExtResource("3_yxf7y")]
 position = Vector2(23, 261)
-playerId = 1
 
 [node name="Player3" parent="Map/Players" index="2" instance=ExtResource("3_yxf7y")]
 position = Vector2(455, 28)
-playerId = 2
+
+[node name="Player4" parent="Map/Players" index="3" instance=ExtResource("3_yxf7y")]
+position = Vector2(455, 261)
 
 [node name="WoodBox" parent="Map/Boxes" index="0" instance=ExtResource("4_45233")]
 position = Vector2(328, 136)

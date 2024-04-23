@@ -57,10 +57,12 @@ func loadPlayers() -> void:
 			players[0].setId(Player.playerEnum.Player1)
 			players[1].setId(Player.playerEnum.Player2)
 			players[2].queue_free()
+			players[3].queue_free()
 		playerCountEnum.Three:
 			players[0].setId(Player.playerEnum.Player1)
 			players[1].setId(Player.playerEnum.Player2)
 			players[2].setId(Player.playerEnum.Player3)
+			players[3].queue_free()
 
 func loadMap() -> void:
 	match currentMap:
