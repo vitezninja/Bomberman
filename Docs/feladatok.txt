@@ -1,9 +1,0 @@
-Intelligens szörnyek [1 komplexitás]
-Haladó bónuszok [1 komplexitás]
-Hátráltató bónuszok [0.5 komplexitás]
-Három játékos [1 komplexitás]
-Perzisztencia [0.5 komplexitás]
-Folyamatos mozgás [0.5 komplexitás]
-Battle Royale [0.5 komplexitás]
-Testreszabható vezérlés [0.5 komplexitás] (még nem néztem utána de nemhinném hogy annyira nehéz lenne)
-Hálózat [1 komplexitás] (ez jó lenne ha márcsak tapasztalat szerzésből megcsinálnánk plusz ként)
