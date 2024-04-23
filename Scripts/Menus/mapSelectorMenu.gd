@@ -56,4 +56,5 @@ func _on_start_button_pressed():
 			return
 	
 	world_selector.startGame()
+	GameStats.newSet()
 	queue_free()

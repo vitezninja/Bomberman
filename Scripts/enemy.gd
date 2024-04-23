@@ -69,6 +69,9 @@ func chooseRandomDirection(delta: float = 0.0) -> void:
 func createAstar() -> void:
 	tilemap = get_tree().get_first_node_in_group("TileMap")
 	
+	if tilemap == null:
+		return
+	
 	var tilemap_size: Vector2i = tilemap.get_used_rect().end - tilemap.get_used_rect().position
 	var map_rect: Rect2i = Rect2i(Vector2i.ZERO, tilemap_size)
 	var tile_size: Vector2i = tilemap.get_tileset().tile_size

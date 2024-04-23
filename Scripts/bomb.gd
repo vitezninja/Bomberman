@@ -47,6 +47,7 @@ func explode() -> void:
 	for player in players:
 		if player.playerId == playerId:
 			player.bombs.erase(self)
+			GameStats.addBomb(playerId)
 			break
 	createEffect()
 	queue_free()
