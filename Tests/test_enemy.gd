@@ -6,7 +6,7 @@ const enemyPath: PackedScene = preload("res://Scenes/Enemy.tscn")
 
 func before_all() -> void:
 	enemy = enemyPath.instantiate()
-	get_tree().root.get_child(0).add_child(enemy)
+	get_tree().root.add_child(enemy)
 
 func after_all() -> void:
 	enemy.free()

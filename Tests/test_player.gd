@@ -6,7 +6,7 @@ const playerPath: PackedScene = preload("res://Scenes/Player.tscn")
 
 func before_all() -> void:
 	player = playerPath.instantiate()
-	get_tree().root.get_child(0).add_child(player)
+	get_tree().root.add_child(player)
 
 func after_all() -> void:
 	player.free()
