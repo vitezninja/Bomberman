@@ -120,6 +120,8 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_edheu")
 theme_override_font_sizes/font_size = 64
 text = "PLAYER 1:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SectionSep1" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -162,6 +164,8 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_edheu")
 theme_override_font_sizes/font_size = 64
 text = "PLAYER 2:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SectionSep2" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -205,6 +209,8 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_edheu")
 theme_override_font_sizes/font_size = 64
 text = "PLAYER 3:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SectionSep3" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2

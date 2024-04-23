@@ -19,6 +19,9 @@ position = Vector2(23, 265)
 [node name="Player3" parent="Map/Players" index="2" instance=ExtResource("2_27cov")]
 position = Vector2(458, 30)
 
+[node name="Player4" parent="Map/Players" index="3" instance=ExtResource("2_27cov")]
+position = Vector2(458, 265)
+
 [node name="WoodBox" parent="Map/Boxes" index="0" instance=ExtResource("3_nqq6u")]
 position = Vector2(456, 72)
 
