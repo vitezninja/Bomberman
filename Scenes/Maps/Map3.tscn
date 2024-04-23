@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://crxfv4n11xdd5"]
+[gd_scene load_steps=6 format=3 uid="uid://crxfv4n11xdd5"]
 
 [ext_resource type="PackedScene" uid="uid://cg06qykffcbts" path="res://Scenes/Maps/Map.tscn" id="1_aquo8"]
 [ext_resource type="PackedScene" uid="uid://cebvurjp0xa3o" path="res://Scenes/TileMap.tscn" id="2_pawhi"]
@@ -6,15 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ciuidmbwdyr57" path="res://Scenes/WoodenBox.tscn" id="4_8idin"]
 [ext_resource type="PackedScene" uid="uid://dygucp2fqgwfn" path="res://Scenes/Enemy.tscn" id="5_4bctu"]
 
-[sub_resource type="GDScript" id="GDScript_mvnjx"]
-script/source = "extends Node
-
-func _ready():
-	get_tree().paused = true
-"
-
 [node name="Map3" type="Node2D"]
-script = SubResource("GDScript_mvnjx")
 
 [node name="Map" parent="." instance=ExtResource("1_aquo8")]
 

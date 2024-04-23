@@ -16,12 +16,26 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_two_players_pressed():
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	
+	if world_selector == null:
+		return
+		
+	world_selector.playerCount = world_selector.playerCountEnum.Two
+	
 	var selector: Control = map_selector.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(selector)
 	queue_free()
 
 
 func _on_three_players_pressed():
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	
+	if world_selector == null:
+		return
+		
+	world_selector.playerCount = world_selector.playerCountEnum.Three
+	
 	var selector: Control = map_selector.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(selector)
 	queue_free()
