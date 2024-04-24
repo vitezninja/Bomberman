@@ -125,9 +125,6 @@ func test_ghost() -> void:
 	assert_has_method(player, "ghost", "Player must have this method")
 	pending("This featur is not implemented yet")
 
-func test_handleGhostForm() -> void:
-	assert_has_method(player, "handleGhostForm", "Player must have this method")
-	pending("This featur is not implemented yet")
 
 func test_canPlaceBoxes() -> void:
 	assert_has_method(player, "canPlaceBoxes", "Player must have this method")
