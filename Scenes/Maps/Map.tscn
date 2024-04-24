@@ -30,7 +30,7 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="PowerUps" type="Node2D" parent="."]
+[node name="PowerUps" type="Node2D" parent="." groups=["PowerUps"]]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
