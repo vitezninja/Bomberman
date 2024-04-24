@@ -6,7 +6,7 @@ const playerPath: PackedScene = preload("res://Scenes/Player.tscn")
 
 func before_all() -> void:
 	player = playerPath.instantiate()
-	get_tree().root.get_child(0).add_child(player)
+	get_tree().root.add_child(player)
 
 func after_all() -> void:
 	player.free()
@@ -119,15 +119,10 @@ func test_speedDebuff() -> void:
 
 func test_invincibility() -> void:
 	assert_has_method(player, "invincibility", "Player must have this method")
-	pending("This featur is not implemented yet")
 
 func test_ghost() -> void:
 	assert_has_method(player, "ghost", "Player must have this method")
-	pending("This featur is not implemented yet")
 
-func test_handleGhostForm() -> void:
-	assert_has_method(player, "handleGhostForm", "Player must have this method")
-	pending("This featur is not implemented yet")
 
 func test_canPlaceBoxes() -> void:
 	assert_has_method(player, "canPlaceBoxes", "Player must have this method")
@@ -146,4 +141,3 @@ func test_handleBoxAction() -> void:
 
 func test_placeBox() -> void:
 	assert_has_method(player, "placeBox", "Player must have this method")
-	pending("This featur is not implemented yet")

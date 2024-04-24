@@ -105,6 +105,7 @@ theme_override_constants/margin_bottom = 24
 
 [node name="ScrollContainer" type="ScrollContainer" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer"]
 layout_mode = 2
+horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer"]
 custom_minimum_size = Vector2(1300, 0)
@@ -122,11 +123,6 @@ theme_override_font_sizes/font_size = 64
 text = "PLAYER 1:"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="SectionSep1" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
 
 [node name="UpPlayer1" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
@@ -166,11 +162,6 @@ theme_override_font_sizes/font_size = 64
 text = "PLAYER 2:"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="SectionSep2" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
 
 [node name="UpPlayer2" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
@@ -212,11 +203,6 @@ text = "PLAYER 3:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SectionSep3" type="HSeparator" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
-
 [node name="UpPlayer3" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_up8va")]
 layout_mode = 2
 action_name = "up_player_3"
@@ -246,6 +232,17 @@ layout_mode = 2
 theme_override_constants/separation = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_7oan2")
 
+[node name="ResetToDefault" type="Button" parent="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_t0iuv")
+theme_override_fonts/font = ExtResource("3_edheu")
+theme_override_font_sizes/font_size = 32
+text = "Reset to default"
+
 [node name="BackBox" type="HBoxContainer" parent="OuterMargins/Content"]
 layout_mode = 2
 
@@ -263,4 +260,5 @@ theme_override_font_sizes/font_size = 32
 text = "Back"
 
 [connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OuterMargins/Content/MarginContainer/Modes/MarginContainer/ScrollContainer/VBoxContainer/ResetToDefault" to="." method="_on_reset_to_default_pressed"]
 [connection signal="pressed" from="OuterMargins/Content/BackBox/BackButton" to="." method="_on_back_button_pressed"]
