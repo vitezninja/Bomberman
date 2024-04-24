@@ -100,6 +100,10 @@ func hasGameEnded() -> bool:
 
 func lockGame() -> void:
 	gameStatus = gameStatusEnum.Locked
+	var bombs: Array[Node] = get_tree().get_first_node_in_group("Bombs").get_children()
+	for bomb in bombs:
+		if not bomb.automaticDetonation and bomb.timer.is_stopped():
+			bomb.startExploding()
 
 func endGame():
 	var player: Player = get_tree().get_first_node_in_group("Player")
