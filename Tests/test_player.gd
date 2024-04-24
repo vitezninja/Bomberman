@@ -119,11 +119,9 @@ func test_speedDebuff() -> void:
 
 func test_invincibility() -> void:
 	assert_has_method(player, "invincibility", "Player must have this method")
-	pending("This featur is not implemented yet")
 
 func test_ghost() -> void:
 	assert_has_method(player, "ghost", "Player must have this method")
-	pending("This featur is not implemented yet")
 
 
 func test_canPlaceBoxes() -> void:
@@ -143,4 +141,3 @@ func test_handleBoxAction() -> void:
 
 func test_placeBox() -> void:
 	assert_has_method(player, "placeBox", "Player must have this method")
-	pending("This featur is not implemented yet")
