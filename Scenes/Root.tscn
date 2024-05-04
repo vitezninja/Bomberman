@@ -7,7 +7,7 @@
 
 [sub_resource type="GDScript" id="GDScript_q6otn"]
 
-[node name="Root" type="Node2D"]
+[node name="Root" type="Node2D" groups=["Root"]]
 y_sort_enabled = true
 
 [node name="Menu" parent="." instance=ExtResource("6_8eh14")]
