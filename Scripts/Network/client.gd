@@ -6,7 +6,7 @@ var peer: ENetMultiplayerPeer
 
 
 func _exit_tree() -> void:
-	disconectFromServer()
+	Network.disconnectClient.rpc_id(1)
 
 
 func creatPeer() -> void:
@@ -22,11 +22,4 @@ func creatPeer() -> void:
 		printerr("Peer can't join: ", error)
 		return
 		
-	multiplayer.multiplayer_peer = peer
-
-
-func disconectFromServer() -> void:
-	multiplayer.disconnect_peer(multiplayer.get_unique_id())
-	peer = null
-	port = 8000
 	multiplayer.multiplayer_peer = peer

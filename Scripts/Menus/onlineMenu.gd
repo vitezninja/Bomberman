@@ -7,6 +7,7 @@ class_name OnlineMenu
 func _on_back_button_pressed() -> void:
 	var gamemode: Control = game_mode_menu.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(gamemode)
+	get_tree().get_first_node_in_group("Client").queue_free()
 	queue_free()
 
 

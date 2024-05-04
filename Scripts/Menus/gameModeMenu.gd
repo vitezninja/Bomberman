@@ -41,4 +41,5 @@ func _on_online_pressed():
 	
 	var online = online_menu.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(online)
+	Network.addClient()
 	queue_free()

@@ -18,12 +18,13 @@ func _exit_tree() -> void:
 func peer_connected(id: int) -> void:
 	if multiplayer.is_server():
 		peers[id] = peers.size()
+		print("Connected ", id)
 
 
 func peer_disconnected(id: int) -> void:
 	if multiplayer.is_server():
-		multiplayer.disconnect_peer(id)
 		peers.erase(id)
+		print("Disconnected ", id)
 
 
 func creatHost() -> void:
