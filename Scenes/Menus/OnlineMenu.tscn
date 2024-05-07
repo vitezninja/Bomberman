@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cars3fybnbyxh"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/onlineMenu.gd" id="1_ct3vf"]
-[ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_ymxrl"]
-[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_8r67x"]
+[ext_resource type="Texture2D" uid="uid://bd6wh1urtjjel" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_ymxrl"]
+[ext_resource type="FontFile" uid="uid://dr6acefdkfver" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_8r67x"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_8wqdl"]
 
 [node name="OnlineMenu" type="Control"]

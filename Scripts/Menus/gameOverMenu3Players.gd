@@ -15,7 +15,7 @@ const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 @onready var player_3_power_ups: Label = %Player3PowerUps
 
 
-func _ready():
+func _ready() -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return
@@ -42,13 +42,13 @@ func _ready():
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
-func _on_back_to_menu_button_pressed():
+func _on_back_to_menu_button_pressed() -> void:
 	var main: Control = MAIN_MENU.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(main)
 	queue_free()
 
 
-func _on_next_round_button_pressed():
+func _on_next_round_button_pressed() -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return

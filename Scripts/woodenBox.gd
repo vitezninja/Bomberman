@@ -6,19 +6,19 @@ var isPlayers: bool = false
 
 @onready var powerup: PackedScene = preload("res://Scenes/PowerUp.tscn")
 
-func destroy():
+func destroy() -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
 	if rng.randi_range(0,1) == 1 and not isPlayers:
 		dropPowerUp()
 	var players: Array[Node] = get_tree().get_nodes_in_group("Player")
-	for player in players:
+	for player: Node in players:
 		if player.playerId == playerId and isPlayers:
 			player.boxes.erase(self)
 			break
 	queue_free()
 
-func dropPowerUp():
+func dropPowerUp() -> void:
 	var newPowerup: PowerUp = powerup.instantiate()
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	

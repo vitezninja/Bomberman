@@ -28,7 +28,7 @@ var hasBoxes: bool = false
 @onready var bomb: PackedScene = preload("res://Scenes/Bomb.tscn")
 @onready var woodenBox: PackedScene = preload("res://Scenes/WoodenBox.tscn")
 @onready var hitbox: Area2D = %Hitbox
-@onready var collision_area = %CollisionArea
+@onready var collision_area: Area2D = %CollisionArea
 var up: String = "up_player_"
 var down: String = "down_player_"
 var left: String = "left_player_"
@@ -141,8 +141,8 @@ func hit() -> void:
 	set_physics_process(false)
 	sprite.play("Death")
 	if hasDetonator:
-		for bomb in bombs:
-			bomb.startExploding()
+		for thisBomb: Bomb in bombs:
+			thisBomb.startExploding()
 	await sprite.animation_finished
 	queue_free()
 	
@@ -213,7 +213,7 @@ func canPlaceBoxes() -> void:
 	hasBoxes = true
 
 func handleBoxAction() -> void:
-	var isOnBox = false
+	var isOnBox: bool = false
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("WoodenBox"):
 			isOnBox = true

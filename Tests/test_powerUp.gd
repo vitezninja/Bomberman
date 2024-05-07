@@ -9,14 +9,11 @@ func before_each() -> void:
 	get_tree().root.add_child(powerup)
 
 func after_each() -> void:
-	if not is_instance_valid(powerup):
-		return
-	powerup.free()
+	if is_instance_valid(powerup):
+		powerup.queue_free()
 
 func test_handleSprite() -> void:
 	assert_has_method(powerup, "handleSprite", "PowerUp must have this method")
 
 func test_on_hitbox_body_entered() -> void:
 	assert_has_method(powerup, "_on_hitbox_body_entered", "PowerUp must have this method")
-
-
