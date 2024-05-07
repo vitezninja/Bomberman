@@ -15,7 +15,7 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 
-func _on_two_players_pressed():
+func _on_two_players_pressed() -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	
 	if world_selector == null:
@@ -28,7 +28,7 @@ func _on_two_players_pressed():
 	queue_free()
 
 
-func _on_three_players_pressed():
+func _on_three_players_pressed() -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	
 	if world_selector == null:

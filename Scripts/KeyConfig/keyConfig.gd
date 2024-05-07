@@ -43,9 +43,9 @@ static func loadData(default: bool = false) -> void:
 	
 	deleteActions()
 	
-	for action in inputMap:
+	for action: String in inputMap:
 		InputMap.add_action(action)
-		for event in inputMap[action]:
+		for event: String in inputMap[action]:
 			var splitEvent: PackedStringArray = event.split(" ", false)
 			match splitEvent[0]:
 				"InputEventKey:":

@@ -22,7 +22,7 @@ const GAME_OVER_MENU_3_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOv
 
 var currentMapNode: Node
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	match gameStatus:
 		gameStatusEnum.Running:
 			if hasGameLocked():
@@ -32,10 +32,10 @@ func _physics_process(delta: float) -> void:
 				endGame()
 				
 				if playerCount == 2:
-					var game_over_2 = GAME_OVER_MENU_2_PLAYERS.instantiate()
+					var game_over_2: Control = GAME_OVER_MENU_2_PLAYERS.instantiate()
 					get_tree().get_first_node_in_group("Menu").add_child(game_over_2)
 				elif playerCount == 3:
-					var game_over_3 = GAME_OVER_MENU_3_PLAYERS.instantiate()
+					var game_over_3: Control = GAME_OVER_MENU_3_PLAYERS.instantiate()
 					get_tree().get_first_node_in_group("Menu").add_child(game_over_3)
 
 func loadMode() -> void:
@@ -105,7 +105,7 @@ func lockGame() -> void:
 		if not bomb.automaticDetonation and bomb.timer.is_stopped():
 			bomb.startExploding()
 
-func endGame():
+func endGame() -> void:
 	var player: Player = get_tree().get_first_node_in_group("Player")
 	if player != null:
 		GameStats.addWin(player.playerId)

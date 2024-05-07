@@ -4,12 +4,14 @@ var enemy: Enemy
 var delta: float = 0.1
 const enemyPath: PackedScene = preload("res://Scenes/Enemy.tscn")
 
-func before_all() -> void:
+func before_each() -> void:
+	await get_tree().process_frame
 	enemy = enemyPath.instantiate()
 	get_tree().root.add_child(enemy)
 
-func after_all() -> void:
-	enemy.free()
+func after_each() -> void:
+	if is_instance_valid(enemy):
+		enemy.queue_free()
 
 func test_id() -> void:
 	assert_eq(enemy.enemyId, 0, "This should be 0 because we the player still has default Id")
@@ -18,8 +20,6 @@ func test_chooseRandomDirection() -> void:
 	assert_has_method(enemy, "chooseRandomDirection", "Enemy must have this method")
 	enemy.chooseRandomDirection()
 	assert_ne(enemy.previousFrameVelocity, Vector2(0,0), "This should be in one of the directions as the enemy can't be stationary")
-	enemy.velocity = Vector2(0,0)
-	enemy.previousFrameVelocity = Vector2(0,0)
 
 func test_createAstar() -> void:
 	assert_has_method(enemy, "createAstar", "Enemy must have this method")
@@ -30,8 +30,6 @@ func test_handleMovement() -> void:
 	enemy.previousFrameVelocity = Vector2(1,0)
 	enemy.handleMovement(delta)
 	assert_ne(enemy.velocity, beforeVel, "The velocity should change after the function call")
-	enemy.velocity = Vector2(0,0)
-	enemy.previousFrameVelocity = Vector2(0,0)
 
 func test_doMovement() -> void:
 	assert_has_method(enemy, "doMovement", "Enemy must have this method")
@@ -39,15 +37,11 @@ func test_doMovement() -> void:
 	enemy.previousFrameVelocity = Vector2(1,0)
 	enemy.doMovement(enemy.chooseRandomDirection, delta) # params dont matter as it will always call move
 	assert_ne(enemy.velocity, beforeVel, "The velocity should change after the function call")
-	enemy.velocity = Vector2(0,0)
-	enemy.previousFrameVelocity = Vector2(0,0)
 
 func test_move() -> void:
 	assert_has_method(enemy, "move", "Enemy must have this method")
 	enemy.move(Vector2(1,0), delta)
 	assert_eq(enemy.velocity, Vector2(1 * enemy.currentSpeed * (delta * enemy.DELTAMULTIPLIER),0), "The velocity should change after the function call")
-	enemy.velocity = Vector2(0,0)
-	enemy.previousFrameVelocity = Vector2(0,0)
 
 func test_findClosestPath() -> void:
 	assert_has_method(enemy, "findClosestPath", "Enemy must have this method")
@@ -73,8 +67,6 @@ func test_handleAnimation() -> void:
 	enemy.previousFrameVelocity = Vector2(0,0)
 	enemy.handleAnimation()
 	assert_eq(enemy.sprite.animation, "Idle_Forward", "This should be Idle_Forward because the enemy is looking forward and not moving")
-	enemy.velocity = Vector2(0,0)
-	enemy.previousFrameVelocity = Vector2(0,0)
 
 func test_hit() -> void:
 	assert_has_method(enemy, "hit", "Enemy must have this method")
