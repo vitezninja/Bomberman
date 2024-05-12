@@ -12,6 +12,9 @@ y_sort_enabled = true
 
 [node name="Menu" parent="." instance=ExtResource("6_8eh14")]
 
+[node name="MenuSpawner" type="MultiplayerSpawner" parent="Menu"]
+spawn_path = NodePath("../MenuLayer")
+
 [node name="MenuLayer" type="CanvasLayer" parent="Menu" groups=["Menu"]]
 unique_name_in_owner = true
 script = SubResource("GDScript_q6otn")
@@ -24,3 +27,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="WorldSelector" parent="." instance=ExtResource("7_ex72j")]
+
+[node name="MapSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlineMap1.tscn", "res://Scenes/Online/OnlineMap2.tscn", "res://Scenes/Online/OnlineMap3.tscn")
+spawn_path = NodePath("../WorldSelector")
