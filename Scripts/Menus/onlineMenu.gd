@@ -34,6 +34,7 @@ func _on_back_to_menu_button_pressed():
 
 func _on_ready_button_pressed():
 	Network.sendPlayerJoined.rpc_id(1)
+	ready_button.disabled = true
 	
 func deleteMenu():
 	queue_free()

@@ -24,7 +24,7 @@ func creatPeer() -> void:
 	multiplayer.multiplayer_peer = peer
 
 func _physics_process(delta):
-	if not get_tree().get_first_node_in_group("WorldSelector").get_child(0).is_instance_valid():
+	if get_tree().get_first_node_in_group("WorldSelector").get_child_count() == 0:
 		return
 	if Input.is_action_just_pressed("up_player_1"):
 		Network.sendInput.rpc_id(1, "up")

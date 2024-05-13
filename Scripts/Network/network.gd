@@ -31,6 +31,7 @@ func addClient() -> void:
 @rpc("any_peer", "call_local", "reliable")
 func disconnectClient() -> void:
 	multiplayer.disconnect_peer(multiplayer.get_remote_sender_id())
+	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
 	
 @rpc("authority", "call_remote", "reliable", 2)
 func sendPlayerCount(number: int) -> void:
