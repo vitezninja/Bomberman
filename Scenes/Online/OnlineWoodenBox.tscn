@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuthgn67a8qps"]
+
+[ext_resource type="Script" path="res://Scripts/Online/OnlineWoodenBox.gd" id="1_q27jy"]
+[ext_resource type="Texture2D" uid="uid://b6t71ihavyjty" path="res://Assets/Tilemap/Box.png" id="2_3tkvy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mncs"]
+size = Vector2(16, 16)
+
+[node name="WoodenBox" type="StaticBody2D" groups=["WoodenBox"]]
+z_index = 1
+collision_layer = 16
+script = ExtResource("1_q27jy")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_3tkvy")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8mncs")

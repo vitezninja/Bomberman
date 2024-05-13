@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://deu7uxp1cqau7"]
+
+[ext_resource type="Script" path="res://Scripts/Online/OnlineBomb.gd" id="1_ruiws"]
+[ext_resource type="Texture2D" uid="uid://bcy6tgor2bvc2" path="res://Assets/Bomb/Bomb.png" id="2_dep0x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlevx"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02n0r"]
+size = Vector2(14, 14)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kwtxx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Sprite:modulate")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Bomb" type="StaticBody2D" groups=["Bomb"]]
+z_index = 1
+collision_layer = 2
+script = ExtResource("1_ruiws")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_dep0x")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_xlevx")
+
+[node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_02n0r")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_kwtxx")
+
+[connection signal="area_shape_entered" from="Hitbox" to="." method="_on_hitbox_area_shape_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
