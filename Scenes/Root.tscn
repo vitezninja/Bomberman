@@ -13,6 +13,7 @@ y_sort_enabled = true
 [node name="Menu" parent="." instance=ExtResource("6_8eh14")]
 
 [node name="MenuSpawner" type="MultiplayerSpawner" parent="Menu"]
+_spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlineGameOverMenu.tscn")
 spawn_path = NodePath("../MenuLayer")
 
 [node name="MenuLayer" type="CanvasLayer" parent="Menu" groups=["Menu"]]

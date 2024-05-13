@@ -11,6 +11,7 @@ enum gameStatusEnum {Idle, Running, Locked}
 @export var gameType: gameTypeEnum
 var gameCount: int = 0
 var gameStatus: gameStatusEnum
+var readyCount: int = -1
 
 const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 const test: PackedScene = preload("res://Scenes/Maps/TestWorld.tscn")
@@ -19,6 +20,7 @@ const map2: PackedScene = preload("res://Scenes/Maps/Map2.tscn")
 const map3: PackedScene = preload("res://Scenes/Maps/Map3.tscn")
 const GAME_OVER_MENU_2_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu2Players.tscn")
 const GAME_OVER_MENU_3_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu3Players.tscn")
+const ONLINE_GAME_OVER_MENU: PackedScene = preload("res://Scenes/Online/OnlineGameOverMenu.tscn")
 
 var currentMapNode: Node
 
@@ -28,12 +30,30 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	match gameStatus:
+		gameStatusEnum.Idle:
+			if readyCount == -1:
+				readyCount = 0
+				loadLobby()
+				Network.sendMapNumber.rpc(currentMap)
+				
+			Network.sendPlayerCount.rpc(readyCount)
+			
+			if readyCount == 3:
+				startGame()
+				Network.startGame.rpc()
+				readyCount = -1
+				
 		gameStatusEnum.Running:
 			if hasGameLocked():
 				lockGame()
 		gameStatusEnum.Locked:
 			if hasGameEnded():
 				endGame()
+				
+				if gameType == gameTypeEnum.Online:
+					var online_game_over = ONLINE_GAME_OVER_MENU.instantiate()
+					get_tree().get_first_node_in_group("Menu").add_child(online_game_over, true)
+					return
 				
 				if playerCount == 2:
 					var game_over_2 = GAME_OVER_MENU_2_PLAYERS.instantiate()
@@ -47,8 +67,8 @@ func loadMode() -> void:
 		gameTypeEnum.Offline:
 			return
 		gameTypeEnum.Online:
-			onlineLoadMap()
-			onlineLoadPlayer()
+			loadMap()
+			onlineLoadPlayers()
 			return
 
 func loadPlayers() -> void:
@@ -99,19 +119,10 @@ func loadMap() -> void:
 			currentMapNode = test.instantiate()
 	add_child(currentMapNode)
 	
-func onlineLoadMap() -> void:
+	
+func loadLobby():
 	var rng = RandomNumberGenerator.new()
-	var randomMap = rng.randf_range(1, 3)
-	
-	match randomMap:
-		1:
-			currentMapNode = map1.instantiate()
-		2:
-			currentMapNode = map1.instantiate()
-		3:
-			currentMapNode = map3.instantiate()
-	
-	add_child(currentMapNode)
+	currentMap = rng.randi_range(1, 3)
 
 func startGame() -> void:
 	loadMode()

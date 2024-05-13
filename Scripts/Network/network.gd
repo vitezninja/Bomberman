@@ -31,7 +31,31 @@ func addClient() -> void:
 @rpc("any_peer", "call_local", "reliable")
 func disconnectClient() -> void:
 	multiplayer.disconnect_peer(multiplayer.get_remote_sender_id())
+	
+@rpc("authority", "call_remote", "reliable", 2)
+func sendPlayerCount(number: int) -> void:
+	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
+	world_selector.readyCount = number
+	
+@rpc("authority", "call_remote", "reliable")
+func sendMapNumber(mapNum: int) -> void:
+	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
+	world_selector.currentMap = mapNum
+	
+@rpc("authority", "call_remote", "reliable")
+func startGame() -> void:
+	var online_menu = get_tree().get_first_node_in_group("OnlineMenu")
+	online_menu.deleteMenu()
+	
+@rpc("any_peer", "call_remote", "reliable")
+func sendPlayerJoined() -> void:
+	if not multiplayer.is_server():
+		return
+	
+	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
 
+	world_selector.readyCount += 1
+	
 
 @rpc("any_peer", "call_remote", "reliable", 2)
 func sendInput(input: String) -> void:

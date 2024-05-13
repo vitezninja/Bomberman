@@ -29,7 +29,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("up_player_1"):
 		Network.sendInput.rpc_id(1, "up")
 	if Input.is_action_just_pressed("down_player_1"):
-		Network.sendInput.rpc_id(1, "donw")
+		Network.sendInput.rpc_id(1, "down")
 	if Input.is_action_just_pressed("right_player_1"):
 		Network.sendInput.rpc_id(1, "right")
 	if Input.is_action_just_pressed("left_player_1"):

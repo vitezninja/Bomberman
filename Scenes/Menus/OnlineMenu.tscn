@@ -101,7 +101,8 @@ theme_override_constants/margin_right = 350
 [node name="MapPicContainer" type="HBoxContainer" parent="OuterMargins/Content/StatsMargin"]
 layout_mode = 2
 
-[node name="MapPic" type="TextureRect" parent="OuterMargins/Content/StatsMargin/MapPicContainer"]
+[node name="MapPic" type="TextureRect" parent="OuterMargins/Content/StatsMargin/MapPicContainer" groups=["OnlineMenu"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_8vdmk")
