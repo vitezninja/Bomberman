@@ -23,6 +23,10 @@ const GAME_OVER_MENU_3_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOv
 var currentMapNode: Node
 
 func _physics_process(delta: float) -> void:
+	
+	if not multiplayer.is_server():
+		return
+	
 	match gameStatus:
 		gameStatusEnum.Running:
 			if hasGameLocked():
@@ -43,8 +47,9 @@ func loadMode() -> void:
 		gameTypeEnum.Offline:
 			return
 		gameTypeEnum.Online:
-			#TODO multiplayer
-			pass
+			onlineLoadMap()
+			onlineLoadPlayer()
+			return
 
 func loadPlayers() -> void:
 	randomize()
@@ -63,6 +68,24 @@ func loadPlayers() -> void:
 			players[1].setId(Player.playerEnum.Player2)
 			players[2].setId(Player.playerEnum.Player3)
 			players[3].queue_free()
+			
+func onlineLoadPlayers() -> void:
+	randomize()
+	
+	var players: Array[Node] = get_tree().get_nodes_in_group("Player")
+	players.shuffle()
+	
+	match playerCount:
+		playerCountEnum.Two:
+			players[0].setId(OnlinePlayer.playerEnum.Player1)
+			players[1].setId(OnlinePlayer.playerEnum.Player2)
+			players[2].queue_free()
+			players[3].queue_free()
+		playerCountEnum.Three:
+			players[0].setId(OnlinePlayer.playerEnum.Player1)
+			players[1].setId(OnlinePlayer.playerEnum.Player2)
+			players[2].setId(OnlinePlayer.playerEnum.Player3)
+			players[3].queue_free()
 
 func loadMap() -> void:
 	match currentMap:
@@ -74,6 +97,20 @@ func loadMap() -> void:
 			currentMapNode = map3.instantiate()
 		mapIdEnum.Test:
 			currentMapNode = test.instantiate()
+	add_child(currentMapNode)
+	
+func onlineLoadMap() -> void:
+	var rng = RandomNumberGenerator.new()
+	var randomMap = rng.randf_range(1, 3)
+	
+	match randomMap:
+		1:
+			currentMapNode = map1.instantiate()
+		2:
+			currentMapNode = map1.instantiate()
+		3:
+			currentMapNode = map3.instantiate()
+	
 	add_child(currentMapNode)
 
 func startGame() -> void:
@@ -113,3 +150,4 @@ func endGame():
 	currentMapNode = null
 	gameStatus = gameStatusEnum.Idle
 	gameCount -= 1
+	

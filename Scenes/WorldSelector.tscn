@@ -4,3 +4,6 @@
 
 [node name="WorldSelector" type="Node2D" groups=["WorldSelector"]]
 script = ExtResource("1_4ck8d")
+currentMap = null
+playerCount = null
+gameType = null
