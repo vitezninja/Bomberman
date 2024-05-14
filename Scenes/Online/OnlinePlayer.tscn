@@ -258,6 +258,18 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("Sprite:modulate")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("Hitbox:disable_mode")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("CollisionArea:disable_mode")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Sprite:self_modulate")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath(".:self_modulate")
+properties/9/spawn = true
+properties/9/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1

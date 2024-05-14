@@ -221,31 +221,31 @@ func speedDebuff() -> void:
 func invincibility() -> void:
 	if not multiplayer.is_server():
 		return
-		sprite.modulate = Color(1, 0.9, 0)
-		hitbox.monitorable = false
-		await get_tree().create_timer(3).timeout
-		hitbox.monitorable = true
-		changeColor()
+	sprite.modulate = Color(1, 0.9, 0)
+	hitbox.monitorable = false
+	await get_tree().create_timer(3).timeout
+	hitbox.monitorable = true
+	changeColor()
 
 
 func ghost() -> void:
 	if not multiplayer.is_server():
 		return
-		sprite.modulate.a = 0.5
-		set_collision_mask_value(1, false)
-		set_collision_mask_value(2, false)
-		set_collision_mask_value(4, false)
-		set_collision_mask_value(5, false)
-		z_index = 3
-		await get_tree().create_timer(3).timeout
-		if collision_area.has_overlapping_bodies():
-			hit()
-		sprite.modulate.a = 1
-		set_collision_mask_value(1, true)
-		set_collision_mask_value(2, true)
-		set_collision_mask_value(4, true)
-		set_collision_mask_value(5, true)
-		z_index = 1
+	sprite.modulate.a = 0.5
+	set_collision_mask_value(1, false)
+	set_collision_mask_value(2, false)
+	set_collision_mask_value(4, false)
+	set_collision_mask_value(5, false)
+	z_index = 3
+	await get_tree().create_timer(3).timeout
+	if collision_area.has_overlapping_bodies():
+		hit()
+	sprite.modulate.a = 1
+	set_collision_mask_value(1, true)
+	set_collision_mask_value(2, true)
+	set_collision_mask_value(4, true)
+	set_collision_mask_value(5, true)
+	z_index = 1
 
 func canPlaceBoxes() -> void:
 	if not multiplayer.is_server():

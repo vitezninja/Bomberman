@@ -1,6 +1,6 @@
 extends Node
 
-var address: String = "127.0.0.1" # 51.107.7.150
+var address: String = "51.107.7.150" #"127.0.0.1" # 51.107.7.150
 var port: int = 8000
 var peer: ENetMultiplayerPeer
 
