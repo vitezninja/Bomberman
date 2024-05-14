@@ -26,8 +26,9 @@ var hasBoxes: bool = false
 
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var bomb: PackedScene = preload("res://Scenes/Bomb.tscn")
+@onready var woodenBox: PackedScene = preload("res://Scenes/WoodenBox.tscn")
 @onready var hitbox: Area2D = %Hitbox
-
+@onready var collision_area: Area2D = %CollisionArea
 var up: String = "up_player_"
 var down: String = "down_player_"
 var left: String = "left_player_"
@@ -49,7 +50,6 @@ func _physics_process(delta: float) -> void:
 	handleAnimation()
 	handleBombAction()
 	handleBoxAction()
-	handleGhostForm()
 	
 	move_and_slide()
 
@@ -109,8 +109,12 @@ func handleBombAction() -> void:
 		if body.is_in_group("Bomb"):
 			isOnBomb = true
 			break
-	if Input.is_action_just_pressed(bombPlace) and bombTimer <= 0 and bombs.size() < maxBombsCount and not isOnBomb:
+	var worldSelector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if worldSelector == null:
+		return
+	if Input.is_action_just_pressed(bombPlace) and bombTimer <= 0 and bombs.size() < maxBombsCount and not isOnBomb and worldSelector.gameStatus != WorldSelector.gameStatusEnum.Locked:
 		place()
+	
 	if Input.is_action_just_pressed(bombPlace) and bombTimer <= 0 and bombs.size() == maxBombsCount and hasDetonator:
 		detonate()
 
@@ -136,8 +140,12 @@ func detonate() -> void:
 func hit() -> void:
 	set_physics_process(false)
 	sprite.play("Death")
+	if hasDetonator:
+		for thisBomb: Bomb in bombs:
+			thisBomb.startExploding()
 	await sprite.animation_finished
 	queue_free()
+	
 
 func changeColor() -> void:
 	match playerId:
@@ -173,17 +181,31 @@ func speedDebuff() -> void:
 			POWERUPSPEED:
 				currentSpeed = NORMALSPEED
 
-#TODO
+
 func invincibility() -> void:
-	pass
+		sprite.modulate = Color(1, 0.9, 0)
+		hitbox.monitorable = false
+		await get_tree().create_timer(3).timeout
+		hitbox.monitorable = true
+		changeColor()
 
-#TODO
+
 func ghost() -> void:
-	pass
-
-#TODO
-func handleGhostForm() -> void:
-	pass
+		sprite.modulate.a = 0.5
+		set_collision_mask_value(1, false)
+		set_collision_mask_value(2, false)
+		set_collision_mask_value(4, false)
+		set_collision_mask_value(5, false)
+		z_index = 3
+		await get_tree().create_timer(3).timeout
+		if collision_area.has_overlapping_bodies():
+			hit()
+		sprite.modulate.a = 1
+		set_collision_mask_value(1, true)
+		set_collision_mask_value(2, true)
+		set_collision_mask_value(4, true)
+		set_collision_mask_value(5, true)
+		z_index = 1
 
 func canPlaceBoxes() -> void:
 	if hasBoxes and maxBoxCount < 9:
@@ -191,18 +213,33 @@ func canPlaceBoxes() -> void:
 	hasBoxes = true
 
 func handleBoxAction() -> void:
-	var isOnBox = false
+	var isOnBox: bool = false
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("WoodenBox"):
 			isOnBox = true
 			break
-	if Input.is_action_just_pressed(boxPlace) and boxTimer <= 0 and boxes.size() < maxBoxCount and hasBoxes and not isOnBox:
+	var worldSelector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if worldSelector == null:
+		return
+	if Input.is_action_just_pressed(boxPlace) and boxTimer <= 0 and boxes.size() < maxBoxCount and hasBoxes and not isOnBox and worldSelector.gameStatus != WorldSelector.gameStatusEnum.Locked:
 		placeBox()
 
-#TODO
+
 func placeBox() -> void:
-	pass
+	if not hasBoxes:
+		return
+	var thisBox: WoodenBox = woodenBox.instantiate()
+	var tileMap: TileMap = get_tree().get_first_node_in_group("TileMap")
+	if tileMap == null:
+		return
+	var boxPos: Vector2 = tileMap.local_to_map(to_local(tileMap.global_position))
+	thisBox.global_position = tileMap.map_to_local(boxPos) * -1
+	thisBox.playerId = playerId
+	thisBox.isPlayers = true
+	get_tree().get_first_node_in_group("Boxes").add_child(thisBox)
+	boxes.append(thisBox)
 
 func setId(id: playerEnum) -> void:
 	playerId = id
 	_ready()
+	

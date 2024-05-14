@@ -4,15 +4,47 @@ var player: Player
 var delta: float = 0.1
 const playerPath: PackedScene = preload("res://Scenes/Player.tscn")
 
-func before_all() -> void:
+func before_each() -> void:
+	await get_tree().process_frame
 	player = playerPath.instantiate()
-	get_tree().root.get_child(0).add_child(player)
+	get_tree().root.add_child(player)
 
-func after_all() -> void:
-	player.free()
+func after_each() -> void:
+	if is_instance_valid(player):
+		player.queue_free()
 
 func test_id() -> void:
-	assert_eq(player.playerId, 0, "This should be 0 because we the player still has default Id")
+	assert_eq(player.playerId, 0, "This should be 0 because the player still has default Id")
+
+func test_NORMALSPEED() -> void:
+	assert_eq(player.NORMALSPEED, 300.0, "This should be 300.0 because its constant")
+
+func test_POWERUPSPEED() -> void:
+	assert_eq(player.POWERUPSPEED, 400.0, "This should be 400.0 because its constant")
+
+func test_DEBUFFSPEED() -> void:
+	assert_eq(player.DEBUFFSPEED, 200.0, "This should be 200.0 because its constant")
+
+func test_DELTAMULTIPLIER() -> void:
+	assert_eq(player.DELTAMULTIPLIER, 10.0, "This should be 10.0 because its constant")
+
+func test_currentSpeed() -> void:
+	assert_eq(player.currentSpeed, player.NORMALSPEED, "This should be 300.0 because NORMALSPEED is the starting value")
+
+func test_previousFrameVelocity() -> void:
+	assert_eq(player.previousFrameVelocity, Vector2(0,0), "This should be (0,0) because its the strating value")
+
+func test_MAXBOMBTIMER() -> void:
+	assert_eq(player.MAXBOMBTIMER, 1.0, "This should be 1.0 because its constant")
+
+func test_bombTimer() -> void:
+	assert_eq(player.bombTimer, player.MAXBOMBTIMER, "This should be 1.0 because MAXBOMBTIMER is the starting value")
+
+func test_maxBombsCount() -> void:
+	assert_eq(player.maxBombsCount, 1, "This should be 1 because its starting value")
+
+func test_maxBombsRange() -> void:
+	assert_eq(player.maxBombsRange, 2, "This should be 2 because its starting value")
 
 func test_handleInputMap() -> void:
 	assert_has_method(player, "handleInputMap", "Player must have this method")
@@ -49,10 +81,6 @@ func test_move() -> void:
 	player.move(Vector2(0,-1), delta)
 	assert_eq(player.velocity.x, 0.0, "Should not move in the x direction")
 	assert_eq(player.velocity.y, -1 * player.currentSpeed * (player.DELTAMULTIPLIER * delta), "Should move in the -y direction")
-	
-	player.velocity = Vector2(0,0)
-	player.previousFrameVelocity = Vector2(0,0)
-	gut.p("Velocity reset for next test")
 
 func test_handleAnimation() -> void:
 	assert_has_method(player, "handleAnimation", "Player must have this method")
@@ -119,15 +147,9 @@ func test_speedDebuff() -> void:
 
 func test_invincibility() -> void:
 	assert_has_method(player, "invincibility", "Player must have this method")
-	pending("This featur is not implemented yet")
 
 func test_ghost() -> void:
 	assert_has_method(player, "ghost", "Player must have this method")
-	pending("This featur is not implemented yet")
-
-func test_handleGhostForm() -> void:
-	assert_has_method(player, "handleGhostForm", "Player must have this method")
-	pending("This featur is not implemented yet")
 
 func test_canPlaceBoxes() -> void:
 	assert_has_method(player, "canPlaceBoxes", "Player must have this method")
@@ -146,4 +168,3 @@ func test_handleBoxAction() -> void:
 
 func test_placeBox() -> void:
 	assert_has_method(player, "placeBox", "Player must have this method")
-	pending("This featur is not implemented yet")

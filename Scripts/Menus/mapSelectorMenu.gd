@@ -2,10 +2,10 @@ extends Control
 class_name MapSelectorMenu
 
 @onready var offline_menu: PackedScene = load("res://Scenes/Menus/OfflineMenu.tscn")
-@onready var rounds_input = %RoundsInput
-@onready var map_1_checkbox = %Map1Checkbox
-@onready var map_2_checkbox = %Map2Checkbox
-@onready var map_3_checkbox = %Map3Checkbox
+@onready var rounds_input: LineEdit = %RoundsInput
+@onready var map_1_checkbox: CheckBox = %Map1Checkbox
+@onready var map_2_checkbox: CheckBox = %Map2Checkbox
+@onready var map_3_checkbox: CheckBox = %Map3Checkbox
 
 func _on_back_button_pressed() -> void:
 	var offline: Control = offline_menu.instantiate()
@@ -17,7 +17,7 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 	
 
-func _on_start_button_pressed():
+func _on_start_button_pressed() -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	
 	if world_selector == null:
