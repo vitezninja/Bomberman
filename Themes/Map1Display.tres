@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://dxfaogmdf3ii4"]
 
-[ext_resource type="Texture2D" uid="uid://ca2t8btl3eoh6" path="res://Assets/GUI/FinalGUIAssets/Map1Background.png" id="1_obiax"]
-[ext_resource type="Texture2D" uid="uid://ot72uclsc6ed" path="res://Assets/GUI/MapIcons/map1.png" id="2_kymgp"]
+[ext_resource type="Texture2D" uid="uid://bxqm1wi1mpwyq" path="res://Assets/GUI/FinalGUIAssets/Map1Background.png" id="1_obiax"]
+[ext_resource type="Texture2D" uid="uid://biupvs5ptmqkb" path="res://Assets/GUI/MapIcons/map1.png" id="2_kymgp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_icxil"]
 texture_margin_left = 15.0139
