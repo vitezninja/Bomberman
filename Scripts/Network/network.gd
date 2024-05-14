@@ -48,8 +48,6 @@ func disconnectClient(readied: bool) -> void:
 	
 @rpc("authority", "call_remote", "reliable", 2)
 func sendPlayerCount(number: int) -> void:
-	if not multiplayer.is_server():
-		return
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return
@@ -57,8 +55,6 @@ func sendPlayerCount(number: int) -> void:
 	
 @rpc("authority", "call_remote", "reliable", 2)
 func sendMapNumber(mapNum: int) -> void:
-	if not multiplayer.is_server():
-		return
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return
@@ -66,8 +62,6 @@ func sendMapNumber(mapNum: int) -> void:
 	
 @rpc("authority", "call_remote", "reliable")
 func startGame() -> void:
-	if not multiplayer.is_server():
-		return
 	var online_menu: Control = get_tree().get_first_node_in_group("OnlineMenu")
 	if online_menu == null:
 		return

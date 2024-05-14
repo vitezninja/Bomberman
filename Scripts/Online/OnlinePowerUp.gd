@@ -15,6 +15,9 @@ const GHOST_BUFF = preload("res://Assets/Potions/GhostBuff.png")
 func _ready():
 	handleSprite()
 
+func _physics_process(_delta: float):
+	handleSprite()
+
 func handleSprite():
 	match type:
 		powerUpEnum.bombCountIncreas:

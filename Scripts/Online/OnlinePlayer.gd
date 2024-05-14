@@ -72,13 +72,13 @@ func handleMovement(delta: float) -> void:
 	var direction: Vector2
 	match inputDir:
 		"up":
-			direction = Vector2(0,1)
+			direction = Vector2(0,-1)
 		"down":
-			direction = Vector2(0,-1)
-		"left":
 			direction = Vector2(0,1)
+		"left":
+			direction = Vector2(-1,0)
 		"right":
-			direction = Vector2(0,-1)
+			direction = Vector2(1,0)
 		"None":
 			direction = Vector2(0,0)
 	

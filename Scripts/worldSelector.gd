@@ -157,9 +157,15 @@ func lockGame() -> void:
 			bomb.startExploding()
 
 func endGame():
-	var player: Player = get_tree().get_first_node_in_group("Player")
+	var player: Node2D = get_tree().get_first_node_in_group("Player")
 	if player != null:
-		GameStats.addWin(player.playerId)
+			match player.playerId:
+				0:
+					GameStats.addWin(0)
+				1:
+					GameStats.addWin(1)
+				2:
+					GameStats.addWin(2)
 	currentMapNode.queue_free()
 	currentMapNode = null
 	gameStatus = gameStatusEnum.Idle
