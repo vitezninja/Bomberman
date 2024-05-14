@@ -2,7 +2,7 @@ extends Node2D
 @onready var onlineWoodenBox: PackedScene = preload("res://Scenes/Online/OnlineWoodenBox.tscn")
 @onready var onlineEnemy: PackedScene = preload("res://Scenes/Online/OnlineEnemy.tscn")
 @onready var onlinePlayer: PackedScene = preload("res://Scenes/Online/OnlinePlayer.tscn")
- 
+
 const boxesarr: Array[Vector2] = [
 	Vector2(456,72), # 1
 	Vector2(104,136), # 6
@@ -43,14 +43,14 @@ const boxesarr: Array[Vector2] = [
 	Vector2(216,120),
 	Vector2(216,184),
 ]
- 
+
 const playersarr: Array[Vector2] = [
 	Vector2(24,29), # 1
 	Vector2(23,265), # 2
 	Vector2(440,40), # 3
 	Vector2(440,247), # 4
 ]
- 
+
 const enemisarr: Array[Vector2] = [
 	Vector2(249,73), # 5
 	Vector2(282,221), # 4
@@ -58,33 +58,38 @@ const enemisarr: Array[Vector2] = [
 	Vector2(329,77), # 1
 	Vector2(120,203), # 3
 ]
+const enemiidsarr: Array[int] = [
+	3, 
+	1, 
+	2, 
+	1, 
+	4, 
+]
+
 func spawnBoxes():
-	if not multiplayer.is_server():
-		return
 	var boxes:Node2D = get_tree().get_first_node_in_group("Boxes")
 	for box in boxesarr:
 		var thisBox:OnlineWoodenBox = onlineWoodenBox.instantiate()
 		thisBox.position = box
 		boxes.add_child(thisBox, true)
- 
+
 func spawnPlayers():
-	if not multiplayer.is_server():
-		return
 	var players:Node2D = get_tree().get_first_node_in_group("Players")
 	for player in playersarr:
 		var thisPlayer:OnlinePlayer = onlinePlayer.instantiate()
 		thisPlayer.position = player
 		players.add_child(thisPlayer, true)
- 
+
 func spawnEnemies():
-	if not multiplayer.is_server():
-		return
 	var enemies:Node2D = get_tree().get_first_node_in_group("Enemys")
+	var id:int = 0
 	for enemy in enemisarr:
 		var thisEnemy:OnlineEnemy = onlineEnemy.instantiate()
 		thisEnemy.position = enemy
+		thisEnemy.enemyId = enemiidsarr[id]
+		id += 1
 		enemies.add_child(thisEnemy, true)
- 
+
 func _ready():
 	spawnEnemies()
 	spawnPlayers()
