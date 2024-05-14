@@ -9,7 +9,7 @@ const MAP_1: Resource = preload("res://Assets/GUI/MapIcons/map1.png")
 const MAP_2: Resource = preload("res://Assets/GUI/MapIcons/map2.png")
 const MAP_3: Resource = preload("res://Assets/GUI/MapIcons/map3.png")
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return
@@ -24,17 +24,21 @@ func _process(_delta):
 			map_pic.texture = MAP_3
 
 func _on_quit_button_pressed() -> void:
+	get_tree().get_first_node_in_group("Client").queue_free()
 	get_tree().quit()
 
-func _on_back_to_menu_button_pressed():
+func _on_back_to_menu_button_pressed() -> void:
 	var main: Control = MAIN_MENU.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(main)
+	get_tree().get_first_node_in_group("Client").queue_free()
 	queue_free()
 
 
-func _on_ready_button_pressed():
+func _on_ready_button_pressed() -> void:
 	Network.sendPlayerJoined.rpc_id(1)
 	ready_button.disabled = true
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	world_selector.readied = true
 	
-func deleteMenu():
+func deleteMenu() -> void:
 	queue_free()

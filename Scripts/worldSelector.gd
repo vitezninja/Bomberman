@@ -12,6 +12,7 @@ enum gameStatusEnum {Idle, Running, Locked}
 var gameCount: int = 0
 var gameStatus: gameStatusEnum
 var readyCount: int = 0
+var readied: bool = false
 
 const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 const test: PackedScene = preload("res://Scenes/Maps/TestWorld.tscn")

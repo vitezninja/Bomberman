@@ -15,6 +15,7 @@ y_sort_enabled = true
 [node name="MenuSpawner" type="MultiplayerSpawner" parent="Menu"]
 _spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlineGameOverMenu.tscn")
 spawn_path = NodePath("../MenuLayer")
+spawn_limit = 1
 
 [node name="MenuLayer" type="CanvasLayer" parent="Menu" groups=["Menu"]]
 unique_name_in_owner = true
@@ -32,3 +33,4 @@ unique_name_in_owner = true
 [node name="MapSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlineMap1.tscn", "res://Scenes/Online/OnlineMap2.tscn", "res://Scenes/Online/OnlineMap3.tscn")
 spawn_path = NodePath("../WorldSelector")
+spawn_limit = 1

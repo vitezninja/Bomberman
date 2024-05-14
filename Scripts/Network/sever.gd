@@ -18,18 +18,16 @@ func _exit_tree() -> void:
 func peer_connected(id: int) -> void:
 	if multiplayer.is_server():
 		peers[id] = peers.size()
-		print("Connected ", id)
 
 
 func peer_disconnected(id: int) -> void:
 	if multiplayer.is_server():
 		peers.erase(id)
-		print("Disconnected ", id)
 
 
 func creatHost() -> void:
 	if peer != null:
-		print("Already hosting")
+		printerr("Already hosting")
 		return
 	
 	peer = ENetMultiplayerPeer.new()
@@ -47,7 +45,7 @@ func stopHosting() -> void:
 	if peer == null or not multiplayer.is_server():
 		return
 	
-	for key in peers:
+	for key: int in peers:
 		multiplayer.disconnect_peer(key)
 		
 	peers.clear()

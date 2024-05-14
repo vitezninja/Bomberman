@@ -5,7 +5,11 @@ var port: int = 8000
 var peer: ENetMultiplayerPeer
 
 func _exit_tree() -> void:
-	Network.disconnectClient.rpc_id(1)
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if world_selector == null:
+		return
+	Network.disconnectClient.rpc_id(1, world_selector.readied)
+	world_selector.readied = false
 
 
 func creatPeer() -> void:
@@ -23,7 +27,7 @@ func creatPeer() -> void:
 		
 	multiplayer.multiplayer_peer = peer
 
-func _physics_process(delta):
+func _physics_process(_delta: float) -> void:
 	if get_tree().get_first_node_in_group("WorldSelector").get_child_count() == 0:
 		return
 	if Input.is_action_just_pressed("up_player_1"):

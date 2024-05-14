@@ -10,21 +10,28 @@
 script = ExtResource("2_ur043")
 
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="Map"]
+_spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlinePlayer.tscn")
 spawn_path = NodePath("../Players")
+spawn_limit = 4
 
 [node name="BoxSpawner" type="MultiplayerSpawner" parent="Map"]
+_spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlineWoodenBox.tscn")
 spawn_path = NodePath("../Boxes")
 
 [node name="EnemySpawner" type="MultiplayerSpawner" parent="Map"]
+_spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlineEnemy.tscn")
 spawn_path = NodePath("../Enemys")
 
 [node name="BombSpawner" type="MultiplayerSpawner" parent="Map"]
+_spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlineBomb.tscn")
 spawn_path = NodePath("../Bombs")
 
 [node name="PowerUpSpawner" type="MultiplayerSpawner" parent="Map"]
-spawn_path = NodePath(".")
+_spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlinePowerUp.tscn")
+spawn_path = NodePath("../PowerUps")
 
 [node name="BombEffectSpawner" type="MultiplayerSpawner" parent="Map"]
+_spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlineBombEffect.tscn")
 spawn_path = NodePath("../BombEffects")
 
 [node name="TileMap" parent="Map" instance=ExtResource("2_wb1ie")]

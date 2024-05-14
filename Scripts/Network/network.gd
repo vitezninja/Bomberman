@@ -19,7 +19,9 @@ func addServer(port: int) -> void:
 	var server: Node = SERVER.instantiate()
 	get_tree().get_first_node_in_group("Root").add_child(server)
 	server.setPort(port)
-	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if world_selector == null:
+		return
 	world_selector.gameType = WorldSelector.gameTypeEnum.Online
 	world_selector.loadLobby()
 	for menu: Control in get_tree().get_first_node_in_group("Menu").get_children():
@@ -33,32 +35,51 @@ func addClient() -> void:
 
 
 @rpc("any_peer", "call_local", "reliable")
-func disconnectClient() -> void:
+func disconnectClient(readied: bool) -> void:
+	if not multiplayer.is_server():
+		return
 	multiplayer.disconnect_peer(multiplayer.get_remote_sender_id())
-	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if world_selector == null:
+		return
+	if readied:
+		world_selector.readyCount -= 1
+	
 	
 @rpc("authority", "call_remote", "reliable", 2)
 func sendPlayerCount(number: int) -> void:
-	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
+	if not multiplayer.is_server():
+		return
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if world_selector == null:
+		return
 	world_selector.readyCount = number
 	
-@rpc("authority", "call_remote", "reliable")
+@rpc("authority", "call_remote", "reliable", 2)
 func sendMapNumber(mapNum: int) -> void:
-	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
-	world_selector.currentMap = mapNum
+	if not multiplayer.is_server():
+		return
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if world_selector == null:
+		return
+	world_selector.currentMap = mapNum as WorldSelector.mapIdEnum
 	
 @rpc("authority", "call_remote", "reliable")
 func startGame() -> void:
-	var online_menu = get_tree().get_first_node_in_group("OnlineMenu")
+	if not multiplayer.is_server():
+		return
+	var online_menu: Control = get_tree().get_first_node_in_group("OnlineMenu")
+	if online_menu == null:
+		return
 	online_menu.deleteMenu()
 	
 @rpc("any_peer", "call_remote", "reliable")
 func sendPlayerJoined() -> void:
 	if not multiplayer.is_server():
 		return
-	
-	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
-
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if world_selector == null:
+		return
 	world_selector.readyCount += 1
 	
 

@@ -6,16 +6,17 @@ const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 @onready var player_2_wins: Label = %Player2Wins
 @onready var player_3_wins: Label = %Player3Wins
 @onready var round_count: Label = %RoundCount
-@onready var next_round_button: Button = %NextRoundButton
 @onready var player_1_bombs: Label = %Player1Bombs
 @onready var player_2_bombs: Label = %Player2Bombs
 @onready var player_3_bombs: Label = %Player3Bombs
 @onready var player_1_power_ups: Label = %Player1PowerUps
 @onready var player_2_power_ups: Label = %Player2PowerUps
 @onready var player_3_power_ups: Label = %Player3PowerUps
+@onready var ready_button: Button = %ReadyButton
+@onready var ready_count: Label = %ReadyCount
 
 
-func _ready():
+func _ready() -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return
@@ -31,24 +32,25 @@ func _ready():
 	player_1_power_ups.text = str(GameStats.powerups[0])
 	player_2_power_ups.text = str(GameStats.powerups[1])
 	player_3_power_ups.text = str(GameStats.powerups[2])
-	
-	if world_selector.gameCount > 0:
-		next_round_button.visible = true
-		next_round_button.disabled = false
-	else:
-		next_round_button.visible = false
-		next_round_button.disabled = true
+
+func _process(_delta: float) -> void:
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if world_selector == null:
+		return
+	ready_count.text = str(world_selector.readyCount)
 
 func _on_quit_button_pressed() -> void:
+	get_tree().get_first_node_in_group("Client").queue_free()
 	get_tree().quit()
 
-func _on_back_to_menu_button_pressed():
+func _on_back_to_menu_button_pressed() -> void:
 	var main: Control = MAIN_MENU.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(main)
+	get_tree().get_first_node_in_group("Client").queue_free()
 	queue_free()
 
 
-func _on_next_round_button_pressed():
+func _on_next_round_button_pressed() -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return
@@ -57,5 +59,8 @@ func _on_next_round_button_pressed():
 	queue_free()
 
 
-func _on_ready_button_pressed():
-	pass # Replace with function body.
+func _on_ready_button_pressed() -> void:
+	Network.sendPlayerJoined.rpc_id(1)
+	ready_button.disabled = true
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	world_selector.readied = true
