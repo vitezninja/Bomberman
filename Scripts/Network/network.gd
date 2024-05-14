@@ -19,7 +19,11 @@ func addServer(port: int) -> void:
 	var server: Node = SERVER.instantiate()
 	get_tree().get_first_node_in_group("Root").add_child(server)
 	server.setPort(port)
-	get_tree().get_first_node_in_group("WorldSelector").gameType = WorldSelector.gameTypeEnum.Online
+	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
+	world_selector.gameType = WorldSelector.gameTypeEnum.Online
+	world_selector.loadLobby()
+	for menu: Control in get_tree().get_first_node_in_group("Menu").get_children():
+		menu.queue_free()
 
 
 func addClient() -> void:

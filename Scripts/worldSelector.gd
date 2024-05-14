@@ -11,13 +11,16 @@ enum gameStatusEnum {Idle, Running, Locked}
 @export var gameType: gameTypeEnum
 var gameCount: int = 0
 var gameStatus: gameStatusEnum
-var readyCount: int = -1
+var readyCount: int = 0
 
 const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 const test: PackedScene = preload("res://Scenes/Maps/TestWorld.tscn")
 const map1: PackedScene = preload("res://Scenes/Maps/Map1.tscn")
 const map2: PackedScene = preload("res://Scenes/Maps/Map2.tscn")
 const map3: PackedScene = preload("res://Scenes/Maps/Map3.tscn")
+const o_map1: PackedScene = preload("res://Scenes/Online/OnlineMap1.tscn")
+const o_map2: PackedScene = preload("res://Scenes/Online/OnlineMap2.tscn")
+const o_map3: PackedScene = preload("res://Scenes/Online/OnlineMap3.tscn")
 const GAME_OVER_MENU_2_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu2Players.tscn")
 const GAME_OVER_MENU_3_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu3Players.tscn")
 const ONLINE_GAME_OVER_MENU: PackedScene = preload("res://Scenes/Online/OnlineGameOverMenu.tscn")
@@ -31,17 +34,14 @@ func _physics_process(delta: float) -> void:
 	
 	match gameStatus:
 		gameStatusEnum.Idle:
-			if readyCount == -1:
-				readyCount = 0
-				loadLobby()
+			if gameType == gameTypeEnum.Online:
 				Network.sendMapNumber.rpc(currentMap)
-				
-			Network.sendPlayerCount.rpc(readyCount)
+				Network.sendPlayerCount.rpc(readyCount)
 			
-			if readyCount == 3:
-				startGame()
-				Network.startGame.rpc()
-				readyCount = -1
+				if readyCount == 3:
+					startGame()
+					Network.startGame.rpc()
+					readyCount = 0
 				
 		gameStatusEnum.Running:
 			if hasGameLocked():
@@ -95,26 +95,28 @@ func onlineLoadPlayers() -> void:
 	var players: Array[Node] = get_tree().get_nodes_in_group("Player")
 	players.shuffle()
 	
-	match playerCount:
-		playerCountEnum.Two:
-			players[0].setId(OnlinePlayer.playerEnum.Player1)
-			players[1].setId(OnlinePlayer.playerEnum.Player2)
-			players[2].queue_free()
-			players[3].queue_free()
-		playerCountEnum.Three:
-			players[0].setId(OnlinePlayer.playerEnum.Player1)
-			players[1].setId(OnlinePlayer.playerEnum.Player2)
-			players[2].setId(OnlinePlayer.playerEnum.Player3)
-			players[3].queue_free()
+	players[0].setId(OnlinePlayer.playerEnum.Player1)
+	players[1].setId(OnlinePlayer.playerEnum.Player2)
+	players[2].setId(OnlinePlayer.playerEnum.Player3)
+	players[3].queue_free()
 
 func loadMap() -> void:
 	match currentMap:
 		mapIdEnum.One:
-			currentMapNode = map1.instantiate()
+			if gameType == gameTypeEnum.Online:
+				currentMapNode = o_map1.instantiate()
+			else:
+				currentMapNode = map1.instantiate()
 		mapIdEnum.Two:
-			currentMapNode = map2.instantiate()
+			if gameType == gameTypeEnum.Online:
+				currentMapNode = o_map2.instantiate()
+			else:
+				currentMapNode = map2.instantiate()
 		mapIdEnum.Three:
-			currentMapNode = map3.instantiate()
+			if gameType == gameTypeEnum.Online:
+				currentMapNode = o_map3.instantiate()
+			else:
+				currentMapNode = map3.instantiate()
 		mapIdEnum.Test:
 			currentMapNode = test.instantiate()
 	add_child(currentMapNode)

@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://dmivqyxwwfppb"]
 
 [ext_resource type="Script" path="res://Scripts/Online/onlineGameOverMenu.gd" id="1_alrqr"]
-[ext_resource type="Texture2D" uid="uid://e6yba23ue0sd" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_hndc2"]
+[ext_resource type="Texture2D" uid="uid://bd6wh1urtjjel" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_hndc2"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_1n10t"]
-[ext_resource type="FontFile" uid="uid://bivxf3m2badh3" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="4_o4tm1"]
-[ext_resource type="Texture2D" uid="uid://r3f7yapriyjh" path="res://Assets/GUI/PNG/PlayerIcons/RedPlayerHead.png" id="5_tcw6x"]
-[ext_resource type="Texture2D" uid="uid://b0qy14mxl2624" path="res://Assets/GUI/PNG/PlayerIcons/GreenPlayerHead.png" id="6_80uxo"]
-[ext_resource type="Texture2D" uid="uid://dy2pe4smvsw8w" path="res://Assets/GUI/PNG/PlayerIcons/BluePlayerHead.png" id="7_5qh20"]
+[ext_resource type="FontFile" uid="uid://dr6acefdkfver" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="4_o4tm1"]
+[ext_resource type="Texture2D" uid="uid://dyp4xkmhdh4c" path="res://Assets/GUI/PNG/PlayerIcons/RedPlayerHead.png" id="5_tcw6x"]
+[ext_resource type="Texture2D" uid="uid://b5bpeo4t4m2n0" path="res://Assets/GUI/PNG/PlayerIcons/GreenPlayerHead.png" id="6_80uxo"]
+[ext_resource type="Texture2D" uid="uid://bloa1c8q01uu" path="res://Assets/GUI/PNG/PlayerIcons/BluePlayerHead.png" id="7_5qh20"]
 [ext_resource type="Theme" uid="uid://ceo5ni24hu6cy" path="res://Themes/PlayButton.tres" id="8_45250"]
 
 [node name="OnlineGameOverMenu" type="Control"]
