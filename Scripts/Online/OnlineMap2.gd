@@ -44,11 +44,11 @@ const enemisarr: Array[Vector2] = [
 	Vector2(238,206), # 3
 ]
 const enemiidsarr: Array[int] = [
-	3, 
-	1, 
 	2, 
+	0, 
 	1, 
-	4, 
+	0, 
+	3, 
 ]
 func spawnBoxes():
 	var boxes:Node2D = get_tree().get_first_node_in_group("Boxes")
@@ -74,6 +74,8 @@ func spawnEnemies():
 		enemies.add_child(thisEnemy, true)
 
 func _ready():
+	if not multiplayer.is_server():
+		return
 	spawnEnemies()
 	spawnPlayers()
 	spawnBoxes()

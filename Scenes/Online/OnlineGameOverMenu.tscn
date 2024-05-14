@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmivqyxwwfppb"]
+[gd_scene load_steps=10 format=3 uid="uid://dmivqyxwwfppb"]
 
 [ext_resource type="Script" path="res://Scripts/Online/onlineGameOverMenu.gd" id="1_alrqr"]
 [ext_resource type="Texture2D" uid="uid://bd6wh1urtjjel" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="2_hndc2"]
@@ -9,7 +9,39 @@
 [ext_resource type="Texture2D" uid="uid://bloa1c8q01uu" path="res://Assets/GUI/PNG/PlayerIcons/BluePlayerHead.png" id="7_5qh20"]
 [ext_resource type="Theme" uid="uid://ceo5ni24hu6cy" path="res://Themes/PlayButton.tres" id="8_45250"]
 
-[node name="OnlineGameOverMenu" type="Control"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pdyo0"]
+properties/0/path = NodePath("OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/WinCountsMargin/WinCounts/Player1Wins:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/WinCountsMargin/WinCounts/Player2Wins:text")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/WinCountsMargin/WinCounts/Player3Wins:text")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin/BombCounts/Player1Bombs:text")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin/BombCounts/Player2Bombs:text")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/BombCountsMargin/BombCounts/Player3Bombs:text")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin/PowerUpCounts/Player1PowerUps:text")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin/PowerUpCounts/Player2PowerUps:text")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("OuterMargins/Content/StatsMargin/StatsContainer/DataContainer/PowerUpCountsMargin/PowerUpCounts/Player3PowerUps:text")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("OuterMargins/Content/RoundsLeftTextContainer/RoundCountMargin/ReadyCount:text")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+
+[node name="OnlineGameOverMenu" type="Control" groups=["OnlineGameOver"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -412,6 +444,9 @@ theme = ExtResource("8_45250")
 theme_override_fonts/font = ExtResource("4_o4tm1")
 theme_override_font_sizes/font_size = 48
 text = "Ready"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_pdyo0")
 
 [connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -5,7 +5,6 @@ const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 @onready var player_1_wins: Label = %Player1Wins
 @onready var player_2_wins: Label = %Player2Wins
 @onready var player_3_wins: Label = %Player3Wins
-@onready var round_count: Label = %RoundCount
 @onready var player_1_bombs: Label = %Player1Bombs
 @onready var player_2_bombs: Label = %Player2Bombs
 @onready var player_3_bombs: Label = %Player3Bombs
@@ -20,9 +19,9 @@ func _ready() -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return
-	
-	round_count.text = str(world_selector.gameCount)
-	
+	if multiplayer.is_server():
+		ready_count.text = str(world_selector.readyCount)
+		
 	player_1_wins.text = str(GameStats.winns[0])
 	player_2_wins.text = str(GameStats.winns[1])
 	player_3_wins.text = str(GameStats.winns[2])
@@ -33,20 +32,23 @@ func _ready() -> void:
 	player_2_power_ups.text = str(GameStats.powerups[1])
 	player_3_power_ups.text = str(GameStats.powerups[2])
 
-func _process(_delta: float) -> void:
+func _process(delta):
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return
-	ready_count.text = str(world_selector.readyCount)
+	if multiplayer.is_server():
+		ready_count.text = str(world_selector.readyCount)
 
 func _on_quit_button_pressed() -> void:
-	get_tree().get_first_node_in_group("Client").queue_free()
+	if not multiplayer.is_server():
+		get_tree().get_first_node_in_group("Client").queue_free()
 	get_tree().quit()
 
 func _on_back_to_menu_button_pressed() -> void:
 	var main: Control = MAIN_MENU.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(main)
-	get_tree().get_first_node_in_group("Client").queue_free()
+	if not multiplayer.is_server():
+		get_tree().get_first_node_in_group("Client").queue_free()
 	queue_free()
 
 
@@ -64,3 +66,6 @@ func _on_ready_button_pressed() -> void:
 	ready_button.disabled = true
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	world_selector.readied = true
+
+func deleteMenu() -> void:
+	queue_free()

@@ -16,6 +16,7 @@ class_name OnlineBombEffect
 var centerExtensions: Array[int] = [0,0,0,0]
 
 const middlePNG: Resource = preload("res://Assets/Effects/middle.png")
+const ONLINE_BOMB_EFFECT_MIDDLE: PackedScene = preload("res://Scenes/Online/OnlineBombEffectMiddle.tscn")
 
 @onready var timer: Timer = %Timer
 @onready var raycast_top: RayCast2D = %RaycastTop
@@ -29,11 +30,16 @@ var stopTop: bool = false
 var stopRight: bool = false
 var stopBottom: bool = false
 var stopLeft: bool = false
+var currentLoad: String = "res://Assets/Effects/center.png"
 
 func _ready() -> void:
 	if not multiplayer.is_server():
 		return
 	timer.start()
+
+func _physics_process(_delta: float):
+	chooseCenter()
+
 
 func expand() -> void:
 	if not multiplayer.is_server():
@@ -65,8 +71,6 @@ func expand() -> void:
 	chooseCenter()
 
 func chooseCenter() -> void:
-	if not multiplayer.is_server():
-		return
 	var centerEx: String = "center" 
 	if centerExtensions[0] != 0:
 		centerEx += "_top"
@@ -76,7 +80,10 @@ func chooseCenter() -> void:
 		centerEx += "_bottom"
 	if centerExtensions[3] != 0:
 		centerEx += "_left"
-	var centerPNG: Resource = load("res://Assets/Effects/" + centerEx + ".png")
+	var centerPNG: Resource
+	if multiplayer.is_server():
+		currentLoad = "res://Assets/Effects/" + centerEx + ".png"
+	centerPNG = load(currentLoad)
 	if centerPNG == null:
 		centerPNG = load("res://Assets/Effects/center.png")
 	center.texture = centerPNG
@@ -86,6 +93,8 @@ func checkEnd() -> void:
 		return
 	if ticks == maxRange:
 		timer.stop()
+		if not multiplayer.is_server():
+			return
 		queue_free()
 	ticks += 1
 
@@ -108,11 +117,8 @@ func addMiddle(index: int, edge: Sprite2D) -> void:
 		return
 	centerExtensions[index] += 1
 	if ticks > 1:
-		var middle: Sprite2D = Sprite2D.new()
-		middle.texture = middlePNG
-		middle.position = edge.position
-		middle.rotation = edge.rotation
-		
+		var middle: Node2D = ONLINE_BOMB_EFFECT_MIDDLE.instantiate()
+		middle.setPosRot(edge.position, edge.rotation)
 		sprites.add_child(middle, true)
 	edge.visible = true
 

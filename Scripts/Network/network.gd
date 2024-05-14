@@ -2,6 +2,7 @@ extends Node
 
 const SERVER: PackedScene = preload("res://Scenes/Network/Server.tscn")
 const CLIENT: PackedScene = preload("res://Scenes/Network/Client.tscn")
+@onready var online_menu: PackedScene = load("res://Scenes/Menus/OnlineMenu.tscn")
 
 func _ready() -> void:
 	handleArgs()
@@ -26,6 +27,8 @@ func addServer(port: int) -> void:
 	world_selector.loadLobby()
 	for menu: Control in get_tree().get_first_node_in_group("Menu").get_children():
 		menu.queue_free()
+	var online = online_menu.instantiate()
+	get_tree().get_first_node_in_group("Menu").add_child(online)
 
 
 func addClient() -> void:
@@ -45,27 +48,26 @@ func disconnectClient(readied: bool) -> void:
 	if readied:
 		world_selector.readyCount -= 1
 	
-	
-@rpc("authority", "call_remote", "reliable", 2)
-func sendPlayerCount(number: int) -> void:
-	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
-	if world_selector == null:
-		return
-	world_selector.readyCount = number
-	
-@rpc("authority", "call_remote", "reliable", 2)
+@rpc("authority", "call_remote", "reliable")
 func sendMapNumber(mapNum: int) -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return
 	world_selector.currentMap = mapNum as WorldSelector.mapIdEnum
 	
-@rpc("authority", "call_remote", "reliable")
+@rpc("authority", "call_local", "reliable")
 func startGame() -> void:
-	var online_menu: Control = get_tree().get_first_node_in_group("OnlineMenu")
-	if online_menu == null:
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if world_selector == null:
 		return
-	online_menu.deleteMenu()
+	world_selector.readied = false
+	var online_menu: Control = get_tree().get_first_node_in_group("OnlineMenu")
+	if not online_menu == null:
+		GameStats.newSet()
+		online_menu.deleteMenu()
+	var online_gameover_menu: Control = get_tree().get_first_node_in_group("OnlineGameOver")
+	if not online_gameover_menu == null:
+		online_gameover_menu.deleteMenu()
 	
 @rpc("any_peer", "call_remote", "reliable")
 func sendPlayerJoined() -> void:
@@ -77,7 +79,7 @@ func sendPlayerJoined() -> void:
 	world_selector.readyCount += 1
 	
 
-@rpc("any_peer", "call_remote", "reliable", 2)
+@rpc("any_peer", "call_remote", "reliable")
 func sendInput(input: String) -> void:
 	if not multiplayer.is_server():
 		return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmcd7u2mwxe1j"]
+[gd_scene load_steps=8 format=3 uid="uid://cmcd7u2mwxe1j"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/onlineMenu.gd" id="1_ct3vf"]
 [ext_resource type="Texture2D" uid="uid://bd6wh1urtjjel" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_ymxrl"]
@@ -6,6 +6,11 @@
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_8wqdl"]
 [ext_resource type="Theme" uid="uid://dxfaogmdf3ii4" path="res://Themes/Map1Display.tres" id="5_8vdmk"]
 [ext_resource type="Theme" uid="uid://ceo5ni24hu6cy" path="res://Themes/PlayButton.tres" id="8_l3hva"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rj85y"]
+properties/0/path = NodePath("OuterMargins/Content/RoundsLeftTextContainer/RoundCountMargin/ReadyCount:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="OnlineMenu" type="Control" groups=["OnlineMenu"]]
 layout_mode = 3
@@ -194,6 +199,9 @@ theme = ExtResource("8_l3hva")
 theme_override_fonts/font = ExtResource("2_8r67x")
 theme_override_font_sizes/font_size = 48
 text = "Ready"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_rj85y")
 
 [connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]

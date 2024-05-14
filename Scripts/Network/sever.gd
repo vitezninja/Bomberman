@@ -3,6 +3,8 @@ extends Node
 var port: int = 8000
 var peer: ENetMultiplayerPeer
 var peers: Dictionary = {}
+var playerIdUsed: Array[int] = []
+var playerIdNotUsed: Array[int] =[0,1,2]
 
 
 func _ready() -> void:
@@ -17,12 +19,17 @@ func _exit_tree() -> void:
 
 func peer_connected(id: int) -> void:
 	if multiplayer.is_server():
-		peers[id] = peers.size()
+		peers[id] = playerIdNotUsed.front()
+		playerIdUsed.push_back(playerIdNotUsed.front())
+		playerIdNotUsed.remove_at(0)
 
 
 func peer_disconnected(id: int) -> void:
 	if multiplayer.is_server():
+		playerIdUsed.erase(peers[id])
+		playerIdNotUsed.append(peers[id])
 		peers.erase(id)
+		
 
 
 func creatHost() -> void:

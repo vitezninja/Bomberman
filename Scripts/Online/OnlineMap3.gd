@@ -59,11 +59,11 @@ const enemisarr: Array[Vector2] = [
 	Vector2(120,203), # 3
 ]
 const enemiidsarr: Array[int] = [
-	3, 
-	1, 
 	2, 
+	0, 
 	1, 
-	4, 
+	0, 
+	3, 
 ]
 
 func spawnBoxes():
@@ -91,6 +91,8 @@ func spawnEnemies():
 		enemies.add_child(thisEnemy, true)
 
 func _ready():
+	if not multiplayer.is_server():
+		return
 	spawnEnemies()
 	spawnPlayers()
 	spawnBoxes()

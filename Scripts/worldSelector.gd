@@ -25,19 +25,25 @@ const o_map3: PackedScene = preload("res://Scenes/Online/OnlineMap3.tscn")
 const GAME_OVER_MENU_2_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu2Players.tscn")
 const GAME_OVER_MENU_3_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu3Players.tscn")
 const ONLINE_GAME_OVER_MENU: PackedScene = preload("res://Scenes/Online/OnlineGameOverMenu.tscn")
+@onready var online_menu: PackedScene = load("res://Scenes/Menus/OnlineMenu.tscn")
 
 var currentMapNode: Node
 
 func _physics_process(delta: float) -> void:
-	
-	if not multiplayer.is_server():
-		return
-	
 	match gameStatus:
 		gameStatusEnum.Idle:
 			if gameType == gameTypeEnum.Online:
+				var online_gameover_menu: Control = get_tree().get_first_node_in_group("OnlineGameOver")
+				var server: Node = get_tree().get_first_node_in_group("Server")
+				if server == null:
+					return
+				if not online_gameover_menu == null and server.peers.size() == 0:
+						online_gameover_menu.deleteMenu()
+						var online = online_menu.instantiate()
+						get_tree().get_first_node_in_group("Menu").add_child(online)
+						readyCount = 0
+				
 				Network.sendMapNumber.rpc(currentMap)
-				Network.sendPlayerCount.rpc(readyCount)
 			
 				if readyCount == 3:
 					startGame()
@@ -45,15 +51,22 @@ func _physics_process(delta: float) -> void:
 					readyCount = 0
 				
 		gameStatusEnum.Running:
+			if gameType == gameTypeEnum.Online:
+				if not multiplayer.is_server():
+					return
 			if hasGameLocked():
 				lockGame()
 		gameStatusEnum.Locked:
+			if gameType == gameTypeEnum.Online:
+				if not multiplayer.is_server():
+					return
 			if hasGameEnded():
 				endGame()
 				
 				if gameType == gameTypeEnum.Online:
 					var online_game_over = ONLINE_GAME_OVER_MENU.instantiate()
 					get_tree().get_first_node_in_group("Menu").add_child(online_game_over, true)
+					readyCount = 0
 					return
 				
 				if playerCount == 2:
@@ -170,4 +183,15 @@ func endGame():
 	currentMapNode = null
 	gameStatus = gameStatusEnum.Idle
 	gameCount -= 1
+	if multiplayer.is_server():
+		loadLobby()
 	
+func reset():
+	currentMap = mapIdEnum.Test
+	playerCount = playerCountEnum.Two
+	gameType = gameTypeEnum.Offline
+	gameCount = 0
+	gameStatus = gameStatusEnum.Idle
+	readyCount = 0
+	readied = false
+	currentMapNode = null

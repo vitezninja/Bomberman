@@ -43,6 +43,24 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath(".:position")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("Sprites/EdgeTop:visible")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("Sprites/EdgeRight:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Sprites/EdgeBottom:visible")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Sprites/EdgeLeft:visible")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("Sprites/Center:visible")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath(".:currentLoad")
+properties/11/spawn = true
+properties/11/replication_mode = 1
 
 [node name="BombEffect" type="Node2D" groups=["BombEffect"]]
 script = ExtResource("1_3y07u")
@@ -149,6 +167,10 @@ texture = ExtResource("3_0xqx1")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_nu762")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Online/OnlineBombEffectMiddle.tscn")
+spawn_path = NodePath("../Sprites")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_shape_entered" from="Hitboxes/HitboxCenter" to="." method="_on_hitbox_center_area_shape_entered"]
