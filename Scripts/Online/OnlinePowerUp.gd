@@ -3,7 +3,7 @@ class_name OnlinePowerUp
 
 enum powerUpEnum {bombCountIncreas, bombRangeIncreas, detonator, speedIncrease, invincibility, ghost, obstacles}
 @export var type: powerUpEnum
-@onready var sprite = %Sprite
+@onready var sprite: Sprite2D = %Sprite
 const BOMB_RANGE_BUFF = preload("res://Assets/Potions/BombRangeBuff.png")
 const BOX_BUFF = preload("res://Assets/Potions/BoxBuff.png")
 const DETONATOR_BUFF_A = preload("res://Assets/Potions/DetonatorBuffA.png")
@@ -12,13 +12,13 @@ const MORE_BOMBS_BUFF = preload("res://Assets/Potions/MoreBombsBuff.png")
 const SPEED_BUFF = preload("res://Assets/Potions/SpeedBuff.png")
 const GHOST_BUFF = preload("res://Assets/Potions/GhostBuff.png")
 
-func _ready():
+func _ready() -> void:
 	handleSprite()
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float) -> void:
 	handleSprite()
 
-func handleSprite():
+func handleSprite() -> void:
 	match type:
 		powerUpEnum.bombCountIncreas:
 			sprite.texture = MORE_BOMBS_BUFF
@@ -36,7 +36,7 @@ func handleSprite():
 			sprite.texture = BOX_BUFF
 
 
-func _on_hitbox_body_entered(body):
+func _on_hitbox_body_entered(body: Node) -> void:
 	if not multiplayer.is_server():
 		return
 	match type:

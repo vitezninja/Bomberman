@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func chooseRandomDirection(delta: float = 0.0) -> void:
+func chooseRandomDirection(_delta: float = 0.0) -> void:
 	if not multiplayer.is_server():
 		return
 	if timer.is_stopped() and not isPhasing:

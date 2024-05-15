@@ -27,7 +27,7 @@ func addServer(port: int) -> void:
 	world_selector.loadLobby()
 	for menu: Control in get_tree().get_first_node_in_group("Menu").get_children():
 		menu.queue_free()
-	var online = online_menu.instantiate()
+	var online: Control = online_menu.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(online)
 
 
@@ -61,10 +61,10 @@ func startGame() -> void:
 	if world_selector == null:
 		return
 	world_selector.readied = false
-	var online_menu: Control = get_tree().get_first_node_in_group("OnlineMenu")
-	if not online_menu == null:
+	var this_online_menu: Control = get_tree().get_first_node_in_group("OnlineMenu")
+	if not this_online_menu == null:
 		GameStats.newSet()
-		online_menu.deleteMenu()
+		this_online_menu.deleteMenu()
 	var online_gameover_menu: Control = get_tree().get_first_node_in_group("OnlineGameOver")
 	if not online_gameover_menu == null:
 		online_gameover_menu.deleteMenu()
