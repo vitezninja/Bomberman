@@ -44,7 +44,13 @@ func _on_back_to_menu_pressed() -> void:
 	resume()
 	var main: Control = MAIN_MENU.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(main)
-	var world_selector: Node = get_tree().get_first_node_in_group("WorldSelector")
+	var world_selector = get_tree().get_first_node_in_group("WorldSelector")
+	var client = get_tree().get_first_node_in_group("Client")
+	if not client == null:
+		world_selector.get_child(0).queue_free()
+		world_selector.reset()
+		client.queue_free()
+		return
 	world_selector.endGame()
 
 func _on_quit_pressed() -> void:

@@ -19,6 +19,7 @@ config/windows_native_icon="res://Assets/Icon/icon.ico"
 [autoload]
 
 GameStats="*res://Scripts/gameStats.gd"
+Network="*res://Scripts/Network/network.gd"
 
 [debug]
 

@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://baal8j0wyuv1v"]
 
-[ext_resource type="Texture2D" uid="uid://ca2t8btl3eoh6" path="res://Assets/GUI/FinalGUIAssets/Map1Background.png" id="1_d4htt"]
-[ext_resource type="Texture2D" uid="uid://llb6235uc2pi" path="res://Assets/GUI/MapIcons/map2.png" id="2_67mq8"]
+[ext_resource type="Texture2D" uid="uid://bxqm1wi1mpwyq" path="res://Assets/GUI/FinalGUIAssets/Map1Background.png" id="1_d4htt"]
+[ext_resource type="Texture2D" uid="uid://jiqyo15x5y4a" path="res://Assets/GUI/MapIcons/map2.png" id="2_67mq8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_icxil"]
 texture = ExtResource("1_d4htt")
