@@ -3,19 +3,19 @@ class_name PowerUp
 
 enum powerUpEnum {bombCountIncreas, bombRangeIncreas, detonator, speedIncrease, invincibility, ghost, obstacles}
 @export var type: powerUpEnum
-@onready var sprite = %Sprite
-const BOMB_RANGE_BUFF = preload("res://Assets/Potions/BombRangeBuff.png")
-const BOX_BUFF = preload("res://Assets/Potions/BoxBuff.png")
-const DETONATOR_BUFF_A = preload("res://Assets/Potions/DetonatorBuffA.png")
-const INVINCIBILITY_BUFF = preload("res://Assets/Potions/InvincibilityBuff.png")
-const MORE_BOMBS_BUFF = preload("res://Assets/Potions/MoreBombsBuff.png")
-const SPEED_BUFF = preload("res://Assets/Potions/SpeedBuff.png")
-const GHOST_BUFF = preload("res://Assets/Potions/GhostBuff.png")
+@onready var sprite: Sprite2D = %Sprite
+const BOMB_RANGE_BUFF: Resource = preload("res://Assets/Potions/BombRangeBuff.png")
+const BOX_BUFF: Resource = preload("res://Assets/Potions/BoxBuff.png")
+const DETONATOR_BUFF_A: Resource = preload("res://Assets/Potions/DetonatorBuffA.png")
+const INVINCIBILITY_BUFF: Resource = preload("res://Assets/Potions/InvincibilityBuff.png")
+const MORE_BOMBS_BUFF: Resource = preload("res://Assets/Potions/MoreBombsBuff.png")
+const SPEED_BUFF: Resource = preload("res://Assets/Potions/SpeedBuff.png")
+const GHOST_BUFF: Resource = preload("res://Assets/Potions/GhostBuff.png")
 
-func _ready():
+func _ready() -> void:
 	handleSprite()
 
-func handleSprite():
+func handleSprite() -> void:
 	match type:
 		powerUpEnum.bombCountIncreas:
 			sprite.texture = MORE_BOMBS_BUFF
@@ -33,7 +33,7 @@ func handleSprite():
 			sprite.texture = BOX_BUFF
 
 
-func _on_hitbox_body_entered(body):
+func _on_hitbox_body_entered(body: Node2D) -> void:
 	match type:
 		powerUpEnum.bombCountIncreas:
 			body.increaseBombCount()

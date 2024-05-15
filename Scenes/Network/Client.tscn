@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xk86fkkv3kd1"]
+
+[ext_resource type="Script" path="res://Scripts/Network/client.gd" id="1_j80ep"]
+
+[node name="Client" type="Node" groups=["Client"]]
+script = ExtResource("1_j80ep")

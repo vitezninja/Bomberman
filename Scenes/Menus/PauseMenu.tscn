@@ -158,5 +158,4 @@ libraries = {
 
 [connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_to_menu_pressed"]
-[connection signal="hidden" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_hidden"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

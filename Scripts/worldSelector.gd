@@ -11,31 +11,69 @@ enum gameStatusEnum {Idle, Running, Locked}
 @export var gameType: gameTypeEnum
 var gameCount: int = 0
 var gameStatus: gameStatusEnum
+var readyCount: int = 0
+var readied: bool = false
 
 const MAIN_MENU: PackedScene = preload("res://Scenes/Menus/MainMenu.tscn")
 const test: PackedScene = preload("res://Scenes/Maps/TestWorld.tscn")
 const map1: PackedScene = preload("res://Scenes/Maps/Map1.tscn")
 const map2: PackedScene = preload("res://Scenes/Maps/Map2.tscn")
 const map3: PackedScene = preload("res://Scenes/Maps/Map3.tscn")
+const o_map1: PackedScene = preload("res://Scenes/Online/OnlineMap1.tscn")
+const o_map2: PackedScene = preload("res://Scenes/Online/OnlineMap2.tscn")
+const o_map3: PackedScene = preload("res://Scenes/Online/OnlineMap3.tscn")
 const GAME_OVER_MENU_2_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu2Players.tscn")
 const GAME_OVER_MENU_3_PLAYERS: PackedScene = preload("res://Scenes/Menus/GameOverMenu3Players.tscn")
+const ONLINE_GAME_OVER_MENU: PackedScene = preload("res://Scenes/Online/OnlineGameOverMenu.tscn")
+@onready var online_menu: PackedScene = load("res://Scenes/Menus/OnlineMenu.tscn")
 
 var currentMapNode: Node
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	match gameStatus:
+		gameStatusEnum.Idle:
+			if gameType == gameTypeEnum.Online:
+				var online_gameover_menu: Control = get_tree().get_first_node_in_group("OnlineGameOver")
+				var server: Node = get_tree().get_first_node_in_group("Server")
+				if server == null:
+					return
+				if not online_gameover_menu == null and server.peers.size() == 0:
+						online_gameover_menu.deleteMenu()
+						var online: Control = online_menu.instantiate()
+						get_tree().get_first_node_in_group("Menu").add_child(online)
+						readyCount = 0
+				
+				Network.sendMapNumber.rpc(currentMap)
+			
+				if readyCount == 3:
+					startGame()
+					Network.startGame.rpc()
+					readyCount = 0
+				
 		gameStatusEnum.Running:
+			if gameType == gameTypeEnum.Online:
+				if not multiplayer.is_server():
+					return
 			if hasGameLocked():
 				lockGame()
 		gameStatusEnum.Locked:
+			if gameType == gameTypeEnum.Online:
+				if not multiplayer.is_server():
+					return
 			if hasGameEnded():
 				endGame()
 				
+				if gameType == gameTypeEnum.Online:
+					var online_game_over: Control = ONLINE_GAME_OVER_MENU.instantiate()
+					get_tree().get_first_node_in_group("Menu").add_child(online_game_over, true)
+					readyCount = 0
+					return
+				
 				if playerCount == 2:
-					var game_over_2 = GAME_OVER_MENU_2_PLAYERS.instantiate()
+					var game_over_2: Control = GAME_OVER_MENU_2_PLAYERS.instantiate()
 					get_tree().get_first_node_in_group("Menu").add_child(game_over_2)
 				elif playerCount == 3:
-					var game_over_3 = GAME_OVER_MENU_3_PLAYERS.instantiate()
+					var game_over_3: Control = GAME_OVER_MENU_3_PLAYERS.instantiate()
 					get_tree().get_first_node_in_group("Menu").add_child(game_over_3)
 
 func loadMode() -> void:
@@ -43,8 +81,9 @@ func loadMode() -> void:
 		gameTypeEnum.Offline:
 			return
 		gameTypeEnum.Online:
-			#TODO multiplayer
-			pass
+			loadMap()
+			onlineLoadPlayers()
+			return
 
 func loadPlayers() -> void:
 	randomize()
@@ -63,18 +102,43 @@ func loadPlayers() -> void:
 			players[1].setId(Player.playerEnum.Player2)
 			players[2].setId(Player.playerEnum.Player3)
 			players[3].queue_free()
+			
+func onlineLoadPlayers() -> void:
+	randomize()
+	
+	var players: Array[Node] = get_tree().get_nodes_in_group("Player")
+	players.shuffle()
+	
+	players[0].setId(OnlinePlayer.playerEnum.Player1)
+	players[1].setId(OnlinePlayer.playerEnum.Player2)
+	players[2].setId(OnlinePlayer.playerEnum.Player3)
+	players[3].queue_free()
 
 func loadMap() -> void:
 	match currentMap:
 		mapIdEnum.One:
-			currentMapNode = map1.instantiate()
+			if gameType == gameTypeEnum.Online:
+				currentMapNode = o_map1.instantiate()
+			else:
+				currentMapNode = map1.instantiate()
 		mapIdEnum.Two:
-			currentMapNode = map2.instantiate()
+			if gameType == gameTypeEnum.Online:
+				currentMapNode = o_map2.instantiate()
+			else:
+				currentMapNode = map2.instantiate()
 		mapIdEnum.Three:
-			currentMapNode = map3.instantiate()
+			if gameType == gameTypeEnum.Online:
+				currentMapNode = o_map3.instantiate()
+			else:
+				currentMapNode = map3.instantiate()
 		mapIdEnum.Test:
 			currentMapNode = test.instantiate()
 	add_child(currentMapNode)
+	
+	
+func loadLobby() -> void:
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	currentMap = rng.randi_range(1, 3)
 
 func startGame() -> void:
 	loadMode()
@@ -105,11 +169,29 @@ func lockGame() -> void:
 		if not bomb.automaticDetonation and bomb.timer.is_stopped():
 			bomb.startExploding()
 
-func endGame():
-	var player: Player = get_tree().get_first_node_in_group("Player")
+func endGame() -> void:
+	var player: Node2D = get_tree().get_first_node_in_group("Player")
 	if player != null:
-		GameStats.addWin(player.playerId)
+			match player.playerId:
+				0:
+					GameStats.addWin(0)
+				1:
+					GameStats.addWin(1)
+				2:
+					GameStats.addWin(2)
 	currentMapNode.queue_free()
 	currentMapNode = null
 	gameStatus = gameStatusEnum.Idle
 	gameCount -= 1
+	if multiplayer.is_server():
+		loadLobby()
+	
+func reset() -> void:
+	currentMap = mapIdEnum.Test
+	playerCount = playerCountEnum.Two
+	gameType = gameTypeEnum.Offline
+	gameCount = 0
+	gameStatus = gameStatusEnum.Idle
+	readyCount = 0
+	readied = false
+	currentMapNode = null
