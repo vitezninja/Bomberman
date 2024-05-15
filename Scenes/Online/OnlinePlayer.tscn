@@ -1,8 +1,8 @@
 [gd_scene load_steps=35 format=3 uid="uid://0y2oqnw7t8lo"]
 
 [ext_resource type="Script" path="res://Scripts/Online/OnlinePlayer.gd" id="1_qxggu"]
-[ext_resource type="Texture2D" uid="uid://bsvwp2tjgpkbq" path="res://Assets/Player/Shadow.png" id="2_bp18u"]
-[ext_resource type="Texture2D" uid="uid://btwepw03abj8j" path="res://Assets/Player/Prototype_Worksheet.png" id="3_k6e3c"]
+[ext_resource type="Texture2D" uid="uid://b32bmfgwmqepu" path="res://Assets/Player/Shadow.png" id="2_bp18u"]
+[ext_resource type="Texture2D" uid="uid://cvc3ng4pddbwh" path="res://Assets/Player/Prototype_Worksheet.png" id="3_k6e3c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8tt6"]
 atlas = ExtResource("3_k6e3c")
@@ -236,8 +236,8 @@ radius = 2.0
 height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_numyg"]
-radius = 6.0
-height = 14.0
+radius = 4.0
+height = 10.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_okbx1"]
 properties/0/path = NodePath(".:position")
