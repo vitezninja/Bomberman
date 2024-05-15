@@ -39,7 +39,7 @@ func _physics_process(_delta: float) -> void:
 					return
 				if not online_gameover_menu == null and server.peers.size() == 0:
 						online_gameover_menu.deleteMenu()
-						var online = online_menu.instantiate()
+						var online: Control = online_menu.instantiate()
 						get_tree().get_first_node_in_group("Menu").add_child(online)
 						readyCount = 0
 				
@@ -64,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 				endGame()
 				
 				if gameType == gameTypeEnum.Online:
-					var online_game_over = ONLINE_GAME_OVER_MENU.instantiate()
+					var online_game_over: Control = ONLINE_GAME_OVER_MENU.instantiate()
 					get_tree().get_first_node_in_group("Menu").add_child(online_game_over, true)
 					readyCount = 0
 					return
@@ -136,8 +136,8 @@ func loadMap() -> void:
 	add_child(currentMapNode)
 	
 	
-func loadLobby():
-	var rng = RandomNumberGenerator.new()
+func loadLobby() -> void:
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	currentMap = rng.randi_range(1, 3)
 
 func startGame() -> void:
@@ -169,7 +169,7 @@ func lockGame() -> void:
 		if not bomb.automaticDetonation and bomb.timer.is_stopped():
 			bomb.startExploding()
 
-func endGame():
+func endGame() -> void:
 	var player: Node2D = get_tree().get_first_node_in_group("Player")
 	if player != null:
 			match player.playerId:
@@ -186,7 +186,7 @@ func endGame():
 	if multiplayer.is_server():
 		loadLobby()
 	
-func reset():
+func reset() -> void:
 	currentMap = mapIdEnum.Test
 	playerCount = playerCountEnum.Two
 	gameType = gameTypeEnum.Offline

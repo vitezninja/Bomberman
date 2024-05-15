@@ -51,20 +51,20 @@ const enemiidsarr: Array[int] = [
 	0, 
 	3, 
 ]
-func spawnBoxes():
+func spawnBoxes() -> void:
 	var boxes:Node2D = get_tree().get_first_node_in_group("Boxes")
 	for box in boxesarr:
 		var thisBox:OnlineWoodenBox = onlineWoodenBox.instantiate()
 		thisBox.position = box
 		boxes.add_child(thisBox, true)
-func spawnPlayers():
+func spawnPlayers() -> void:
 	var players:Node2D = get_tree().get_first_node_in_group("Players")
 	for player in playersarr:
 		var thisPlayer:OnlinePlayer = onlinePlayer.instantiate()
 		thisPlayer.position = player
 		players.add_child(thisPlayer, true)
 
-func spawnEnemies():
+func spawnEnemies() -> void:
 	var enemies:Node2D = get_tree().get_first_node_in_group("Enemys")
 	var id:int = 0
 	for enemy in enemisarr:
@@ -75,7 +75,7 @@ func spawnEnemies():
 		enemies.add_child(thisEnemy, true)
 
 
-func _ready():
+func _ready() -> void:
 	if not multiplayer.is_server():
 		return
 	spawnEnemies()

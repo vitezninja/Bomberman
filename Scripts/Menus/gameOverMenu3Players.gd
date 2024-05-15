@@ -55,7 +55,3 @@ func _on_next_round_button_pressed() -> void:
 		
 	world_selector.startGame()
 	queue_free()
-
-
-func _on_ready_button_pressed():
-	pass # Replace with function body.

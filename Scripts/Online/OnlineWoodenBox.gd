@@ -6,7 +6,7 @@ var isPlayers: bool = false
 
 @onready var powerup: PackedScene = preload("res://Scenes/Online/OnlinePowerUp.tscn")
 
-func destroy():
+func destroy() -> void:
 	if not multiplayer.is_server():
 		return
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -20,7 +20,7 @@ func destroy():
 			break
 	queue_free()
 
-func dropPowerUp():
+func dropPowerUp() -> void:
 	if not multiplayer.is_server():
 		return
 	var newPowerup: OnlinePowerUp = powerup.instantiate()

@@ -32,7 +32,7 @@ func _ready() -> void:
 	player_2_power_ups.text = str(GameStats.powerups[1])
 	player_3_power_ups.text = str(GameStats.powerups[2])
 
-func _process(delta):
+func _process(_delta: float) -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
 		return

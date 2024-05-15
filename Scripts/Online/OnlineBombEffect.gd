@@ -37,7 +37,7 @@ func _ready() -> void:
 		return
 	timer.start()
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float) -> void:
 	chooseCenter()
 
 

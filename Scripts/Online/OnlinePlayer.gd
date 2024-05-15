@@ -28,7 +28,7 @@ var hasBoxes: bool = false
 @onready var bomb: PackedScene = preload("res://Scenes/Online/OnlineBomb.tscn")
 @onready var woodenBox: PackedScene = preload("res://Scenes/Online/OnlineWoodenBox.tscn")
 @onready var hitbox: Area2D = %Hitbox
-@onready var collision_area = %CollisionArea
+@onready var collision_area: Area2D = %CollisionArea
 var up: String = "up_player_"
 var down: String = "down_player_"
 var left: String = "left_player_"
@@ -165,8 +165,8 @@ func hit() -> void:
 	set_physics_process(false)
 	sprite.play("Death")
 	if hasDetonator:
-		for bomb in bombs:
-			bomb.startExploding()
+		for this_bomb in bombs:
+			this_bomb.startExploding()
 	await sprite.animation_finished
 	queue_free()
 	
@@ -257,8 +257,8 @@ func canPlaceBoxes() -> void:
 func handleBoxAction() -> void:
 	if not multiplayer.is_server():
 		return
-	var isOnBox = false
-	for body in hitbox.get_overlapping_bodies():
+	var isOnBox: bool = false
+	for body: Node in hitbox.get_overlapping_bodies():
 		if body.is_in_group("WoodenBox"):
 			isOnBox = true
 			break
