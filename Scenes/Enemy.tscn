@@ -1,8 +1,8 @@
 [gd_scene load_steps=36 format=3 uid="uid://dygucp2fqgwfn"]
 
-[ext_resource type="Texture2D" uid="uid://cnkxw5x22jjcq" path="res://Assets/Enemy/Shadow.png" id="1_1dkm5"]
+[ext_resource type="Texture2D" uid="uid://4b6gnj2duod7" path="res://Assets/Enemy/Shadow.png" id="1_1dkm5"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_2b8kt"]
-[ext_resource type="Texture2D" uid="uid://rn4dxahis02b" path="res://Assets/Enemy/Skeleton.png" id="1_iogyv"]
+[ext_resource type="Texture2D" uid="uid://dpelgtn1jbvnn" path="res://Assets/Enemy/Skeleton.png" id="1_iogyv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2pi5i"]
 atlas = ExtResource("1_iogyv")
@@ -247,7 +247,7 @@ radius = 2.0
 height = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3v1a"]
-size = Vector2(8, 12)
+size = Vector2(12, 14)
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
