@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func chooseRandomDirection(delta: float = 0.0) -> void:
+func chooseRandomDirection(_delta: float = 0.0) -> void:
 	if timer.is_stopped() and not isPhasing:
 		timer.start(rng.randi_range(2,4))
 	var random: int = rng.randi_range(1,4)

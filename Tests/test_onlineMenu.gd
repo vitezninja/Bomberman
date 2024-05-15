@@ -1,17 +1,17 @@
 extends GutTest
 
-var info_menu: InfoMenu
+var onlineMenu: OnlineMenu
 var menu: CanvasLayer = CanvasLayer.new()
-const info_menuPath: PackedScene = preload("res://Scenes/Menus/InfoMenu.tscn")
+const onlineMenuPath: PackedScene = preload("res://Scenes/Menus/OnlineMenu.tscn")
 
 func before_each() -> void:
 	await get_tree().process_frame
-	info_menu = info_menuPath.instantiate()
-	get_tree().get_first_node_in_group("Menu").add_child(info_menu)
+	onlineMenu = onlineMenuPath.instantiate()
+	get_tree().get_first_node_in_group("Menu").add_child(onlineMenu)
 
 func after_each() -> void:
-	if is_instance_valid(info_menu):
-		info_menu.queue_free()
+	if is_instance_valid(onlineMenu):
+		onlineMenu.queue_free()
 	for node in menu.get_children():
 		node.queue_free()
 
@@ -23,10 +23,10 @@ func after_all() -> void:
 	menu.queue_free()
 
 func test_on_quit_button_pressed() -> void:
-	assert_has_method(info_menu, "_on_quit_button_pressed", "InfoMenu must have this method")
+	assert_has_method(onlineMenu, "_on_quit_button_pressed", "OnlineMenu must have this method")
 	
 func test_on_back_button_pressed() -> void:
-	assert_has_method(info_menu, "_on_back_button_pressed", "InfoMenu must have this method")
-	info_menu._on_back_button_pressed()
+	assert_has_method(onlineMenu, "_on_back_button_pressed", "OnlineMenu must have this method")
+	onlineMenu._on_back_button_pressed()
 	await get_tree().process_frame
 	assert_eq(menu.get_child_count(), 1, "This should have one child")

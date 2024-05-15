@@ -29,7 +29,7 @@ const ONLINE_GAME_OVER_MENU: PackedScene = preload("res://Scenes/Online/OnlineGa
 
 var currentMapNode: Node
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	match gameStatus:
 		gameStatusEnum.Idle:
 			if gameType == gameTypeEnum.Online:
@@ -70,10 +70,10 @@ func _physics_process(delta: float) -> void:
 					return
 				
 				if playerCount == 2:
-					var game_over_2 = GAME_OVER_MENU_2_PLAYERS.instantiate()
+					var game_over_2: Control = GAME_OVER_MENU_2_PLAYERS.instantiate()
 					get_tree().get_first_node_in_group("Menu").add_child(game_over_2)
 				elif playerCount == 3:
-					var game_over_3 = GAME_OVER_MENU_3_PLAYERS.instantiate()
+					var game_over_3: Control = GAME_OVER_MENU_3_PLAYERS.instantiate()
 					get_tree().get_first_node_in_group("Menu").add_child(game_over_3)
 
 func loadMode() -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dpl6sxbbbboul"]
 
 [ext_resource type="Script" path="res://Scripts/powerUp.gd" id="1_yc2td"]
-[ext_resource type="Texture2D" uid="uid://dlxw3o71x60so" path="res://Assets/Potions/GhostBuff.png" id="2_musxq"]
+[ext_resource type="Texture2D" uid="uid://drhmhgl13ie5x" path="res://Assets/Potions/GhostBuff.png" id="2_musxq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pkpp"]
 size = Vector2(14, 14)

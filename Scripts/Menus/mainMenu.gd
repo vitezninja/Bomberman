@@ -13,7 +13,7 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_play_button_pressed() -> void:
-	var gamemode = game_mode_menu.instantiate()
+	var gamemode: Control = game_mode_menu.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(gamemode)
 	queue_free()
 
