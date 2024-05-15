@@ -31,11 +31,11 @@ func addPowerUp(player: Player.playerEnum) -> void:
 		Player.playerEnum.Player3:
 			powerups[2] += 1
 
-func newSet():
+func newSet() -> void:
 	winns = [0,0,0]
 	bombs = [0,0,0]
 	powerups = [0,0,0]
 
-func newGame():
+func newGame() -> void:
 	bombs = [0,0,0]
 	powerups = [0,0,0]
