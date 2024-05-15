@@ -1,8 +1,8 @@
 [gd_scene load_steps=34 format=3 uid="uid://6ne8rr1sxpn8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2byre"]
-[ext_resource type="Texture2D" uid="uid://btwepw03abj8j" path="res://Assets/Player/Prototype_Worksheet.png" id="1_fi8d7"]
-[ext_resource type="Texture2D" uid="uid://bsvwp2tjgpkbq" path="res://Assets/Player/Shadow.png" id="3_y84jk"]
+[ext_resource type="Texture2D" uid="uid://cvc3ng4pddbwh" path="res://Assets/Player/Prototype_Worksheet.png" id="1_fi8d7"]
+[ext_resource type="Texture2D" uid="uid://b32bmfgwmqepu" path="res://Assets/Player/Shadow.png" id="3_y84jk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8tt6"]
 atlas = ExtResource("1_fi8d7")
@@ -236,8 +236,8 @@ radius = 2.0
 height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_numyg"]
-radius = 6.0
-height = 14.0
+radius = 5.0
+height = 10.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1

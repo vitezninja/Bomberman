@@ -1,8 +1,8 @@
 [gd_scene load_steps=37 format=3 uid="uid://ciipa6fevnmri"]
 
 [ext_resource type="Script" path="res://Scripts/Online/OnlineEnemy.gd" id="1_eubu8"]
-[ext_resource type="Texture2D" uid="uid://x7dqieba4bq4" path="res://Assets/Enemy/Shadow.png" id="2_jyiny"]
-[ext_resource type="Texture2D" uid="uid://pxhepoxp3tcl" path="res://Assets/Enemy/Skeleton.png" id="3_mbuy5"]
+[ext_resource type="Texture2D" uid="uid://cnkxw5x22jjcq" path="res://Assets/Enemy/Shadow.png" id="2_jyiny"]
+[ext_resource type="Texture2D" uid="uid://rn4dxahis02b" path="res://Assets/Enemy/Skeleton.png" id="3_mbuy5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2pi5i"]
 atlas = ExtResource("3_mbuy5")
@@ -247,7 +247,7 @@ radius = 2.0
 height = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3v1a"]
-size = Vector2(12, 14)
+size = Vector2(10, 12)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gq8rm"]
 properties/0/path = NodePath(".:position")
