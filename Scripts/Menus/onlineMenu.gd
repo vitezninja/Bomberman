@@ -39,7 +39,7 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_ready_button_pressed() -> void:
-	Network.sendPlayerJoined.rpc_id(1)
+	Network.sendPlayerReadied.rpc_id(1)
 	ready_button.disabled = true
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	world_selector.readied = true
