@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cmcd7u2mwxe1j"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/onlineMenu.gd" id="1_ct3vf"]
-[ext_resource type="Texture2D" uid="uid://bd6wh1urtjjel" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_ymxrl"]
-[ext_resource type="FontFile" uid="uid://dr6acefdkfver" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_8r67x"]
+[ext_resource type="Texture2D" uid="uid://bcuskjfxtpiox" path="res://Assets/GUI/FinalGUIAssets/FinalBackground.png" id="1_ymxrl"]
+[ext_resource type="FontFile" uid="uid://d1uph5187vfgv" path="res://Assets/Font/PixelSerif_16px_v02.otf" id="2_8r67x"]
 [ext_resource type="Theme" uid="uid://yk36rhjn0d1b" path="res://Themes/MenuButtons.tres" id="3_8wqdl"]
 [ext_resource type="Theme" uid="uid://dxfaogmdf3ii4" path="res://Themes/Map1Display.tres" id="5_8vdmk"]
 [ext_resource type="Theme" uid="uid://ceo5ni24hu6cy" path="res://Themes/PlayButton.tres" id="8_l3hva"]
@@ -203,6 +203,6 @@ text = "Ready"
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_rj85y")
 
-[connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/BackToMenuButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="OuterMargins/Content/TitleandQuitBox/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="OuterMargins/Content/NextRoundMargin/NextRoundBox/ReadyButton" to="." method="_on_ready_button_pressed"]

@@ -30,7 +30,7 @@ func _on_quit_button_pressed() -> void:
 		get_tree().get_first_node_in_group("Client").queue_free()
 	get_tree().quit()
 
-func _on_back_to_menu_button_pressed() -> void:
+func _on_back_button_pressed() -> void:
 	var main: Control = MAIN_MENU.instantiate()
 	get_tree().get_first_node_in_group("Menu").add_child(main)
 	if not multiplayer.is_server():
