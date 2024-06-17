@@ -1,35 +1,42 @@
 extends Node
 
-var address: String = "51.107.7.150" #"127.0.0.1" # 51.107.7.150
+var address: String = "127.0.0.1"
 var port: int = 8000
 var peer: ENetMultiplayerPeer
+
 
 func _exit_tree() -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
-		return
-	Network.disconnectClient.rpc_id(1, world_selector.readied)
-	world_selector.readied = false
+		printerr("Client didn't have worldSelector node")
+		get_tree().quit()
+	world_selector.reset()
+	multiplayer.multiplayer_peer = null
 
 
 func creatPeer() -> void:
 	if peer != null:
-		print("Already peer")
-		return
+		printerr("Already a client")
+		get_tree().quit()
 	
 	peer = ENetMultiplayerPeer.new()
 	
 	var error: Error = peer.create_client(address, port)
-	
 	if error != OK:
-		printerr("Peer can't join: ", error)
-		return
+		printerr("Client can't join: ", error)
+		get_tree().quit()
 		
 	multiplayer.multiplayer_peer = peer
 
+
 func _physics_process(_delta: float) -> void:
-	if get_tree().get_first_node_in_group("WorldSelector").get_child_count() == 0:
+	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
+	if world_selector == null:
+		printerr("Client didn't have worldSelector node")
+		get_tree().quit()
+	if world_selector.gameStatus == WorldSelector.gameStatusEnum.Idle:
 		return
+	
 	if Input.is_action_just_pressed("up_player_1"):
 		Network.sendInput.rpc_id(1, "up")
 	if Input.is_action_just_pressed("down_player_1"):

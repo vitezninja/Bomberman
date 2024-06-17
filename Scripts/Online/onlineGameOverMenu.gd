@@ -21,7 +21,7 @@ func _ready() -> void:
 		return
 	if multiplayer.is_server():
 		ready_count.text = str(world_selector.readyCount)
-		
+	
 	player_1_wins.text = str(GameStats.winns[0])
 	player_2_wins.text = str(GameStats.winns[1])
 	player_3_wins.text = str(GameStats.winns[2])
@@ -32,6 +32,7 @@ func _ready() -> void:
 	player_2_power_ups.text = str(GameStats.powerups[1])
 	player_3_power_ups.text = str(GameStats.powerups[2])
 
+
 func _process(_delta: float) -> void:
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	if world_selector == null:
@@ -39,10 +40,12 @@ func _process(_delta: float) -> void:
 	if multiplayer.is_server():
 		ready_count.text = str(world_selector.readyCount)
 
+
 func _on_quit_button_pressed() -> void:
 	if not multiplayer.is_server():
 		get_tree().get_first_node_in_group("Client").queue_free()
 	get_tree().quit()
+
 
 func _on_back_to_menu_button_pressed() -> void:
 	var main: Control = MAIN_MENU.instantiate()
@@ -62,10 +65,11 @@ func _on_next_round_button_pressed() -> void:
 
 
 func _on_ready_button_pressed() -> void:
-	Network.sendPlayerJoined.rpc_id(1)
+	Network.sendPlayerReadied.rpc_id(1)
 	ready_button.disabled = true
 	var world_selector: WorldSelector = get_tree().get_first_node_in_group("WorldSelector")
 	world_selector.readied = true
+
 
 func deleteMenu() -> void:
 	queue_free()
