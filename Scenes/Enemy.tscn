@@ -1,8 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://dygucp2fqgwfn"]
+[gd_scene load_steps=37 format=3 uid="uid://dygucp2fqgwfn"]
 
-[ext_resource type="Texture2D" uid="uid://cnkxw5x22jjcq" path="res://Assets/Enemy/Shadow.png" id="1_1dkm5"]
+[ext_resource type="Texture2D" uid="uid://cc6vna32d0yup" path="res://Assets/Enemy/Shadow.png" id="1_1dkm5"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_2b8kt"]
-[ext_resource type="Texture2D" uid="uid://rn4dxahis02b" path="res://Assets/Enemy/Skeleton.png" id="1_iogyv"]
+[ext_resource type="Texture2D" uid="uid://tetlpx4abd0r" path="res://Assets/Enemy/Skeleton.png" id="1_iogyv"]
+[ext_resource type="PackedScene" uid="uid://drfhcit8agfxn" path="res://Scenes/Light.tscn" id="4_6i48e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2pi5i"]
 atlas = ExtResource("1_iogyv")
@@ -311,6 +312,9 @@ collision_mask = 83
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="Light" parent="." instance=ExtResource("4_6i48e")]
+unique_name_in_owner = true
 
 [connection signal="area_shape_entered" from="Hitbox" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

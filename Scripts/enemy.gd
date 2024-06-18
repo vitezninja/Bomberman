@@ -29,10 +29,14 @@ var tilemap: TileMap
 @onready var ray_cast_up_down_right: RayCast2D = %RayCastUpDownRight
 @onready var ray_cast_up_down_left: RayCast2D = %RayCastUpDownLeft
 @onready var timer: Timer = %Timer
+@onready var light = %Light
 
 var isPhasing: bool = false
 const MINPHASETIME: float = 0.5
 var phaseTimer: float
+
+@export var Light_Enabled: bool = false
+
 
 func _ready() -> void :
 	changeColor()
@@ -40,6 +44,8 @@ func _ready() -> void :
 	rng.randomize()
 	chooseRandomDirection()
 	createAstar()
+	light.Enabled = Light_Enabled
+
 
 func _physics_process(delta: float) -> void:
 	if phaseTimer > 0:

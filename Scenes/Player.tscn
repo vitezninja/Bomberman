@@ -1,8 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://6ne8rr1sxpn8"]
+[gd_scene load_steps=35 format=3 uid="uid://6ne8rr1sxpn8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2byre"]
-[ext_resource type="Texture2D" uid="uid://cvc3ng4pddbwh" path="res://Assets/Player/Prototype_Worksheet.png" id="1_fi8d7"]
-[ext_resource type="Texture2D" uid="uid://b32bmfgwmqepu" path="res://Assets/Player/Shadow.png" id="3_y84jk"]
+[ext_resource type="Texture2D" uid="uid://oxqjlpupu0ao" path="res://Assets/Player/Prototype_Worksheet.png" id="1_fi8d7"]
+[ext_resource type="Texture2D" uid="uid://dfuks45th68ax" path="res://Assets/Player/Shadow.png" id="3_y84jk"]
+[ext_resource type="PackedScene" uid="uid://drfhcit8agfxn" path="res://Scenes/Light.tscn" id="4_2n03v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8tt6"]
 atlas = ExtResource("1_fi8d7")
@@ -279,3 +280,7 @@ collision_mask = 17
 [node name="AreaCollision" type="CollisionShape2D" parent="CollisionArea"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7ruus")
+
+[node name="Light" parent="." instance=ExtResource("4_2n03v")]
+unique_name_in_owner = true
+radius = 2.0
