@@ -29,7 +29,7 @@ var tilemap: TileMap
 @onready var ray_cast_up_down_right: RayCast2D = %RayCastUpDownRight
 @onready var ray_cast_up_down_left: RayCast2D = %RayCastUpDownLeft
 @onready var timer: Timer = %Timer
-@onready var light = %Light
+@onready var light: Node2D = %Light
 
 var isPhasing: bool = false
 const MINPHASETIME: float = 0.5

@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var light = %Light
-@onready var shadow = %Shadow
+@onready var light: Light2D = %Light
+@onready var shadow: Light2D = %Shadow
 
 @export var Enabled: bool = false
 @export_range(1, 20) var radius: float = 1.0
