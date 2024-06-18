@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dldpptyurgs5w"]
+[gd_scene load_steps=6 format=3 uid="uid://dldpptyurgs5w"]
 
 [ext_resource type="Script" path="res://Scripts/bomb.gd" id="1_8lxnf"]
-[ext_resource type="Texture2D" uid="uid://b4qvuwnivtn4v" path="res://Assets/Bomb/Bomb.png" id="1_onkod"]
+[ext_resource type="Texture2D" uid="uid://dk2oqumnfmaa8" path="res://Assets/Bomb/Bomb.png" id="1_onkod"]
+[ext_resource type="PackedScene" uid="uid://drfhcit8agfxn" path="res://Scenes/Light.tscn" id="3_4tr8x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlevx"]
 size = Vector2(16, 16)
@@ -32,6 +33,12 @@ shape = SubResource("RectangleShape2D_02n0r")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="Light" parent="." instance=ExtResource("3_4tr8x")]
+position = Vector2(7, -7)
+Enabled = true
+radius = 0.1
+light_strenght = 0.3
 
 [connection signal="area_shape_entered" from="Hitbox" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_area_2d_body_exited"]
