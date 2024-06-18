@@ -25,10 +25,11 @@ var boxes: Array[WoodenBox]
 var hasBoxes: bool = false
 
 @onready var sprite: AnimatedSprite2D = %Sprite
-@onready var bomb: PackedScene = preload("res://Scenes/Bomb.tscn")
-@onready var woodenBox: PackedScene = preload("res://Scenes/WoodenBox.tscn")
+const bomb: PackedScene = preload("res://Scenes/Bomb.tscn")
+const woodenBox: PackedScene = preload("res://Scenes/WoodenBox.tscn")
 @onready var hitbox: Area2D = %Hitbox
 @onready var collision_area: Area2D = %CollisionArea
+@onready var light = %Light
 var up: String = "up_player_"
 var down: String = "down_player_"
 var left: String = "left_player_"
@@ -36,9 +37,14 @@ var right: String = "right_player_"
 var bombPlace: String = "bomb_player_"
 var boxPlace: String = "box_player_"
 
+@export var Light_Enabled: bool = false
+
+
 func _ready() -> void:
 	handleInputMap()
 	changeColor()
+	light.Enabled = Light_Enabled
+
 
 func _physics_process(delta: float) -> void:
 	if bombTimer >= 0.0:
@@ -53,6 +59,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+
 func handleInputMap() -> void:
 	up = "up_player_" + str(playerId+1)
 	down = "down_player_" + str(playerId+1)
@@ -60,6 +67,7 @@ func handleInputMap() -> void:
 	right = "right_player_" + str(playerId+1)
 	bombPlace = "bomb_player_" + str(playerId+1)
 	boxPlace = "box_player_" + str(playerId+1)
+
 
 func handleMovement(delta: float) -> void:
 	var x_direction: float = Input.get_axis(left, right)
@@ -71,6 +79,7 @@ func handleMovement(delta: float) -> void:
 		direction = Vector2(0, y_direction)
 	
 	move(direction, delta)
+
 
 func move(input: Vector2, delta: float) -> void:
 	if input.x != 0:
@@ -84,6 +93,7 @@ func move(input: Vector2, delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.y = move_toward(velocity.y, 0, currentSpeed)
+
 
 func handleAnimation() -> void:
 	if velocity.x != 0:
@@ -103,6 +113,7 @@ func handleAnimation() -> void:
 	else:
 		sprite.play("Idle_Sideways")
 
+
 func handleBombAction() -> void:
 	var isOnBomb: bool = false
 	for body in hitbox.get_overlapping_bodies():
@@ -118,6 +129,7 @@ func handleBombAction() -> void:
 	if Input.is_action_just_pressed(bombPlace) and bombTimer <= 0 and bombs.size() == maxBombsCount and hasDetonator:
 		detonate()
 
+
 func place() -> void:
 	var thisBomb: Bomb = bomb.instantiate()
 	var tileMap: TileMap = get_tree().get_first_node_in_group("TileMap")
@@ -132,10 +144,12 @@ func place() -> void:
 	bombTimer = MAXBOMBTIMER
 	bombs.append(thisBomb)
 
+
 func detonate() -> void:
 	for thisBomb in bombs:
 		thisBomb.explode()
 	bombTimer = MAXBOMBTIMER
+
 
 func hit() -> void:
 	set_physics_process(false)
@@ -145,7 +159,7 @@ func hit() -> void:
 			thisBomb.startExploding()
 	await sprite.animation_finished
 	queue_free()
-	
+
 
 func changeColor() -> void:
 	match playerId:
@@ -156,16 +170,20 @@ func changeColor() -> void:
 		playerEnum.Player3:
 			sprite.modulate = Color(0,0,1)
 
+
 func increaseBombCount() -> void:
 	if maxBombsCount < 4:
 		maxBombsCount += 1
+
 
 func increaseBombRange() -> void:
 	if maxBombsRange < 4:
 		maxBombsRange += 1
 
+
 func pickedUpDetonator() -> void:
 	hasDetonator = true
+
 
 func speedBoost() -> void:
 	match currentSpeed:
@@ -173,6 +191,7 @@ func speedBoost() -> void:
 			currentSpeed = POWERUPSPEED
 		DEBUFFSPEED:
 			currentSpeed = NORMALSPEED
+
 
 func speedDebuff() -> void:
 	match currentSpeed:
@@ -207,10 +226,12 @@ func ghost() -> void:
 		set_collision_mask_value(5, true)
 		z_index = 1
 
+
 func canPlaceBoxes() -> void:
 	if hasBoxes and maxBoxCount < 9:
 		maxBoxCount += 3
 	hasBoxes = true
+
 
 func handleBoxAction() -> void:
 	var isOnBox: bool = false
@@ -239,7 +260,7 @@ func placeBox() -> void:
 	get_tree().get_first_node_in_group("Boxes").add_child(thisBox)
 	boxes.append(thisBox)
 
+
 func setId(id: playerEnum) -> void:
 	playerId = id
 	_ready()
-	
