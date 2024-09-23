@@ -62,4 +62,4 @@ This project is licensed under the MIT License. You can view the full license [h
 All other contributors, including those responsible for in-game assets, are credited within the game.
 
 <hr>
-This project was developed as part of the Software Technology course at <b>ELTE Faculty of Informatics (2023/2024 Spring).</b>
+This project was developed as part of the Szoftver technológia course at <b>ELTE IK (2023/2024 Spring).</b>
