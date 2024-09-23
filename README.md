@@ -40,9 +40,9 @@ Set up the Azure server for multiplayer functionality (optional for single-playe
 Choose the game mode and start playing.
 
 # Screenshots
-[SCREENSHOT GOES HERE#1]  
-[SCREENSHOT GOES HERE#2]  
-[SCREENSHOT GOES HERE#3]  
+![](https://github.com/vitezninja/Bomberman/blob/master/Docs/GamePlay/gameplay1.png)  
+![](https://github.com/vitezninja/Bomberman/blob/master/Docs/GamePlay/gameplay2.png)  
+![](https://github.com/vitezninja/Bomberman/blob/master/Docs/GamePlay/gameplay3.png)  
 
 ## Documentation
 
